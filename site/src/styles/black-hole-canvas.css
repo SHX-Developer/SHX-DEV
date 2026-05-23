@@ -1,0 +1,25 @@
+/* Layout classes for the WebGL <BlackHole /> component.
+   The shader itself is unchanged — these rules only size and
+   position the canvas inside the hero. */
+.bh-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.bh-cinematic { isolation: isolate; }
+.bh-webgl { display: block; }
+
+.bh-gl-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 0 60px rgba(192, 132, 252, 0.30));
+}
+
+@media (max-width: 720px) {
+  .hero-hole { bottom: auto; }
+}

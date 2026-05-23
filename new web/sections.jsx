@@ -1,20 +1,16 @@
-/* Sections: Nav, Hero, About, Stack, Projects, Journey
-   Ported from the new design. The Hero keeps the WebGL <BlackHole />. */
-import React from 'react'
-import BlackHole from './BlackHole.jsx'
-import { CosmicCanvas, CountUp, Icon } from '../effects.jsx'
-const { useEffect: uE, useRef: uR, useState: uS } = React
+/* Sections: Nav, Hero, About, Stack, Projects, Journey */
+const { useEffect: uE, useRef: uR, useState: uS } = React;
 
 /* ============ NAVBAR ============ */
-export function Nav() {
-  const [shrunk, setShrunk] = uS(false)
+function Nav() {
+  const [shrunk, setShrunk] = uS(false);
   uE(() => {
-    const onScroll = () => setShrunk(window.scrollY > 60)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-  const links = ['About', 'Work', 'Stack', 'Services', 'Contact']
+    const onScroll = () => setShrunk(window.scrollY > 60);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  const links = ['About', 'Work', 'Stack', 'Services', 'Contact'];
   return (
     <div className="nav-fixed">
       <nav className={`nav-pill ${shrunk ? 'shrunk' : ''}`}>
@@ -31,11 +27,11 @@ export function Nav() {
         <a href="#contact" className="nav-cta">Hire me <Icon.arrow /></a>
       </nav>
     </div>
-  )
+  );
 }
 
 /* ============ HERO ============ */
-export function Hero({ particleDensity }) {
+function Hero({ particleDensity }) {
   return (
     <section id="top" style={{ paddingTop: 180, paddingBottom: 0, minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
       <CosmicCanvas density={particleDensity} />
@@ -59,7 +55,7 @@ export function Hero({ particleDensity }) {
           payment systems and admin panels. From idea to event horizon.
         </p>
 
-        <div className="hero-cta reveal" style={{
+        <div className="reveal" style={{
           display: 'flex', gap: 14, justifyContent: 'center',
           marginTop: 40, flexWrap: 'wrap',
           '--reveal-delay': '380ms'
@@ -69,7 +65,7 @@ export function Hero({ particleDensity }) {
         </div>
 
         {/* Specs strip */}
-        <div className="hero-specs reveal" style={{
+        <div className="reveal" style={{
           display: 'flex', justifyContent: 'center', gap: 40, marginTop: 80,
           flexWrap: 'wrap',
           '--reveal-delay': '520ms'
@@ -87,9 +83,10 @@ export function Hero({ particleDensity }) {
         </div>
       </div>
 
-      {/* Black hole — WebGL Gargantua (purple/pink), kept intact */}
-      <div className="hero-hole">
-        <BlackHole height={620} />
+      {/* Black hole */}
+      <div className="blackhole-wrap">
+        <div className="blackhole-glow"></div>
+        <div className="blackhole"></div>
       </div>
 
       {/* Bottom fade to next section */}
@@ -99,17 +96,17 @@ export function Hero({ particleDensity }) {
         zIndex: 3, pointerEvents: 'none'
       }}></div>
     </section>
-  )
+  );
 }
 
 /* ============ ABOUT / IDENTITY ============ */
-export function About() {
+function About() {
   const stats = [
     { n: 7, suf: '+', label: 'Years coding' },
     { n: 64, suf: '', label: 'Projects shipped' },
     { n: 23, suf: '', label: 'Telegram bots' },
     { n: 12, suf: '', label: 'Systems live' },
-  ]
+  ];
   return (
     <section id="about">
       <div className="container">
@@ -137,6 +134,7 @@ export function About() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               overflow: 'hidden',
             }}>
+              {/* concentric rings */}
               {[0,1,2,3].map(i => (
                 <div key={i} style={{
                   position: 'absolute',
@@ -156,6 +154,7 @@ export function About() {
                 fontSize: 44, color: 'white',
                 position: 'relative', zIndex: 2,
               }}>s</div>
+              {/* scanline */}
               <div style={{
                 position: 'absolute', inset: 0,
                 background: 'repeating-linear-gradient(180deg, transparent 0 3px, rgba(255,255,255,0.025) 3px 4px)',
@@ -189,13 +188,13 @@ export function About() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             <div className="glass" style={{ padding: 36 }}>
               <p style={{ fontSize: 19, lineHeight: 1.55, color: 'var(--text-0)', marginBottom: 18 }}>
-                I&apos;m a solo studio. I write the backend, design the interface,
-                wire the payments, and watch the logs at 3am. I&apos;m fastest when
+                I'm a solo studio. I write the backend, design the interface,
+                wire the payments, and watch the logs at 3am. I'm fastest when
                 I own the whole loop.
               </p>
               <p style={{ fontSize: 17, lineHeight: 1.6, color: 'var(--text-1)' }}>
                 I care about products that <span className="ital" style={{ fontFamily: 'var(--font-serif)', color: 'var(--p-2)' }}>feel</span> right —
-                a Telegram bot that replies before you finish typing, a checkout that doesn&apos;t
+                a Telegram bot that replies before you finish typing, a checkout that doesn't
                 make you blink, an admin panel an operator actually wants to open. Software at the
                 edge of effortless.
               </p>
@@ -229,16 +228,16 @@ export function About() {
         }
       `}</style>
     </section>
-  )
+  );
 }
 
 /* ============ TECH STACK — ORBIT ============ */
-export function Stack() {
+function Stack() {
   const orbits = [
     { r: 160, dur: 28, items: ['React', 'Next.js', 'TypeScript'] },
     { r: 240, dur: 42, items: ['Node.js', 'PostgreSQL', 'Redis', 'Docker'] },
     { r: 320, dur: 60, items: ['Telegram API', 'Stripe', 'OpenAI', 'GCP', 'Linux'] },
-  ]
+  ];
   return (
     <section id="stack">
       <div className="container">
@@ -277,7 +276,7 @@ export function Stack() {
               animation: `orbit-rot ${o.dur}s linear infinite ${oi % 2 ? 'reverse' : ''}`,
             }}>
               {o.items.map((label, i) => {
-                const ang = (360 / o.items.length) * i
+                const ang = (360 / o.items.length) * i;
                 return (
                   <div key={label} style={{
                     position: 'absolute',
@@ -287,7 +286,7 @@ export function Stack() {
                   }}>
                     <OrbitChip label={label} />
                   </div>
-                )
+                );
               })}
             </div>
           ))}
@@ -327,7 +326,7 @@ export function Stack() {
         }
       `}</style>
     </section>
-  )
+  );
 }
 function OrbitChip({ label }) {
   return (
@@ -342,11 +341,11 @@ function OrbitChip({ label }) {
       border: '1px solid rgba(168,85,247,0.3)',
       boxShadow: '0 0 20px rgba(168,85,247,0.25)',
     }}>{label}</div>
-  )
+  );
 }
 
 /* ============ PROJECTS ============ */
-export function Projects() {
+function Projects() {
   const items = [
     {
       tag: 'TELEGRAM · SAAS',
@@ -384,7 +383,7 @@ export function Projects() {
       metric: 'Closed beta · 38 teams',
       hue: 292,
     },
-  ]
+  ];
   return (
     <section id="work">
       <div className="container">
@@ -393,7 +392,7 @@ export function Projects() {
             <div className="eyebrow" style={{ marginBottom: 18 }}>03 — WORK</div>
             <h2 className="h-section"><span className="white" style={{ background: 'linear-gradient(180deg,#fff,#BDB5D1)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>A universe</span> <span className="ital">of products.</span></h2>
           </div>
-          <p>Selected systems I&apos;ve designed, shipped and operated. Each one a planet in its own orbit — with its own gravity, weather, deadlines.</p>
+          <p>Selected systems I've designed, shipped and operated. Each one a planet in its own orbit — with its own gravity, weather, deadlines.</p>
         </div>
 
         <div className="grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
@@ -412,18 +411,18 @@ export function Projects() {
         }
       `}</style>
     </section>
-  )
+  );
 }
 
 function ProjectCard({ p, delay }) {
-  const ref = uR(null)
-  const [pos, setPos] = uS({ x: 0.5, y: 0.5, active: false })
+  const ref = uR(null);
+  const [pos, setPos] = uS({ x: 0.5, y: 0.5, active: false });
 
   const onMove = (e) => {
-    const r = ref.current.getBoundingClientRect()
-    setPos({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height, active: true })
-  }
-  const onLeave = () => setPos(prev => ({ ...prev, active: false }))
+    const r = ref.current.getBoundingClientRect();
+    setPos({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height, active: true });
+  };
+  const onLeave = () => setPos(p => ({ ...p, active: false }));
 
   return (
     <div
@@ -492,7 +491,7 @@ function ProjectCard({ p, delay }) {
           padding: '4px 10px', borderRadius: 999,
           background: p.status === 'LIVE' ? 'rgba(126,224,161,0.12)' : p.status === 'BETA' ? 'rgba(255,200,100,0.12)' : 'rgba(168,85,247,0.15)',
           color: p.status === 'LIVE' ? '#7ee0a1' : p.status === 'BETA' ? '#ffc864' : 'var(--p-2)',
-          border: '1px solid currentColor',
+          border: '1px solid currentColor', borderOpacity: 0.3,
         }}>{p.status}</span>
       </div>
 
@@ -511,11 +510,11 @@ function ProjectCard({ p, delay }) {
         <span className="mono dim" style={{ fontSize: 11 }}>{p.metric}</span>
       </div>
     </div>
-  )
+  );
 }
 
 /* ============ JOURNEY ============ */
-export function Journey() {
+function Journey() {
   const checkpoints = [
     { year: '2018', title: 'First commit', desc: 'A buggy Telegram weather bot. Crashed for two days. Hooked for life.' },
     { year: '2020', title: 'First client', desc: 'Built a delivery dispatch panel for a friend\'s family bakery. Still running.' },
@@ -523,7 +522,7 @@ export function Journey() {
     { year: '2023', title: 'Full-time solo', desc: 'Quit my last salaried job. Took on payments, AI, automation work.' },
     { year: '2024', title: 'Studio of one', desc: 'Lumen Checkout, Astra Bot Studio. 6-figure year, calm afternoons.' },
     { year: '2026', title: 'Currently', desc: 'Shipping Signal Desk and writing about everything I learn.' },
-  ]
+  ];
   return (
     <section id="journey">
       <div className="container">
@@ -568,5 +567,7 @@ export function Journey() {
         </div>
       </div>
     </section>
-  )
+  );
 }
+
+Object.assign(window, { Nav, Hero, About, Stack, Projects, Journey });

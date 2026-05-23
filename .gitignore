@@ -1,0 +1,19 @@
+# Agent / IDE state
+.claude/
+.vscode/
+.idea/
+
+# Node / build artifacts
+node_modules/
+dist/
+.vite/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# OS / logs
+.DS_Store
+Thumbs.db
+*.log

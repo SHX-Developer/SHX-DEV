@@ -60,99 +60,142 @@ function Nav() {
   );
 }
 
-// ============ HERO ============
+// ============ HERO (Reflect-style with black hole) ============
 function Hero() {
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
-  useEffect(() => {
-    const onMove = (e) => {
-      const w = window.innerWidth, h = window.innerHeight;
-      setMouse({ x: (e.clientX / w - 0.5) * 2, y: (e.clientY / h - 0.5) * 2 });
-    };
-    window.addEventListener('mousemove', onMove);
-    return () => window.removeEventListener('mousemove', onMove);
-  }, []);
-
-  const titleWords = ['Building', 'digital', 'products'];
-  const titleWords2 = ['with', 'code,', 'design'];
-  const titleWords3 = ['&', <em key="auto">automation.</em>];
-
   return (
-    <section className="hero" id="home">
-      <div className="container">
-        <div className="hero-grid">
-          <div>
-            <div className="sys-bar">
-              <span className="sys-bar-block live"><span className="status-dot"/>SYSTEM ONLINE</span>
-              <span className="sys-bar-sep">/</span>
-              <span className="sys-bar-block">CORE_v2.6</span>
-              <span className="sys-bar-sep">/</span>
-              <span className="sys-bar-block" style={{color: 'var(--purple-soft)'}}>3 ACTIVE NODES</span>
-            </div>
-            <h1 className="h-display">
-              {titleWords.map((w, i) => (
-                <span key={`a${i}`} className="word-reveal" style={{ marginRight: 14 }}>
-                  <span style={{ animationDelay: `${i * 0.08}s` }}>{w}</span>
-                </span>
-              ))}
-              <br />
-              {titleWords2.map((w, i) => (
-                <span key={`b${i}`} className="word-reveal" style={{ marginRight: 14 }}>
-                  <span style={{ animationDelay: `${(titleWords.length + i) * 0.08}s` }}>{w}</span>
-                </span>
-              ))}
-              <br />
-              {titleWords3.map((w, i) => (
-                <span key={`c${i}`} className="word-reveal" style={{ marginRight: 14 }}>
-                  <span style={{ animationDelay: `${(titleWords.length + titleWords2.length + i) * 0.08}s` }}>{w}</span>
-                </span>
-              ))}
-            </h1>
-            <p style={{
-              maxWidth: 520, marginTop: 28, fontSize: 16.5, lineHeight: 1.55,
-              color: 'var(--text-2)', opacity: 0, animation: 'wordUp 1s ease 0.9s forwards'
-            }}>
-              <span className="mono" style={{color: 'var(--purple-soft)', fontSize: 12, letterSpacing: '0.14em'}}>{'>'} CORE_FUNCTION:</span><br/>
-              Build digital products that ship — Telegram bots, web apps,
-              payment flows and admin panels. Modules connect. Modules scale.
-            </p>
-            <div className="hero-cta" style={{opacity: 0, animation: 'wordUp 1s ease 1.1s forwards'}}>
-              <a href="#projects" className="btn btn-primary">
-                Access system
-                <ArrowIcon />
-              </a>
-              <a href="#contact" className="btn btn-glass">Initialize contact</a>
-              <a href="#resume" className="btn btn-ghost">Download profile ↓</a>
-            </div>
-            <div className="kbd-line" style={{opacity: 0, animation: 'wordUp 1s ease 1.25s forwards'}}>
-              <span><span className="kbd">↓</span> scroll to traverse</span>
-              <span><span className="kbd">⌘</span><span className="kbd">K</span> command palette</span>
-            </div>
-            <div className="hero-stats" style={{opacity: 0, animation: 'wordUp 1s ease 1.3s forwards'}}>
-              <div>
-                <div className="stat-num">3<em>active</em></div>
-                <div className="stat-label">Live Products</div>
-              </div>
-              <div>
-                <div className="stat-num">12<em>built</em></div>
-                <div className="stat-label">Telegram Bots</div>
-              </div>
-              <div>
-                <div className="stat-num">8<em>shipped</em></div>
-                <div className="stat-label">Web Apps</div>
-              </div>
-              <div>
-                <div className="stat-num">5<em>integrated</em></div>
-                <div className="stat-label">Payment Flows</div>
-              </div>
-            </div>
-          </div>
+    <section className="r-hero" id="home">
+      <div className="r-hero-top">
+        <a href="#projects" className="r-pill" style={{opacity: 0, animation: 'wordUp 0.9s ease 0.1s forwards'}}>
+          <span className="r-pill-spark">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/>
+            </svg>
+          </span>
+          Building digital products in real time
+          <span style={{color: 'var(--text-3)', fontSize: 14}}>→</span>
+        </a>
+        <h1 className="r-title" style={{opacity: 0, animation: 'wordUp 1s ease 0.25s forwards'}}>
+          Building products<br/>that <em>bend reality.</em>
+        </h1>
+        <p className="r-sub" style={{opacity: 0, animation: 'wordUp 1s ease 0.5s forwards'}}>
+          Independent developer crafting Telegram bots, web apps,
+          payment systems and admin panels. From idea to event horizon.
+        </p>
+        <div className="r-cta" style={{opacity: 0, animation: 'wordUp 1s ease 0.7s forwards'}}>
+          <a href="#projects" className="btn btn-primary">View work<ArrowIcon/></a>
+          <a href="#contact" className="btn btn-glass">Start a project</a>
+        </div>
+      </div>
 
-          <div className="hero-orb-wrap">
-            <CoreSystem size={520} mouseX={mouse.x} mouseY={mouse.y} />
+      <div className="r-hole-stage">
+        <BlackHole height={680} />
+      </div>
+
+      <div className="r-preview-wrap">
+        <HeroPreview/>
+      </div>
+    </section>
+  );
+}
+
+// Preview "product surface" peeking up from behind the black hole.
+// Two-column layout: a notes / project list + a project detail readout.
+function HeroPreview() {
+  const items = [
+    { id: 1, title: 'Cyber Donate · v2.6', kind: 'TG · Web', status: 'live', tag: '+14%' },
+    { id: 2, title: 'StarsPay · order #4821', kind: 'TG Bot', status: 'live', tag: '47s' },
+    { id: 3, title: 'Cyber Mate · beta', kind: 'Mini App', status: 'beta', tag: 'new' },
+    { id: 4, title: 'Admin panel · v1.2', kind: 'Internal', status: 'active', tag: 'wip' },
+    { id: 5, title: 'Payment relay · core', kind: 'API', status: 'live', tag: 'OK' },
+  ];
+  return (
+    <div className="hp-grid">
+      {/* Window chrome */}
+      <div className="hp-chrome">
+        <div className="hp-dots">
+          <span/><span/><span/>
+        </div>
+        <div className="hp-url">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{opacity: 0.5}}>
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          shx.dev/system
+        </div>
+        <div className="hp-chrome-spacer"/>
+      </div>
+
+      <div className="hp-body">
+        {/* Sidebar */}
+        <div className="hp-sidebar">
+          <div className="hp-side-row hp-side-active">
+            <span className="hp-side-ic">◍</span>System
+            <span className="hp-side-ct">5</span>
+          </div>
+          <div className="hp-side-row"><span className="hp-side-ic">⌘</span>Products<span className="hp-side-ct">12</span></div>
+          <div className="hp-side-row"><span className="hp-side-ic">▤</span>Orders<span className="hp-side-ct">284</span></div>
+          <div className="hp-side-row"><span className="hp-side-ic">⊞</span>Payments<span className="hp-side-ct">$14k</span></div>
+          <div className="hp-side-row"><span className="hp-side-ic">↻</span>Automation</div>
+          <div className="hp-side-sep"/>
+          <div className="hp-side-label">Pinned</div>
+          <div className="hp-side-row dim"><span className="hp-side-ic">★</span>Cyber Donate</div>
+          <div className="hp-side-row dim"><span className="hp-side-ic">★</span>StarsPay</div>
+          <div className="hp-side-row dim"><span className="hp-side-ic">★</span>Admin v1.2</div>
+        </div>
+
+        {/* Center column — list */}
+        <div className="hp-center">
+          <div className="hp-section-h">
+            <span style={{color:'#fff', fontSize: 14, fontWeight: 500}}>Active products</span>
+            <span className="mono" style={{fontSize: 10, color: 'var(--text-3)', letterSpacing: '0.08em'}}>UPDATED 2 MIN AGO</span>
+          </div>
+          <ul className="hp-list">
+            {items.map((it, i) => (
+              <li key={it.id} className={`hp-row ${i === 0 ? 'hp-row-active' : ''}`}>
+                <span className={`hp-dot hp-dot-${it.status}`}/>
+                <div className="hp-row-main">
+                  <div className="hp-row-title">{it.title}</div>
+                  <div className="hp-row-kind">{it.kind}</div>
+                </div>
+                <span className="hp-row-tag">{it.tag}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Right column — detail */}
+        <div className="hp-right">
+          <div className="hp-section-h">
+            <span style={{color:'#fff', fontSize: 14, fontWeight: 500}}>Cyber Donate · v2.6</span>
+            <span className="mono" style={{fontSize: 10, color: '#86efac'}}>● LIVE</span>
+          </div>
+          <div className="hp-chart">
+            <svg viewBox="0 0 220 80" preserveAspectRatio="none" style={{width: '100%', height: 80}}>
+              <defs>
+                <linearGradient id="hpchart" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stopColor="#E879F9" stopOpacity="0.5"/>
+                  <stop offset="1" stopColor="#E879F9" stopOpacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,60 L20,55 L40,58 L60,40 L80,42 L100,30 L120,32 L140,18 L160,22 L180,12 L200,16 L220,8"
+                    stroke="#E879F9" strokeWidth="1.8" fill="none"/>
+              <path d="M0,60 L20,55 L40,58 L60,40 L80,42 L100,30 L120,32 L140,18 L160,22 L180,12 L200,16 L220,8 L220,80 L0,80 Z"
+                    fill="url(#hpchart)"/>
+            </svg>
+          </div>
+          <div className="hp-stats">
+            <div><div className="hp-stat-v">$8.4k</div><div className="hp-stat-l">Volume / 24h</div></div>
+            <div><div className="hp-stat-v">214</div><div className="hp-stat-l">Orders</div></div>
+            <div><div className="hp-stat-v">99.8%</div><div className="hp-stat-l">Uptime</div></div>
+          </div>
+          <div className="hp-mini-rows">
+            <div className="hp-mini-row"><span>order #4821</span><span className="mono" style={{color:'#86efac'}}>delivered</span></div>
+            <div className="hp-mini-row"><span>order #4820</span><span className="mono" style={{color:'#86efac'}}>delivered</span></div>
+            <div className="hp-mini-row"><span>order #4819</span><span className="mono" style={{color:'#FCD34D'}}>pending</span></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -175,9 +218,9 @@ function About() {
     <section id="about">
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow">[ 01 ] / About</span>
+          <span className="eyebrow">About</span>
           <h2 className="h-section">
-            Product-focused developer<br/>building <em>real digital solutions</em>.
+            Independent developer building<br/><em>real digital solutions.</em>
           </h2>
         </Reveal>
 
@@ -284,8 +327,8 @@ function Projects() {
     <section id="projects">
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow">[ 02 ] / Active products</span>
-          <h2 className="h-section">Live entries running<br/>in the <em>system registry.</em></h2>
+          <span className="eyebrow">Active products</span>
+          <h2 className="h-section">Live products,<br/><em>orbiting steadily.</em></h2>
         </Reveal>
 
         <Reveal>
@@ -570,7 +613,7 @@ function TechStack() {
     <section id="stack">
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow">[ 03 ] / Stack</span>
+          <span className="eyebrow">Stack</span>
           <h2 className="h-section">An <em>orbital system</em> of tools<br/>that gets things shipped.</h2>
         </Reveal>
 
@@ -615,11 +658,7 @@ function Services() {
     { id: 'WEB_APP',   title: 'Full-stack Web App',  caps: ['SaaS dashboards', 'billing', 'auth', 'analytics'],  price: 'from $2.5k', icon: '⌘' },
     { id: 'PAY_SYS',   title: 'Payment / Order System', caps: ['Stripe', 'manual verify', 'multi-currency', 'receipts'], price: 'from $1.5k', icon: '⊞' },
     { id: 'ADMIN',     title: 'Admin Panel Module',  caps: ['orders', 'users', 'content', 'roles & access'],     price: 'from $900',  icon: '▤' },
-<<<<<<< HEAD
-    { id: 'API_CORE',  title: 'Backend API Core',    caps: ['REST', 'WebSocket', 'queues', 'caching'],          price: 'from $1.4k', icon: '⟁' },
-=======
     { id: 'API_CORE',  title: 'Backend API Core',    caps: ['REST', 'WebSocket', 'queues', 'caching'],          price: 'from $1.4k', icon: '◍' },
->>>>>>> b34ec8fd50bba9f89dba757be7fe10fdb19ed485
     { id: 'AUTO_FX',   title: 'Automation / Scripts',caps: ['scrapers', 'integrations', 'cron', 'workflows'],   price: 'from $600',  icon: '↻' },
     { id: 'MVP_PROD',  title: 'Product MVP Build',   caps: ['discovery', 'design', 'ship in weeks', 'iterate'], price: 'on request', icon: '✦' },
   ];
@@ -627,7 +666,7 @@ function Services() {
     <section id="services">
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow">[ 04 ] / Modules available</span>
+          <span className="eyebrow">Services</span>
           <h2 className="h-section">Modules you can<br/><em>plug into your product.</em></h2>
         </Reveal>
         <div className="cards-grid cards-4">
@@ -666,11 +705,7 @@ function Process() {
   const steps = [
     ['01', 'Discovery', 'Understand the goal, users, constraints.'],
     ['02', 'Structure', 'Define product scope and information arch.'],
-<<<<<<< HEAD
-    ['03', 'UI / UX', 'Wireframes, hi-fi design, prototype.'],
-=======
     ['01', 'UI / UX', 'Wireframes, hi-fi design, prototype.'],
->>>>>>> b34ec8fd50bba9f89dba757be7fe10fdb19ed485
     ['04', 'Develop', 'Frontend, backend, integrations.'],
     ['05', 'Testing', 'Manual, automated, edge-case checks.'],
     ['06', 'Launch', 'Deploy, monitor, document.'],
@@ -680,12 +715,12 @@ function Process() {
     <section id="process">
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow">[ 05 ] / Process</span>
-          <h2 className="h-section">Holographic <em>workflow</em>,<br/>battle-tested in production.</h2>
+          <span className="eyebrow">Process</span>
+          <h2 className="h-section">A <em>workflow</em> battle-tested<br/>in production.</h2>
         </Reveal>
         <div className="process">
           {steps.map(([n, label, desc], i) => (
-            <Reveal key={n} delay={i * 70}>
+            <Reveal key={`p${i}`} delay={i * 70}>
               <div className="glass glass-hover process-step">
                 <div className="num">{n}</div>
                 <div className="label">{label}</div>
@@ -712,13 +747,8 @@ function Experience() {
     {
       date: '2023 — 2024',
       tag: 'Telegram Native',
-<<<<<<< HEAD
-      title: 'Telegram Bots & Web Apps',
-      desc: 'Built multiple production Telegram bots and Mini Apps with aiogram and React — including order systems, admin panels and live status flows.',
-=======
       title: 'Product Builder · Full-stack Developer',
       desc: 'Designing and shipping commercial Telegram bots, Mini Apps, and SaaS-style web platforms. Working solo or with small teams across procurement, gaming and payments.',
->>>>>>> b34ec8fd50bba9f89dba757be7fe10fdb19ed485
     },
     {
       date: '2022 — 2023',
@@ -737,12 +767,12 @@ function Experience() {
     <section id="experience">
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow">[ 06 ] / Experience</span>
+          <span className="eyebrow">Experience</span>
           <h2 className="h-section">A path through <em>products,<br/>payments & people.</em></h2>
         </Reveal>
         <div className="glass" style={{padding: '8px 32px'}}>
           {items.map((x, i) => (
-            <Reveal key={x.title} delay={i * 80}>
+            <Reveal key={`x${i}`} delay={i * 80}>
               <div className="xp-item">
                 <div>
                   <div className="xp-date">{x.date}</div>
@@ -768,7 +798,7 @@ function Resume() {
       <div className="container">
         <div className="resume-grid">
           <Reveal>
-            <span className="eyebrow">[ 07 ] / Resume</span>
+            <span className="eyebrow">Resume</span>
             <h2 className="h-section" style={{marginTop: 14}}>
               Resume &<br/><em>professional profile.</em>
             </h2>
@@ -852,9 +882,9 @@ function Contact() {
     <section id="contact">
       <div className="container">
         <Reveal className="section-head" style={{textAlign: 'center', maxWidth: 720, margin: '0 auto 56px'}}>
-          <span className="eyebrow" style={{justifyContent: 'center', display: 'inline-flex'}}>[ 08 ] / Contact</span>
-          <h2 className="h-section" style={{textAlign: 'center'}}>
-            Let's build something <em>powerful</em>.
+          <span className="eyebrow">Contact</span>
+          <h2 className="h-section">
+            Let's build something <em>powerful.</em>
           </h2>
           <p style={{fontSize: 17, lineHeight: 1.5, color: 'var(--text-2)', textAlign: 'center', margin: '14px auto 0', maxWidth: 540}}>
             Have an idea, project or startup concept? Let's turn it into a working product.

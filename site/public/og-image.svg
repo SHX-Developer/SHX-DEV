@@ -1,0 +1,18 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#07060B"/>
+  <circle cx="935" cy="70" r="360" fill="#8B5CF6" opacity="0.18"/>
+  <circle cx="190" cy="320" r="280" fill="#4F46E5" opacity="0.12"/>
+  <circle cx="600" cy="610" r="240" fill="#8B5CF6" opacity="0.10"/>
+  <circle cx="860" cy="315" r="150" fill="url(#planet)"/>
+  <text x="90" y="255" fill="#F4F2FA" font-family="Space Grotesk, Arial, sans-serif" font-size="112" font-weight="600" letter-spacing="-5">SHX</text>
+  <text x="90" y="365" fill="#A78BFA" font-family="Space Grotesk, Arial, sans-serif" font-size="112" font-weight="600" letter-spacing="-5">DEV</text>
+  <text x="96" y="430" fill="#B8B3CC" font-family="Space Grotesk, Arial, sans-serif" font-size="30">Building digital ecosystems</text>
+  <defs>
+    <radialGradient id="planet" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(810 260) rotate(55) scale(240)">
+      <stop stop-color="#DDD6FE"/>
+      <stop offset="0.35" stop-color="#8B5CF6"/>
+      <stop offset="0.75" stop-color="#4C1D95"/>
+      <stop offset="1" stop-color="#0F0A1F"/>
+    </radialGradient>
+  </defs>
+</svg>

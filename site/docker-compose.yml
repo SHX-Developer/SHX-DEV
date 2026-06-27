@@ -1,16 +1,8 @@
 services:
-  web:
+  shx-dev:
     build:
       context: .
       dockerfile: Dockerfile
-    image: shx-portfolio:latest
-    container_name: shx-portfolio
     ports:
-      - "8080:80"
+      - '8080:80'
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
-      interval: 30s
-      timeout: 3s
-      retries: 3
-      start_period: 5s

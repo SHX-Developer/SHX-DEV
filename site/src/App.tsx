@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
-import { SocialDock } from './components/SocialDock';
 import { LanguageProvider, useLanguage } from './i18n';
 import { AboutSection } from './sections/AboutSection';
 import { BuildProcessSection } from './sections/BuildProcessSection';
 import { ContactSection } from './sections/ContactSection';
-import { CyberDonateCaseSection } from './sections/CyberDonateCaseSection';
 import { CurrentWorkSection } from './sections/CurrentWorkSection';
 import { EcosystemSection } from './sections/EcosystemSection';
 import { HeroSection } from './sections/HeroSection';
@@ -14,6 +12,7 @@ import { JourneySection } from './sections/JourneySection';
 import { ProjectsSection } from './sections/ProjectsSection';
 import { ResumeSection } from './sections/ResumeSection';
 import { TechStackSection } from './sections/TechStackSection';
+import { scrollToSection } from './utils/scroll';
 
 const AppContent = () => {
   const { language, t } = useLanguage();
@@ -39,13 +38,30 @@ const AppContent = () => {
       ?.setAttribute('content', t.meta.description);
   }, [language, t]);
 
+  useEffect(() => {
+    const restoreHash = () => {
+      if (window.location.hash) {
+        window.requestAnimationFrame(() =>
+          scrollToSection(window.location.hash, { updateHistory: false, behavior: 'auto' }),
+        );
+      }
+    };
+
+    restoreHash();
+    window.addEventListener('popstate', restoreHash);
+    return () => window.removeEventListener('popstate', restoreHash);
+  }, []);
+
   return (
     <>
+      <a className="skip-link" href="#content">
+        {t.header.skip}
+      </a>
       <Header />
-      <main className="shell" id="top">
+      <main className="shell" id="content">
+        <span id="top" className="anchor-target" />
         <HeroSection />
         <ProjectsSection />
-        <CyberDonateCaseSection />
         <AboutSection />
         <BuildProcessSection />
         <EcosystemSection />
@@ -55,7 +71,6 @@ const AppContent = () => {
         <ResumeSection />
         <ContactSection />
       </main>
-      <SocialDock />
       <Footer />
     </>
   );

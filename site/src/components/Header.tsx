@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { MouseEvent } from 'react';
 import { useLanguage } from '../i18n';
@@ -13,9 +13,29 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, toggleLanguage, t } = useLanguage();
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [isOpen]);
+
   const closeAndScroll = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    setIsOpen(false);
-    handleAnchorClick(event, href);
+    event.preventDefault();
+
+    if (isOpen) {
+      setIsOpen(false);
+      window.requestAnimationFrame(() =>
+        window.requestAnimationFrame(() => scrollToSection(href)),
+      );
+      return;
+    }
+
+    scrollToSection(href);
   };
 
   return (
@@ -59,7 +79,7 @@ export const Header = () => {
               className="menu-toggle"
               type="button"
               aria-expanded={isOpen}
-              aria-label={t.header.menu}
+              aria-label={isOpen ? t.header.menuClose : t.header.menu}
               onClick={() => setIsOpen((value) => !value)}
             >
               <span />
@@ -72,7 +92,6 @@ export const Header = () => {
             className="mobile-menu shell"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
             aria-label={t.header.mobileNav}
           >
             {t.header.nav.map((link) => (

@@ -39,7 +39,7 @@ export const ResumeSection = () => {
           <div className="download-cta">
             <h4>{t.resume.projectResume}</h4>
             <p>{t.resume.projectResumeText}</p>
-            <Button variant="primary" href="mailto:hello@shx.dev?subject=SHX%20DEV%20project%20resume">
+            <Button variant="primary" href="/resume/shx-dev-resume.pdf" download>
               {t.resume.requestResume}
               <DownloadIcon />
             </Button>

@@ -1,4 +1,12 @@
-export const scrollToSection = (id: string) => {
+type ScrollOptions = {
+  updateHistory?: boolean;
+  behavior?: ScrollBehavior;
+};
+
+export const scrollToSection = (
+  id: string,
+  { updateHistory = true, behavior = 'smooth' }: ScrollOptions = {},
+) => {
   if (!id.startsWith('#') || id.length < 2) {
     return;
   }
@@ -8,6 +16,9 @@ export const scrollToSection = (id: string) => {
     return;
   }
 
-  const y = target.getBoundingClientRect().top + window.scrollY - 70;
-  window.scrollTo({ top: y, behavior: 'smooth' });
+  target.scrollIntoView({ behavior, block: 'start' });
+
+  if (updateHistory && window.location.hash !== id) {
+    window.history.pushState(null, '', id);
+  }
 };

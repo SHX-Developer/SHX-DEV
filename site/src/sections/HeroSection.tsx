@@ -25,7 +25,8 @@ export const HeroSection = () => {
         playsInline
         poster="/videos/hero-poster.webp"
       >
-        <source src="/videos/galaxy-2.mp4" type="video/mp4" />
+        <source media="(max-width: 720px)" src="/videos/hero-lite.mp4" type="video/mp4" />
+        <source src="/videos/hero-optimized.mp4" type="video/mp4" />
       </video>
       <div className="hero-bg-overlay" aria-hidden="true" />
 
@@ -45,11 +46,6 @@ export const HeroSection = () => {
           <strong>{t.hero.subtitleStrong}</strong>
           {t.hero.subtitleEnd}
         </p>
-        <p className="hero-proof">
-          {t.hero.proof}
-          <br />
-          <strong>{t.hero.proofStrong}</strong>
-        </p>
         <div className="hero-actions">
           <Button
             variant="primary"
@@ -62,7 +58,7 @@ export const HeroSection = () => {
           <Button href="#about" onClick={(event) => handleAnchorClick(event, '#about')}>
             {t.hero.about}
           </Button>
-          <Button href="#resume" onClick={(event) => handleAnchorClick(event, '#resume')}>
+          <Button href="/resume/shx-dev-resume.pdf" download>
             {t.hero.resume}
             <DownloadIcon />
           </Button>

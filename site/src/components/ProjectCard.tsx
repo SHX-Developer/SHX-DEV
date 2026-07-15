@@ -8,9 +8,11 @@ import { useLanguage } from '../i18n';
 type ProjectCardProps = {
   project: Project;
   compact?: boolean;
+  exploreLabel: string;
+  onExplore: (project: Project) => void;
 };
 
-export const ProjectCard = ({ project, compact = false }: ProjectCardProps) => {
+export const ProjectCard = ({ project, compact = false, exploreLabel, onExplore }: ProjectCardProps) => {
   const { t } = useLanguage();
   const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -78,18 +80,11 @@ export const ProjectCard = ({ project, compact = false }: ProjectCardProps) => {
       </div>
       <div className="card-meta">
         <span className="y">{project.meta}</span>
-        {project.href ? (
-          <a className="card-arrow" href={project.href} target="_blank" rel="noreferrer">
-            <span className="sr-only">
-              {t.projects.open} {project.title}
-            </span>
-            <ArrowRightIcon />
-          </a>
-        ) : (
-          <span className="card-arrow">
-            <ArrowRightIcon />
-          </span>
-        )}
+        <button className="card-explore" type="button" onClick={() => onExplore(project)}>
+          {exploreLabel}
+          <ArrowRightIcon />
+          <span className="sr-only">: {t.projects.open} {project.title}</span>
+        </button>
       </div>
     </motion.article>
   );

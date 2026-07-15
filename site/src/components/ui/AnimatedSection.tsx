@@ -16,7 +16,7 @@ export const AnimatedSection = ({ id, className, children }: AnimatedSectionProp
       className={className}
       initial={reducedMotion ? false : { opacity: 0, y: 28, filter: 'blur(10px)' }}
       whileInView={reducedMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-      viewport={{ once: true, amount: 0.18 }}
+      viewport={{ once: true, amount: 0.04 }}
       transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}

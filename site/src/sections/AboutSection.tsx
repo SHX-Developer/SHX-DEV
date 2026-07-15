@@ -19,10 +19,13 @@ export const AboutSection = () => {
           <p>{t.about.p2}</p>
         </div>
         <div className="about-side">
-          <div className="about-portrait" aria-label={t.about.portraitLabel}>
-            <div className="portrait-head" />
-            <div className="portrait-body" />
-            <span>SHX</span>
+          <div className="about-identity" aria-label={t.about.portraitLabel}>
+            <div className="identity-topbar">
+              <span /><span /><span />
+              <small>shx.profile.ts</small>
+            </div>
+            <pre aria-hidden="true"><code>{`const developer = {\n  name: 'Shahrizod',\n  focus: ['Telegram', 'Payments', 'Web Apps'],\n  users: '30,000+',\n  status: 'building'\n};`}</code></pre>
+            <div className="identity-status"><span /> AVAILABLE FOR PRODUCT WORK</div>
           </div>
           <div className="skills">
             {t.skills.map((group) => (

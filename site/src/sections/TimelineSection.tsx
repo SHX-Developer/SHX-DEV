@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
+import { SectionFX } from '../components/ui/SectionFX';
 import { useLanguage } from '../i18n';
 
 export const TimelineSection = () => {
@@ -31,6 +32,7 @@ export const TimelineSection = () => {
 
   return (
     <AnimatedSection id="journey" className="timeline-v2">
+      <SectionFX variant="timeline" />
       <div className="timeline-v2-layout">
         <div className="timeline-v2-heading">
           <span className="eyebrow">{copy.eyebrow}</span>

@@ -8635,3 +8635,640 @@ footer {
     display: none;
   }
 }
+
+/* ==========================================================================
+   SECTION MOTION SYSTEM — a distinct ambient animation for every chapter
+   ========================================================================== */
+
+.section-fx {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.section-fx > span {
+  position: absolute;
+  display: block;
+}
+
+/* Hero: orbital system */
+
+.fx-hero-ring {
+  top: 48%;
+  left: 77%;
+  border: 1px solid rgba(167, 139, 250, 0.09);
+  border-radius: 50%;
+}
+
+.fx-hero-ring::before,
+.fx-hero-ring::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.fx-hero-ring::before {
+  top: 9%;
+  left: 17%;
+  width: 8px;
+  height: 8px;
+  background: #c4b5fd;
+  box-shadow: 0 0 24px rgba(196, 181, 253, 0.9);
+}
+
+.fx-hero-ring::after {
+  right: 10%;
+  bottom: 22%;
+  width: 4px;
+  height: 4px;
+  background: #8b5cf6;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.9);
+}
+
+.fx-hero-ring-one {
+  width: 580px;
+  height: 580px;
+  margin: -290px 0 0 -290px;
+  animation: fx-spin 24s linear infinite;
+}
+
+.fx-hero-ring-two {
+  width: 390px;
+  height: 390px;
+  margin: -195px 0 0 -195px;
+  border-style: dashed;
+  animation: fx-spin-reverse 17s linear infinite;
+}
+
+.fx-hero-satellite {
+  top: 21%;
+  right: 13%;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(196, 181, 253, 0.12);
+  border-radius: 18px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.18), transparent 68%);
+  animation: fx-satellite-float 7s ease-in-out infinite;
+}
+
+.fx-hero-flare {
+  top: 10%;
+  right: 30%;
+  width: 1px;
+  height: 42%;
+  background: linear-gradient(180deg, transparent, rgba(196, 181, 253, 0.24), transparent);
+  filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.55));
+  animation: fx-hero-flare 6s ease-in-out infinite;
+}
+
+/* Projects: scanner and sparks */
+
+.fx-projects-scan {
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    rgba(167, 139, 250, 0.05) 20%,
+    rgba(196, 181, 253, 0.38) 50%,
+    rgba(167, 139, 250, 0.05) 80%,
+    transparent 95%
+  );
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.18);
+  animation: fx-projects-scan 8s ease-in-out infinite;
+}
+
+.fx-projects-beam {
+  top: 25%;
+  left: -22%;
+  width: 54%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.28), transparent);
+  transform: rotate(-14deg);
+  animation: fx-projects-beam 11s ease-in-out infinite;
+}
+
+.fx-projects-spark {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c4b5fd;
+  box-shadow: 0 0 18px rgba(196, 181, 253, 0.9);
+}
+
+.fx-projects-spark-one {
+  top: 31%;
+  left: 8%;
+  animation: fx-spark-drift 9s ease-in-out infinite;
+}
+
+.fx-projects-spark-two {
+  top: 68%;
+  right: 10%;
+  animation: fx-spark-drift 7s 1.4s ease-in-out infinite reverse;
+}
+
+/* About: rotating profile radar */
+
+.fx-about-orbit {
+  top: 5%;
+  right: -210px;
+  width: 560px;
+  height: 560px;
+  border: 1px solid rgba(167, 139, 250, 0.08);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 70px rgba(167, 139, 250, 0.015),
+    0 0 0 145px rgba(167, 139, 250, 0.012);
+  animation: fx-spin 28s linear infinite;
+}
+
+.fx-about-orbit::before,
+.fx-about-orbit::after {
+  content: '';
+  position: absolute;
+  background: rgba(167, 139, 250, 0.08);
+}
+
+.fx-about-orbit::before {
+  top: 50%;
+  right: -18%;
+  left: -18%;
+  height: 1px;
+}
+
+.fx-about-orbit::after {
+  top: -18%;
+  bottom: -18%;
+  left: 50%;
+  width: 1px;
+}
+
+.fx-about-orbit i {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #a78bfa;
+  box-shadow: 0 0 18px rgba(167, 139, 250, 0.8);
+}
+
+.fx-about-orbit i:nth-child(1) {
+  top: 8%;
+  left: 27%;
+}
+
+.fx-about-orbit i:nth-child(2) {
+  top: 61%;
+  right: -3px;
+  width: 4px;
+  height: 4px;
+}
+
+.fx-about-orbit i:nth-child(3) {
+  bottom: 4%;
+  left: 39%;
+  width: 5px;
+  height: 5px;
+}
+
+.fx-about-radar {
+  top: 18%;
+  right: 9%;
+  width: 90px;
+  height: 90px;
+  border: 1px solid rgba(196, 181, 253, 0.13);
+  border-radius: 50%;
+  animation: fx-radar-pulse 4.6s ease-out infinite;
+}
+
+/* Process: a signal physically travelling through the route */
+
+.fx-process-track {
+  top: 64%;
+  right: 3%;
+  left: 3%;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(167, 139, 250, 0.08) 0 7px,
+    transparent 7px 16px
+  );
+}
+
+.fx-process-signal {
+  top: calc(64% - 4px);
+  left: 3%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c4b5fd;
+  box-shadow:
+    0 0 0 7px rgba(167, 139, 250, 0.05),
+    0 0 25px rgba(167, 139, 250, 0.85);
+  animation: fx-process-run 9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.fx-process-echo {
+  top: 64%;
+  width: 1px;
+  height: 90px;
+  background: linear-gradient(180deg, rgba(167, 139, 250, 0.22), transparent);
+  transform-origin: 50% 0;
+  animation: fx-process-echo 4s ease-in-out infinite;
+}
+
+.fx-process-echo-one {
+  left: 34%;
+}
+
+.fx-process-echo-two {
+  left: 68%;
+  animation-delay: 1.2s;
+}
+
+/* Ecosystem: network packets and a breathing data wave */
+
+.fx-data-particle {
+  width: 6px;
+  height: 6px;
+  border: 1px solid rgba(196, 181, 253, 0.5);
+  border-radius: 2px;
+  background: rgba(139, 92, 246, 0.28);
+  box-shadow: 0 0 17px rgba(139, 92, 246, 0.65);
+  animation: fx-data-flight 12s linear infinite;
+}
+
+.fx-data-particle-one {
+  top: 17%;
+  left: 8%;
+}
+
+.fx-data-particle-two {
+  top: 36%;
+  left: 22%;
+  animation-delay: -4s;
+}
+
+.fx-data-particle-three {
+  top: 19%;
+  right: 14%;
+  animation-delay: -7s;
+  animation-direction: reverse;
+}
+
+.fx-data-particle-four {
+  top: 68%;
+  right: 7%;
+  animation-delay: -2s;
+  animation-direction: reverse;
+}
+
+.fx-ecosystem-wave {
+  top: 21%;
+  left: 50%;
+  width: 650px;
+  height: 650px;
+  margin-left: -325px;
+  border: 1px solid rgba(139, 92, 246, 0.05);
+  border-radius: 50%;
+  animation: fx-ecosystem-wave 6s ease-out infinite;
+}
+
+/* Timeline: illuminated travelling beacon */
+
+.fx-timeline-rail {
+  top: 8%;
+  bottom: 5%;
+  left: 45%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(167, 139, 250, 0.12), transparent);
+}
+
+.fx-timeline-signal {
+  top: 8%;
+  left: calc(45% - 3px);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c4b5fd;
+  box-shadow:
+    0 0 0 8px rgba(167, 139, 250, 0.04),
+    0 0 22px rgba(196, 181, 253, 0.8);
+  animation: fx-timeline-travel 13s ease-in-out infinite;
+}
+
+.fx-timeline-year {
+  color: rgba(167, 139, 250, 0.035);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(80px, 13vw, 190px);
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.fx-timeline-year-one {
+  top: 9%;
+  right: -2%;
+  animation: fx-year-float 10s ease-in-out infinite;
+}
+
+.fx-timeline-year-two {
+  right: 7%;
+  bottom: 2%;
+  animation: fx-year-float 10s -5s ease-in-out infinite reverse;
+}
+
+/* Contact: slow comets converging into the CTA */
+
+.fx-contact-comet {
+  width: 230px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196, 181, 253, 0.62), transparent);
+  filter: drop-shadow(0 0 7px rgba(167, 139, 250, 0.7));
+}
+
+.fx-contact-comet::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: 22%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 16px rgba(196, 181, 253, 0.9);
+}
+
+.fx-contact-comet-one {
+  top: 17%;
+  left: -20%;
+  transform: rotate(14deg);
+  animation: fx-comet-one 10s ease-in-out infinite;
+}
+
+.fx-contact-comet-two {
+  top: 38%;
+  right: -18%;
+  transform: rotate(-18deg);
+  animation: fx-comet-two 12s -3s ease-in-out infinite;
+}
+
+.fx-contact-comet-three {
+  bottom: 18%;
+  left: -16%;
+  transform: rotate(-8deg);
+  animation: fx-comet-one 13s -6s ease-in-out infinite;
+}
+
+.fx-contact-halo {
+  top: 34%;
+  left: 50%;
+  width: 390px;
+  height: 390px;
+  margin: -195px 0 0 -195px;
+  border: 1px solid rgba(167, 139, 250, 0.07);
+  border-radius: 50%;
+  animation: fx-radar-pulse 5.5s ease-out infinite;
+}
+
+@keyframes fx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fx-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes fx-satellite-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-24px, 18px, 0) rotate(14deg);
+  }
+}
+
+@keyframes fx-hero-flare {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: translateY(-20%);
+  }
+  50% {
+    opacity: 0.75;
+    transform: translateY(45%);
+  }
+}
+
+@keyframes fx-projects-scan {
+  0%,
+  100% {
+    top: 8%;
+    opacity: 0;
+  }
+  18%,
+  82% {
+    opacity: 1;
+  }
+  50% {
+    top: 92%;
+  }
+}
+
+@keyframes fx-projects-beam {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(-15%) rotate(-14deg);
+  }
+  45%,
+  60% {
+    opacity: 0.7;
+    transform: translateX(210%) rotate(-14deg);
+  }
+}
+
+@keyframes fx-spark-drift {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translate(0, 0) scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(70px, -32px) scale(1);
+  }
+}
+
+@keyframes fx-radar-pulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  28% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.65);
+  }
+}
+
+@keyframes fx-process-run {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  8%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(88vw);
+  }
+}
+
+@keyframes fx-process-echo {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes fx-data-flight {
+  0% {
+    opacity: 0;
+    transform: translate3d(-40px, 80px, 0) rotate(0deg);
+  }
+  20%,
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(220px, -170px, 0) rotate(270deg);
+  }
+}
+
+@keyframes fx-ecosystem-wave {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  35% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes fx-timeline-travel {
+  0%,
+  100% {
+    top: 8%;
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  50% {
+    top: 92%;
+  }
+}
+
+@keyframes fx-year-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-26px);
+  }
+}
+
+@keyframes fx-comet-one {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(0) rotate(14deg);
+  }
+  35%,
+  62% {
+    opacity: 0.8;
+    transform: translateX(85vw) rotate(14deg);
+  }
+}
+
+@keyframes fx-comet-two {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(0) rotate(-18deg);
+  }
+  38%,
+  65% {
+    opacity: 0.7;
+    transform: translateX(-82vw) rotate(-18deg);
+  }
+}
+
+.section-fx.is-reduced *,
+.section-fx.is-reduced *::before,
+.section-fx.is-reduced *::after {
+  animation: none !important;
+}
+
+@media (max-width: 720px) {
+  .section-fx {
+    opacity: 0.6 !important;
+  }
+
+  .fx-hero-ring {
+    left: 88%;
+  }
+
+  .fx-about-orbit {
+    right: -390px;
+  }
+
+  .fx-process-signal,
+  .fx-process-track,
+  .fx-process-echo {
+    display: none;
+  }
+
+  .fx-timeline-rail,
+  .fx-timeline-signal {
+    left: 12px;
+  }
+
+  .fx-contact-comet {
+    width: 130px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-fx *,
+  .section-fx *::before,
+  .section-fx *::after {
+    animation: none !important;
+  }
+}

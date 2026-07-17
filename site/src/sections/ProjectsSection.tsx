@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { ProjectCard } from '../components/ProjectCard';
 import { ProjectModal } from '../components/ProjectModal';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
+import { SectionFX } from '../components/ui/SectionFX';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { useLanguage } from '../i18n';
 
@@ -44,6 +45,7 @@ export const ProjectsSection = () => {
 
   return (
     <AnimatedSection id="projects">
+      <SectionFX variant="projects" />
       <SectionHeading
         eyebrow={t.projects.eyebrow}
         title={

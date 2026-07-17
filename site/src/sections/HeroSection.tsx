@@ -10,6 +10,7 @@ import { useEffect, useRef } from 'react';
 import type { MouseEvent, PointerEvent as ReactPointerEvent } from 'react';
 import { Button } from '../components/ui/Button';
 import { ArrowRightIcon, DownloadIcon } from '../components/ui/Icons';
+import { SectionFX } from '../components/ui/SectionFX';
 import { useLanguage } from '../i18n';
 import { scrollToSection } from '../utils/scroll';
 
@@ -121,6 +122,7 @@ export const HeroSection = () => {
       onPointerMove={handleHeroPointerMove}
       onPointerLeave={handleHeroPointerLeave}
     >
+      <SectionFX variant="hero" />
       <div className="hero-aura hero-aura-one" aria-hidden="true" />
       <div className="hero-aura hero-aura-two" aria-hidden="true" />
       <div className="hero-mesh" aria-hidden="true" />

@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
+import { SectionFX } from '../components/ui/SectionFX';
 import { useLanguage } from '../i18n';
 
 export const AboutSection = () => {
@@ -8,6 +9,7 @@ export const AboutSection = () => {
 
   return (
     <AnimatedSection id="about" className="about-v2">
+      <SectionFX variant="about" />
       <div className="about-v2-grid">
         <div className="about-v2-statement">
           <span className="eyebrow">{t.about.eyebrow}</span>

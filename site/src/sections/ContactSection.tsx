@@ -7,6 +7,7 @@ import {
   TelegramIcon,
 } from '../components/ui/Icons';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
+import { SectionFX } from '../components/ui/SectionFX';
 import { useLanguage } from '../i18n';
 
 export const ContactSection = () => {
@@ -57,6 +58,7 @@ export const ContactSection = () => {
 
   return (
     <AnimatedSection id="contact" className="contact-v2">
+      <SectionFX variant="contact" />
       <motion.div
         className="contact-v2-glow"
         animate={

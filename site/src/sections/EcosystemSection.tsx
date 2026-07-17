@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { useMemo, useState } from 'react';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
+import { SectionFX } from '../components/ui/SectionFX';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { useLanguage } from '../i18n';
 
@@ -86,6 +87,7 @@ export const EcosystemSection = () => {
 
   return (
     <AnimatedSection id="ecosystem" className="ecosystem-v2">
+      <SectionFX variant="ecosystem" />
       <span id="stack" className="anchor-target" />
       <SectionHeading
         eyebrow={t.ecosystem.eyebrow}

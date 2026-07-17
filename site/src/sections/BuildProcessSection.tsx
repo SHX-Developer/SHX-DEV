@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
+import { SectionFX } from '../components/ui/SectionFX';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { useLanguage } from '../i18n';
 
@@ -9,6 +10,7 @@ export const BuildProcessSection = () => {
 
   return (
     <AnimatedSection id="process" className="process-v2">
+      <SectionFX variant="process" />
       <SectionHeading
         eyebrow={t.process.eyebrow}
         title={

@@ -1,3 +1,4 @@
+import { motion, useScroll } from 'framer-motion';
 import { useEffect } from 'react';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
@@ -5,17 +6,15 @@ import { LanguageProvider, useLanguage } from './i18n';
 import { AboutSection } from './sections/AboutSection';
 import { BuildProcessSection } from './sections/BuildProcessSection';
 import { ContactSection } from './sections/ContactSection';
-import { CurrentWorkSection } from './sections/CurrentWorkSection';
 import { EcosystemSection } from './sections/EcosystemSection';
 import { HeroSection } from './sections/HeroSection';
-import { JourneySection } from './sections/JourneySection';
 import { ProjectsSection } from './sections/ProjectsSection';
-import { ResumeSection } from './sections/ResumeSection';
-import { TechStackSection } from './sections/TechStackSection';
+import { TimelineSection } from './sections/TimelineSection';
 import { scrollToSection } from './utils/scroll';
 
 const AppContent = () => {
   const { language, t } = useLanguage();
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -54,6 +53,7 @@ const AppContent = () => {
 
   return (
     <>
+      <motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} />
       <a className="skip-link" href="#content">
         {t.header.skip}
       </a>
@@ -65,10 +65,7 @@ const AppContent = () => {
         <AboutSection />
         <BuildProcessSection />
         <EcosystemSection />
-        <TechStackSection />
-        <JourneySection />
-        <CurrentWorkSection />
-        <ResumeSection />
+        <TimelineSection />
         <ContactSection />
       </main>
       <Footer />

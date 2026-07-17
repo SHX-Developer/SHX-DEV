@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { useMemo, useState } from 'react';
-import { CubeIcon } from '../components/ui/Icons';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { useLanguage } from '../i18n';
@@ -8,7 +7,6 @@ import { useLanguage } from '../i18n';
 const products = [
   {
     id: 'cyber-donate',
-    theme: 'commerce',
     mark: 'CD',
     infrastructure: [
       'payments',
@@ -24,7 +22,6 @@ const products = [
   },
   {
     id: 'stars-pay',
-    theme: 'payments',
     mark: 'SP',
     infrastructure: [
       'authentication',
@@ -41,7 +38,6 @@ const products = [
   },
   {
     id: 'cyber-mate',
-    theme: 'community',
     mark: 'CM',
     infrastructure: [
       'authentication',
@@ -58,7 +54,6 @@ const products = [
   },
   {
     id: 'shx-dev',
-    theme: 'developer',
     mark: 'SHX',
     infrastructure: [
       'authentication',
@@ -74,25 +69,24 @@ const products = [
   },
 ] as const;
 
-export const EcosystemSection = () => {
-  const { t } = useLanguage();
-  const reducedMotion = useReducedMotion();
-  const [activeProduct, setActiveProduct] = useState<string | null>(null);
+type ProductId = (typeof products)[number]['id'];
 
+export const EcosystemSection = () => {
+  const { language, t } = useLanguage();
+  const reducedMotion = useReducedMotion();
+  const [activeProduct, setActiveProduct] = useState<ProductId>('cyber-donate');
+
+  const activeIndex = products.findIndex((product) => product.id === activeProduct);
+  const active = products[activeIndex];
+  const activeCopy = t.ecosystem.products[activeIndex];
   const activeInfrastructure = useMemo(
-    () => new Set(products.find((product) => product.id === activeProduct)?.infrastructure ?? []),
-    [activeProduct],
+    () => new Set(active.infrastructure),
+    [active.infrastructure],
   );
 
-  const reveal = (delay: number, x = 0) => ({
-    initial: reducedMotion ? false : { opacity: 0, y: 22, x },
-    whileInView: reducedMotion ? undefined : { opacity: 1, y: 0, x: 0 },
-    viewport: { once: true, amount: 0.22 },
-    transition: { duration: 0.72, delay, ease: [0.22, 1, 0.36, 1] as const },
-  });
-
   return (
-    <AnimatedSection id="ecosystem">
+    <AnimatedSection id="ecosystem" className="ecosystem-v2">
+      <span id="stack" className="anchor-target" />
       <SectionHeading
         eyebrow={t.ecosystem.eyebrow}
         title={
@@ -106,172 +100,142 @@ export const EcosystemSection = () => {
       />
 
       <motion.div
-        className="eco-dashboard"
-        initial={reducedMotion ? false : { opacity: 0, y: 30 }}
-        whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+        className="product-os"
+        initial={reducedMotion ? false : { opacity: 0, y: 30, scale: 0.985 }}
+        whileInView={reducedMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.08 }}
-        transition={{ duration: 0.82, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="eco-dashboard-topbar">
-          <div className="eco-window-dots" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-          </div>
+        <div className="product-os-bar">
           <span>SHX / PRODUCT OPERATING SYSTEM</span>
-          <small><i /> LIVE SYSTEM</small>
+          <small>
+            <i />
+            {language === 'ru' ? 'СИСТЕМА РАБОТАЕТ' : 'LIVE SYSTEM'}
+          </small>
         </div>
 
-        <div className="eco-dashboard-grid">
-          <motion.aside className="eco-platform-card" {...reveal(0.08, -18)}>
-            <div className="eco-platform-mark">
-              <span>SHX</span>
-              <CubeIcon />
-            </div>
-            <div className="eco-platform-copy">
-              <small>{t.ecosystem.platformType}</small>
-              <h3>{t.ecosystem.platformTitle}</h3>
-              <p>{t.ecosystem.platformDescription}</p>
-            </div>
-            <div className="eco-platform-status">
-              <span />
-              SYSTEM CORE
-            </div>
-          </motion.aside>
+        <div className="product-os-canvas">
+          <div className="product-os-grid" aria-hidden="true" />
+          {products.map((product, index) => (
+            <motion.i
+              className={`product-os-connection connection-${index + 1}${
+                activeProduct === product.id ? ' is-active' : ''
+              }`}
+              style={{ rotate: [-145, -35, 145, 35][index] }}
+              aria-hidden="true"
+              initial={reducedMotion ? false : { scaleX: 0, opacity: 0 }}
+              whileInView={reducedMotion ? undefined : { scaleX: 1, opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.85, delay: 0.35 + index * 0.12 }}
+              key={`connection-${product.id}`}
+            />
+          ))}
 
-          <div className="eco-products-column">
-            <motion.div className="eco-column-heading" {...reveal(0.16)}>
-              <span>{t.ecosystem.productsLabel}</span>
-              <small>04 PRODUCTS</small>
-            </motion.div>
+          <motion.div
+            className="product-os-core"
+            animate={
+              reducedMotion
+                ? undefined
+                : {
+                    boxShadow: [
+                      '0 0 30px rgba(139,92,246,.18)',
+                      '0 0 70px rgba(139,92,246,.42)',
+                      '0 0 30px rgba(139,92,246,.18)',
+                    ],
+                  }
+            }
+            transition={{ duration: 3.2, repeat: Infinity }}
+          >
+            <small>PRODUCT OS</small>
+            <strong>SHX</strong>
+            <span>17 {language === 'ru' ? 'МОДУЛЕЙ' : 'MODULES'}</span>
+          </motion.div>
 
-            <div className="eco-product-list">
-              {t.ecosystem.products.map(([name, category, description], index) => {
-                const product = products[index];
-                const isActive = activeProduct === product.id;
+          {t.ecosystem.products.map(([name, category], index) => {
+            const product = products[index];
+            const isActive = product.id === activeProduct;
 
-                return (
-                  <motion.button
-                    className={`eco-product${isActive ? ' is-active' : ''}`}
-                    data-theme={product.theme}
-                    type="button"
-                    aria-pressed={isActive}
-                    onClick={() => setActiveProduct(isActive ? null : product.id)}
-                    onFocus={() => setActiveProduct(product.id)}
-                    onBlur={() => setActiveProduct(null)}
-                    onMouseEnter={() => setActiveProduct(product.id)}
-                    onMouseLeave={(event) => {
-                      if (document.activeElement !== event.currentTarget) setActiveProduct(null);
-                    }}
-                    initial={reducedMotion ? false : { opacity: 0, y: 18 }}
-                    whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.35 }}
-                    transition={{
-                      duration: 0.62,
-                      delay: 0.2 + index * 0.09,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    whileHover={reducedMotion ? undefined : { scale: 1.018, x: 3 }}
-                    key={product.id}
-                  >
-                    <motion.i
-                      className="eco-link eco-link-left"
-                      aria-hidden="true"
-                      initial={reducedMotion ? false : { scaleX: 0, opacity: 0 }}
-                      whileInView={reducedMotion ? undefined : { scaleX: 1, opacity: 1 }}
-                      viewport={{ once: true, amount: 0.45 }}
-                      transition={{ duration: 0.55, delay: 0.5 + index * 0.06 }}
-                    />
-                    <span className="eco-product-mark">{product.mark}</span>
-                    <span className="eco-product-copy">
-                      <small>{category}</small>
-                      <strong>{name}</strong>
-                      <span>{description}</span>
-                    </span>
-                    <span className="eco-product-state" aria-hidden="true">
-                      <i />
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <motion.i
-                      className="eco-link eco-link-right"
-                      aria-hidden="true"
-                      initial={reducedMotion ? false : { scaleX: 0, opacity: 0 }}
-                      whileInView={reducedMotion ? undefined : { scaleX: 1, opacity: 1 }}
-                      viewport={{ once: true, amount: 0.45 }}
-                      transition={{ duration: 0.55, delay: 0.56 + index * 0.06 }}
-                    />
-                  </motion.button>
-                );
-              })}
-            </div>
+            return (
+              <motion.button
+                className={`product-os-node node-${index + 1}${isActive ? ' is-active' : ''}`}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setActiveProduct(product.id)}
+                onFocus={() => setActiveProduct(product.id)}
+                onMouseEnter={() => setActiveProduct(product.id)}
+                whileHover={reducedMotion ? undefined : { scale: 1.05 }}
+                key={product.id}
+              >
+                <span>{product.mark}</span>
+                <div>
+                  <small>{category}</small>
+                  <strong>{name}</strong>
+                </div>
+                <i />
+              </motion.button>
+            );
+          })}
+        </div>
 
-            <motion.p className="eco-interaction-hint" {...reveal(0.58)}>
-              <span />
-              {t.ecosystem.interactionHint}
-            </motion.p>
+        <div className="product-os-inspector" aria-live="polite">
+          <div className="product-os-active-copy">
+            <small>
+              {language === 'ru' ? 'АКТИВНЫЙ ПРОДУКТ' : 'ACTIVE PRODUCT'} /{' '}
+              {String(activeIndex + 1).padStart(2, '0')}
+            </small>
+            <h3>{activeCopy[0]}</h3>
+            <p>{activeCopy[2]}</p>
           </div>
 
-          <div className="eco-system-column">
-            <motion.section className="eco-panel eco-infrastructure" {...reveal(0.58, 18)}>
-              <div className="eco-panel-heading">
-                <div>
-                  <small>PLATFORM CORE</small>
-                  <h3>{t.ecosystem.infrastructureTitle}</h3>
-                </div>
-                <span>17 MODULES</span>
-              </div>
-              <p>{t.ecosystem.infrastructureDescription}</p>
-              <div className={`eco-infra-grid${activeProduct ? ' has-active' : ''}`}>
-                {t.ecosystem.infrastructure.map(([id, label], index) => (
-                  <motion.span
-                    className={`eco-infra-pill${activeInfrastructure.has(id) ? ' is-active' : ''}`}
-                    initial={reducedMotion ? false : { opacity: 0, y: 8 }}
-                    whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.42, delay: 0.66 + index * 0.025 }}
-                    key={id}
-                  >
-                    <i />
-                    {label}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.section>
-
-            <motion.section className="eco-panel eco-principles" {...reveal(0.78, 18)}>
-              <div className="eco-panel-heading">
-                <div>
-                  <small>BUILD STANDARD</small>
-                  <h3>{t.ecosystem.principlesTitle}</h3>
-                </div>
-              </div>
-              <div>
-                {t.ecosystem.principles.map((principle, index) => (
-                  <span key={principle}>
-                    <i>{String(index + 1).padStart(2, '0')}</i>
-                    {principle}
-                  </span>
-                ))}
-              </div>
-            </motion.section>
-
-            <motion.section className="eco-panel eco-benefits" {...reveal(0.92, 18)}>
-              <div className="eco-panel-heading">
-                <div>
-                  <small>SHARED VALUE</small>
-                  <h3>{t.ecosystem.benefitsTitle}</h3>
-                </div>
-              </div>
-              <ul>
-                {t.ecosystem.benefits.map((benefit) => (
-                  <li key={benefit}>
-                    <i aria-hidden="true">✓</i>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </motion.section>
+          <div className="product-os-modules">
+            <small>{t.ecosystem.infrastructureTitle}</small>
+            <div>
+              {t.ecosystem.infrastructure.map(([id, label]) => (
+                <span className={activeInfrastructure.has(id) ? 'is-active' : ''} key={id}>
+                  <i />
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
+        </div>
+
+        <div className="product-os-architecture">
+          <div className="product-os-architecture-heading">
+            <small>{t.stack.architectureLabel}</small>
+            <p>{t.stack.architectureDescription}</p>
+          </div>
+          <div className="product-os-flow">
+            {t.stack.architecture.map(([layer, technologies], index) => (
+              <motion.div
+                initial={reducedMotion ? false : { opacity: 0, x: -14 }}
+                whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.5, delay: index * 0.09 }}
+                key={layer}
+              >
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <strong>{layer}</strong>
+                <small>{technologies}</small>
+                {index < t.stack.architecture.length - 1 ? <i aria-hidden="true">→</i> : null}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="product-os-principles" aria-label={t.ecosystem.principlesTitle}>
+          {t.ecosystem.principles.map((principle) => (
+            <span key={principle}>{principle}</span>
+          ))}
+        </div>
+
+        <div className="product-os-benefits">
+          {t.ecosystem.benefits.map((benefit, index) => (
+            <span key={benefit}>
+              <i>{String(index + 1).padStart(2, '0')}</i>
+              {benefit}
+            </span>
+          ))}
         </div>
       </motion.div>
     </AnimatedSection>

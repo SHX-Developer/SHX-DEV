@@ -1,5 +1,12 @@
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
-import { useRef } from 'react';
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import type { MouseEvent, PointerEvent as ReactPointerEvent } from 'react';
 import { Button } from '../components/ui/Button';
 import { ArrowRightIcon, DownloadIcon } from '../components/ui/Icons';
@@ -19,9 +26,41 @@ const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) =
   scrollToSection(href);
 };
 
+const CounterValue = ({ value, locale }: { value: string; locale: 'en' | 'ru' }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const reducedMotion = useReducedMotion();
+  const inView = useInView(ref, { once: true, amount: 0.8 });
+
+  useEffect(() => {
+    if (!ref.current || !inView) return;
+
+    const target = Number(value.replace(/\D/g, ''));
+    if (!target || reducedMotion) {
+      ref.current.textContent = value;
+      return;
+    }
+
+    const suffix = value.replace(/[0-9,\s]/g, '');
+    const controls = animate(0, target, {
+      duration: target > 1000 ? 1.65 : 1.1,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (latest) => {
+        if (!ref.current) return;
+        ref.current.textContent = `${Math.round(latest).toLocaleString(
+          locale === 'ru' ? 'ru-RU' : 'en-US',
+        )}${suffix}`;
+      },
+    });
+
+    return () => controls.stop();
+  }, [inView, locale, reducedMotion, value]);
+
+  return <span ref={ref}>{reducedMotion ? value : '0'}</span>;
+};
+
 export const HeroSection = () => {
   const reducedMotion = useReducedMotion();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const cursorRef = useRef<HTMLDivElement>(null);
   const cardRotateXValue = useMotionValue(0);
   const cardRotateYValue = useMotionValue(0);
@@ -195,13 +234,25 @@ export const HeroSection = () => {
               <p className="profile-kicker">{t.hero.profileKicker}</p>
               <h2>{t.hero.profileTitle}</h2>
               <p className="hero-showcase-text">{t.hero.profileText}</p>
+              <div className="hero-personal-note">
+                <span className="hero-personal-avatar">S</span>
+                <div>
+                  <strong>Shahrizod</strong>
+                  <small>
+                    {language === 'ru'
+                      ? 'Создаю продукты из Ташкента'
+                      : 'Building products from Tashkent'}
+                  </small>
+                </div>
+                <i aria-hidden="true" />
+              </div>
             </div>
           </div>
 
           <div className="proof-grid">
             {t.hero.metrics.map(([value, label]) => (
               <div key={label}>
-                <span>{value}</span>
+                <CounterValue value={value} locale={language} />
                 <p>{label}</p>
               </div>
             ))}

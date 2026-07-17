@@ -1,68 +1,77 @@
+import { motion, useReducedMotion } from 'framer-motion';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
 import { useLanguage } from '../i18n';
 
 export const AboutSection = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+  const reducedMotion = useReducedMotion();
 
   return (
-    <AnimatedSection id="about">
-      <span className="eyebrow">{t.about.eyebrow}</span>
-      <div className="about-grid">
-        <div>
+    <AnimatedSection id="about" className="about-v2">
+      <div className="about-v2-grid">
+        <div className="about-v2-statement">
+          <span className="eyebrow">{t.about.eyebrow}</span>
           <h2 className="section-title">
             {t.about.title}
             <br />
             <em>{t.about.accent}</em>
           </h2>
-          <p className="about-lead">{t.about.lead}</p>
-          <p className="about-principle">{t.about.p1}</p>
-          <div className="about-metrics" aria-label={t.about.metricsLabel}>
-            {t.about.metrics.map(([value, label]) => (
-              <div key={label}>
+          <p className="about-v2-lead">{t.about.lead}</p>
+          <blockquote>
+            <span>“</span>
+            {t.about.p1}
+          </blockquote>
+        </div>
+
+        <motion.div
+          className="about-v2-profile"
+          initial={reducedMotion ? false : { opacity: 0, x: 32 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="about-v2-person">
+            <span className="about-v2-avatar">SHX</span>
+            <div>
+              <small>{language === 'ru' ? 'ЛИЧНО' : 'PERSONALLY'}</small>
+              <strong>Shahrizod</strong>
+              <p>Founder · Fullstack Product Engineer</p>
+            </div>
+            <span className="about-v2-live">
+              <i />
+              {t.about.status}
+            </span>
+          </div>
+
+          <div className="about-v2-metrics" aria-label={t.about.metricsLabel}>
+            {t.about.metrics.map(([value, label], index) => (
+              <motion.div
+                initial={reducedMotion ? false : { opacity: 0, y: 14 }}
+                whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                key={label}
+              >
                 <strong>{value}</strong>
                 <span>{label}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="about-v2-capabilities">
+            {t.skills.map((group, index) => (
+              <div key={group.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <strong>{group.title}</strong>
+                <p>{group.items.join(' · ')}</p>
               </div>
             ))}
           </div>
-        </div>
-        <div className="about-side">
-          <div className="about-identity" aria-label={t.about.portraitLabel}>
-            <div className="identity-topbar">
-              <span /><span /><span />
-              <small>shx.profile.ts</small>
-            </div>
-            <div className="identity-profile">
-              <span className="identity-avatar" aria-hidden="true">SHX</span>
-              <div>
-                <strong>Shahrizod</strong>
-                <small>Founder · Fullstack Product Engineer</small>
-              </div>
-            </div>
-            <pre aria-hidden="true"><code>{`const developer = {
-  name: 'Shahrizod',
-  role: 'Founder / Product Engineer',
-  stack: ['FastAPI', 'React', 'PostgreSQL'],
-  experience: '3+ years',
-  currently_building: [
-    'Cyber Donate', 'Stars Pay', 'SHX DEV'
-  ],
-  mission: 'Make useful software.'
-};`}</code></pre>
-            <div className="identity-status"><span /> {t.about.status}</div>
-          </div>
-          <div className="skills">
-            {t.skills.map((group) => (
-              <div className="sk-block" key={group.title}>
-                <h4>{group.title}</h4>
-                <ul>
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
+
+          <code>
+            mission: {language === 'ru' ? '«Делать полезные продукты»' : '“Make useful software”'}
+          </code>
+        </motion.div>
       </div>
     </AnimatedSection>
   );

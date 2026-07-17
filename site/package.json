@@ -6,7 +6,7 @@
   "description": "SHX DEV premium portfolio built with React, TypeScript, Vite, Tailwind CSS and Framer Motion.",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prepare-sites-build.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "lint": "eslint .",
     "typecheck": "tsc -b --noEmit",

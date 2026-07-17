@@ -237,7 +237,9 @@ export const HeroSection = () => {
               <h2>{t.hero.profileTitle}</h2>
               <p className="hero-showcase-text">{t.hero.profileText}</p>
               <div className="hero-personal-note">
-                <span className="hero-personal-avatar">S</span>
+                <span className="hero-personal-avatar" aria-hidden="true">
+                  <img src="/brand/shx-logo.png" alt="" />
+                </span>
                 <div>
                   <strong>Shahrizod</strong>
                   <small>

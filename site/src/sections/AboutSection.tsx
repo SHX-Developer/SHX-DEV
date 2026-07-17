@@ -33,7 +33,9 @@ export const AboutSection = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="about-v2-person">
-            <span className="about-v2-avatar">SHX</span>
+            <span className="about-v2-avatar" aria-hidden="true">
+              <img src="/brand/shx-logo.png" alt="" />
+            </span>
             <div>
               <small>{language === 'ru' ? 'ЛИЧНО' : 'PERSONALLY'}</small>
               <strong>Shahrizod</strong>

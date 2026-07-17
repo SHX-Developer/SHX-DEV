@@ -43,7 +43,9 @@ export const Header = () => {
       <header className="nav">
         <div className="shell nav-inner">
           <a className="brand" href="#top" onClick={(event) => closeAndScroll(event, '#top')}>
-            <span className="brand-mark" />
+            <span className="brand-mark" aria-hidden="true">
+              <img src="/brand/shx-logo.png" alt="" />
+            </span>
             SHX&nbsp;DEV
           </a>
           <nav className="nav-links" aria-label={t.header.primaryNav}>

@@ -179,7 +179,9 @@ export const TechStackSection = () => {
             </div>
 
             <div className="stack-architecture-result">
-              <span>SHX</span>
+              <span className="stack-architecture-logo" aria-hidden="true">
+                <img src="/brand/shx-logo.png" alt="" />
+              </span>
               <div>
                 <small>OUTPUT</small>
                 <strong>SCALABLE PRODUCT</strong>

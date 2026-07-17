@@ -7,7 +7,9 @@ export const Footer = () => {
     <footer>
       <div className="shell foot">
         <div className="left">
-          <span className="brand-mark" />
+          <span className="brand-mark" aria-hidden="true">
+            <img src="/brand/shx-logo.png" alt="" />
+          </span>
           <div>
             <div className="footer-brand">SHX&nbsp;DEV</div>
             <div className="tagline mt-1">

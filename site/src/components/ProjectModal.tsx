@@ -28,12 +28,19 @@ type ProjectModalProps = {
 };
 
 const ProductPreview = ({ project, active }: { project: Project; active: number }) => {
+  const renderProjectMark = () =>
+    project.title === 'SHX-Dev' ? (
+      <img src="/brand/shx-logo.png" alt="" />
+    ) : (
+      project.title.slice(0, 2)
+    );
+
   if (active === 0) {
     if (!project.screenshot) {
       return (
         <div className="showcase-ui" aria-hidden="true">
           <div className="showcase-sidebar">
-            <span className="showcase-brand">{project.title.slice(0, 2)}</span>
+            <span className="showcase-brand">{renderProjectMark()}</span>
             <i />
             <i />
             <i />
@@ -88,7 +95,9 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
     return (
       <div className="showcase-system" aria-hidden="true">
         <div className="system-core">
-          <span>SHX</span>
+          <span className="system-core-logo">
+            <img src="/brand/shx-logo.png" alt="" />
+          </span>
           <strong>{project.title}</strong>
         </div>
         {(project.stack ?? project.tags).slice(0, 5).map((item, index) => (
@@ -105,7 +114,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
       <div className="showcase-mobile" aria-hidden="true">
         <div className="mobile-device">
           <div className="mobile-device-head">
-            <span>{project.title.slice(0, 2)}</span>
+            <span>{renderProjectMark()}</span>
             <i />
           </div>
           <div className="mobile-device-hero">
@@ -129,7 +138,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
     <div className="showcase-admin" aria-hidden="true">
       <div className="showcase-admin-bar">
         <div>
-          <span>{project.title.slice(0, 2)}</span>
+          <span>{renderProjectMark()}</span>
           <strong>{project.title}</strong>
         </div>
         <small>ADMIN / LIVE</small>

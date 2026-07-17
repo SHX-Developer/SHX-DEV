@@ -36,8 +36,12 @@ export const ProjectCard = ({
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="card-topline">
-        <div className="card-icon">
-          <ProjectIcon icon={project.icon} />
+        <div className={`card-icon${project.title === 'SHX-Dev' ? ' is-brand' : ''}`}>
+          {project.title === 'SHX-Dev' ? (
+            <img src="/brand/shx-logo.png" alt="" aria-hidden="true" />
+          ) : (
+            <ProjectIcon icon={project.icon} />
+          )}
         </div>
         <span className="project-classification">{project.meta}</span>
       </div>

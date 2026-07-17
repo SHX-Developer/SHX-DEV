@@ -149,7 +149,9 @@ export const EcosystemSection = () => {
             transition={{ duration: 3.2, repeat: Infinity }}
           >
             <small>PRODUCT OS</small>
-            <strong>SHX</strong>
+            <strong className="product-os-logo" aria-hidden="true">
+              <img src="/brand/shx-logo.png" alt="" />
+            </strong>
             <span>17 {language === 'ru' ? 'МОДУЛЕЙ' : 'MODULES'}</span>
           </motion.div>
 
@@ -168,7 +170,13 @@ export const EcosystemSection = () => {
                 whileHover={reducedMotion ? undefined : { scale: 1.05 }}
                 key={product.id}
               >
-                <span>{product.mark}</span>
+                <span>
+                  {product.mark === 'SHX' ? (
+                    <img src="/brand/shx-logo.png" alt="" aria-hidden="true" />
+                  ) : (
+                    product.mark
+                  )}
+                </span>
                 <div>
                   <small>{category}</small>
                   <strong>{name}</strong>

@@ -1,5 +1,6 @@
 import { motion, useScroll } from 'framer-motion';
 import { useEffect } from 'react';
+import { BackToTop } from './components/BackToTop';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { LanguageProvider, useLanguage } from './i18n';
@@ -69,6 +70,7 @@ const AppContent = () => {
         <ContactSection />
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 };

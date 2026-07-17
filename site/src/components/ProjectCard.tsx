@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import type { MouseEvent } from 'react';
-import { ProjectIcon } from './ProjectIcon';
-import { ArrowRightIcon } from './ui/Icons';
 import type { Project } from '../data/projects';
 import { useLanguage } from '../i18n';
+import { ProjectIcon } from './ProjectIcon';
+import { ArrowRightIcon } from './ui/Icons';
 
 type ProjectCardProps = {
   project: Project;
@@ -12,8 +12,14 @@ type ProjectCardProps = {
   onExplore: (project: Project) => void;
 };
 
-export const ProjectCard = ({ project, compact = false, exploreLabel, onExplore }: ProjectCardProps) => {
+export const ProjectCard = ({
+  project,
+  compact = false,
+  exploreLabel,
+  onExplore,
+}: ProjectCardProps) => {
   const { t } = useLanguage();
+
   const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     event.currentTarget.style.setProperty('--mx', `${event.clientX - rect.left}px`);
@@ -23,9 +29,19 @@ export const ProjectCard = ({ project, compact = false, exploreLabel, onExplore 
   return (
     <motion.article
       className={`card ${compact ? 'compact-card' : ''}`}
+      data-theme={project.theme ?? 'violet'}
+      layoutId={`project-${project.title}`}
       onMouseMove={handleMouseMove}
-      whileHover={{ y: -3 }}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
+      <div className="card-topline">
+        <div className="card-icon">
+          <ProjectIcon icon={project.icon} />
+        </div>
+        <span className="project-classification">{project.meta}</span>
+      </div>
+
       {compact ? null : (
         <div className="project-preview" aria-hidden="true">
           {project.screenshot ? (
@@ -52,39 +68,41 @@ export const ProjectCard = ({ project, compact = false, exploreLabel, onExplore 
           )}
         </div>
       )}
-      <div className="card-icon">
-        <ProjectIcon icon={project.icon} />
-      </div>
-      {project.metric && !compact ? <div className="project-metric">{project.metric}</div> : null}
-      <h3 className="card-title">{project.title}</h3>
-      {project.headline && !compact ? <p className="card-headline">{project.headline}</p> : null}
-      <p className="card-desc">{project.description}</p>
-      {compact ? null : (
-        <div className="project-details">
-          <div>
-            <span>{t.projects.stack}</span>
-            <p>{project.stack?.join(' / ') ?? project.products.join(' / ')}</p>
+
+      <div className="card-content">
+        {project.headline && !compact ? (
+          <p className="project-kind">{project.headline}</p>
+        ) : null}
+        <h3 className="card-title">{project.title}</h3>
+        {!compact && project.stats?.length ? (
+          <div className="project-stats">
+            {project.stats.slice(0, 4).map(([value, label]) => (
+              <div key={`${value}-${label}`}>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
           </div>
-          {project.monetization?.length ? (
-            <div>
-              <span>{t.projects.surface}</span>
-              <p>{project.products.join(' / ')}</p>
-            </div>
-          ) : null}
+        ) : project.metric && !compact ? (
+          <div className="project-impact">
+            <strong>{project.metric}</strong>
+          </div>
+        ) : null}
+        <p className="card-desc">{project.description}</p>
+        <div className="card-tags">
+          {project.tags.slice(0, compact ? 3 : 4).map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
         </div>
-      )}
-      <div className="card-tags">
-        {project.tags.map((tag) => (
-          <span key={tag}>{tag}</span>
-        ))}
-      </div>
-      <div className="card-meta">
-        <span className="y">{project.meta}</span>
-        <button className="card-explore" type="button" onClick={() => onExplore(project)}>
-          {exploreLabel}
-          <ArrowRightIcon />
-          <span className="sr-only">: {t.projects.open} {project.title}</span>
-        </button>
+        <div className="card-meta">
+          <button className="card-explore" type="button" onClick={() => onExplore(project)}>
+            {exploreLabel}
+            <ArrowRightIcon />
+            <span className="sr-only">
+              : {t.projects.open} {project.title}
+            </span>
+          </button>
+        </div>
       </div>
     </motion.article>
   );

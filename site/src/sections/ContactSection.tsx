@@ -1,6 +1,11 @@
-import { Button } from '../components/ui/Button';
+import { useState } from 'react';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
-import { ArrowRightIcon } from '../components/ui/Icons';
+import {
+  ArrowRightIcon,
+  GitHubIcon,
+  MailIcon,
+  TelegramIcon,
+} from '../components/ui/Icons';
 import { useLanguage } from '../i18n';
 
 export const ContactSection = () => {
@@ -22,37 +27,78 @@ export const ContactSection = () => {
     window.setTimeout(() => setCopied(false), 1800);
   };
 
+  const channels = [
+    {
+      label: t.contact.telegram,
+      value: '@shxdev',
+      href: 'https://t.me/shxdev',
+      Icon: TelegramIcon,
+      primary: true,
+    },
+    {
+      label: t.contact.github,
+      value: 'github.com/shxdev',
+      href: 'https://github.com/shxdev',
+      Icon: GitHubIcon,
+      primary: false,
+    },
+    {
+      label: t.contact.email,
+      value: 'hello@shx.dev',
+      href: 'mailto:hello@shx.dev',
+      Icon: MailIcon,
+      primary: false,
+    },
+  ];
+
   return (
     <AnimatedSection id="contact" className="contact-section">
       <div className="contact">
+        <div className="contact-orbit" aria-hidden="true" />
         <span className="eyebrow">{t.contact.eyebrow}</span>
         <h2>
-          {t.contact.title}
-          <br />
-          <em>{t.contact.accent}</em>.
+          <span>{t.contact.title}</span>
+          <i aria-hidden="true">↓</i>
+          <em>{t.contact.accent}.</em>
         </h2>
         <p className="contact-lead">{t.contact.lead}</p>
-        <div className="contact-actions">
-          <Button variant="primary" href="https://t.me/shxdev" target="_blank" rel="noreferrer">
-            {t.contact.contact}
-            <ArrowRightIcon />
-          </Button>
-          <Button href="https://t.me/shxdev" target="_blank" rel="noreferrer">{t.contact.telegram}</Button>
-          <Button href="https://github.com/shxdev" target="_blank" rel="noreferrer">{t.contact.github}</Button>
-          <Button href="mailto:hello@shx.dev">{t.contact.email}</Button>
-          <button className="btn ghost" type="button" onClick={copyEmail}>
-            {copied ? t.contact.copied : t.contact.copyEmail}
-          </button>
-          <Button href="/resume/shx-dev-resume.pdf" download>{t.contact.resume}</Button>
+
+        <div className="contact-channels">
+          {channels.map(({ label, value, href, Icon, primary }) => (
+            <a
+              className={`contact-channel ${primary ? 'is-primary' : ''}`}
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel={href.startsWith('http') ? 'noreferrer' : undefined}
+              key={label}
+            >
+              <span className="contact-channel-icon">
+                <Icon />
+              </span>
+              <span className="contact-channel-copy">
+                <small>{label}</small>
+                <strong>{value}</strong>
+              </span>
+              <ArrowRightIcon className="contact-channel-arrow" />
+            </a>
+          ))}
         </div>
-        <div className="contact-meta">
-          {t.contact.replies}
-          <a href="https://t.me/shxdev">@shxdev</a>
-          {' \u00b7 hello'}
-          <span>@</span>shx.dev
+
+        <div className="contact-bottom">
+          <div className="contact-meta">
+            {t.contact.replies}
+            <a href="https://t.me/shxdev">@shxdev</a>
+          </div>
+          <div className="contact-secondary-actions">
+            <button type="button" onClick={copyEmail}>
+              {copied ? t.contact.copied : t.contact.copyEmail}
+            </button>
+            <a href="/resume/shx-dev-resume.pdf" download>
+              {t.contact.resume}
+            </a>
+          </div>
         </div>
       </div>
     </AnimatedSection>
   );
 };
-import { useState } from 'react';

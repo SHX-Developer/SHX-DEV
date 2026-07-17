@@ -93,6 +93,12 @@ export const ProjectsSection = () => {
           stack: t.projects.stack,
           surface: t.projects.surface,
           business: t.projects.business,
+          role: t.projects.role,
+          result: t.projects.result,
+          timeline: t.projects.timeline,
+          delivered: t.projects.delivered,
+          challenges: t.projects.challenges,
+          outcomes: t.projects.outcomes,
           openLive: t.projects.openLive,
           inDevelopment: t.projects.inDevelopment,
         }}

@@ -4,8 +4,15 @@ export type Project = {
   title: string;
   category: string;
   description: string;
+  theme?: 'violet' | 'gold' | 'blue' | 'white';
   headline?: string;
   metric?: string;
+  stats?: Array<[string, string]>;
+  roles?: string[];
+  timeline?: Array<[string, string]>;
+  delivered?: string[];
+  challenges?: string[];
+  outcomes?: string[];
   stack?: string[];
   href?: string;
   screenshot?: string;
@@ -20,26 +27,62 @@ export const projects: Project[] = [
   {
     title: 'CYBER DONATE',
     category: 'Main Projects',
+    theme: 'violet',
     description:
       'Gaming currency and digital services marketplace for CIS users, built around Telegram flows, payments, order handling and a Web App experience.',
     headline: 'Telegram Commerce Platform',
-    metric: '30,000+ users',
+    metric: '50,000+ users',
+    stats: [
+      ['50,000+', 'Users'],
+      ['50,000+', 'Orders processed'],
+      ['5+', 'Product surfaces'],
+      ['2023—', 'Development'],
+    ],
+    roles: ['Founder', 'Fullstack Engineer', 'Product Designer', 'DevOps'],
+    timeline: [
+      ['2023', 'Idea and MVP'],
+      ['2023', 'First 100 users'],
+      ['2024', '1,000 users'],
+      ['2024', '10,000 users'],
+      ['2025', '50,000+ users'],
+    ],
+    delivered: ['Backend', 'Telegram Bot', 'Web App', 'REST API', 'Payments', 'Admin panel', 'CI/CD', 'VPS infrastructure'],
+    challenges: ['High-load order processing', 'Telegram and external payment flows', 'End-to-end order automation', 'Scaling without service downtime'],
+    outcomes: ['50,000+ users', 'Commercial launch', 'Payment automation', 'Telegram Mini App', 'Own product architecture'],
     stack: ['FastAPI', 'PostgreSQL', 'Telegram WebApp', 'Payments'],
     href: 'https://cyberdonate.net',
     screenshot: '/projects/cyber-donate-live.png',
     products: ['cyberdonate.net', 'Cyber Donate Bot', 'Cyber Donate Web App'],
     monetization: ['Service sales', 'Gaming currency marketplace', 'Digital product ecosystem'],
-    tags: ['30K+ USERS', 'PAYMENTS', 'FASTAPI', 'POSTGRESQL'],
+    tags: ['50K+ USERS', 'PAYMENTS', 'FASTAPI', 'POSTGRESQL'],
     meta: 'MAIN PRODUCT',
     icon: 'link',
   },
   {
     title: 'STARS PAY',
     category: 'Main Projects',
+    theme: 'gold',
     description:
       'Telegram services marketplace for Uzbekistan with Stars purchases, subscriptions, automated payments, bot flows and admin operations.',
     headline: 'Digital Services Marketplace',
     metric: 'Payment automation',
+    stats: [
+      ['24/7', 'Automation'],
+      ['3', 'Product surfaces'],
+      ['UZS', 'Local payments'],
+      ['LIVE', 'Commercial product'],
+    ],
+    roles: ['Founder', 'Fullstack Engineer', 'Product Designer', 'DevOps'],
+    timeline: [
+      ['01', 'Service research'],
+      ['02', 'Payment prototype'],
+      ['03', 'Bot and Web App'],
+      ['04', 'Admin automation'],
+      ['LIVE', 'Commercial launch'],
+    ],
+    delivered: ['Backend', 'Telegram Bot', 'Web App', 'Payment flows', 'Subscriptions', 'Admin panel', 'Automation', 'Monitoring'],
+    challenges: ['Reliable payment status handling', 'Local currency user experience', 'Automated fulfillment', 'Admin operations at scale'],
+    outcomes: ['Commercial platform', '24/7 payment automation', 'Telegram services marketplace', 'Unified admin workflow'],
     stack: ['Telegram API', 'Web App', 'Admin Panel', 'Automation'],
     href: 'https://starspay.uz',
     screenshot: '/projects/stars-pay-live.png',
@@ -52,10 +95,28 @@ export const projects: Project[] = [
   {
     title: 'CYBER MATE',
     category: 'Main Projects',
+    theme: 'blue',
     description:
       'Social network concept for gamers with profiles, chats, groups, communities, matchmaking and interactive communication systems.',
     headline: 'Social Network for Gamers',
     metric: 'Profiles, chats and communities',
+    stats: [
+      ['REALTIME', 'Communication'],
+      ['3', 'Social cores'],
+      ['MVP', 'Product stage'],
+      ['WEB APP', 'Primary surface'],
+    ],
+    roles: ['Founder', 'Product Engineer', 'UX Designer', 'System Architect'],
+    timeline: [
+      ['01', 'Product concept'],
+      ['02', 'Social architecture'],
+      ['03', 'Profiles and identity'],
+      ['04', 'Chats and communities'],
+      ['MVP', 'Interactive prototype'],
+    ],
+    delivered: ['Product architecture', 'Profiles', 'Realtime chats', 'Groups', 'Communities', 'Matchmaking', 'Web App UX'],
+    challenges: ['Realtime interaction design', 'Social graph structure', 'Community moderation flows', 'Scalable identity system'],
+    outcomes: ['Complete social concept', 'Reusable realtime patterns', 'Telegram Web App experience', 'Product-ready architecture'],
     stack: ['React', 'TypeScript', 'Telegram WebApp', 'Realtime UX'],
     products: ['Cyber Mate Bot', 'Cyber Mate Web App'],
     monetization: ['Premium subscriptions', 'Featured profiles', 'Community boosting systems'],
@@ -66,10 +127,28 @@ export const projects: Project[] = [
   {
     title: 'SHX-Dev',
     category: 'SHX Ecosystem',
+    theme: 'white',
     description:
       'Personal developer platform focused on portfolio, projects, collaborations and technical identity under the SHX brand.',
     headline: 'Developer Ecosystem',
     metric: 'Personal brand and products',
+    stats: [
+      ['15+', 'Projects'],
+      ['2', 'Languages'],
+      ['100%', 'Custom design'],
+      ['LIVE', 'Portfolio'],
+    ],
+    roles: ['Product Engineer', 'Frontend Engineer', 'Designer', 'Brand Creator'],
+    timeline: [
+      ['01', 'Content audit'],
+      ['02', 'Visual system'],
+      ['03', 'React architecture'],
+      ['04', 'Project case studies'],
+      ['LIVE', 'Public portfolio'],
+    ],
+    delivered: ['Product strategy', 'Visual identity', 'React frontend', 'Bilingual content', 'Case studies', 'Responsive design', 'CI/CD'],
+    challenges: ['Turning technical work into clear stories', 'Keeping a consistent product identity', 'Balancing motion and performance', 'Responsive content hierarchy'],
+    outcomes: ['Unified personal brand', 'Interactive project portfolio', 'Reusable design system', 'Bilingual product narrative'],
     stack: ['React', 'TypeScript', 'Vite', 'Portfolio'],
     products: ['shx.dev', 'SHX-Dev Bot', 'SHX-Dev App'],
     monetization: ['Collaborations', 'Freelance opportunities', 'Partnerships'],

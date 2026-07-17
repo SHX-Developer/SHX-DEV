@@ -1,9 +1,18 @@
-import { motion, useReducedMotion } from 'framer-motion';
-import type { MouseEvent } from 'react';
+import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
+import { useRef } from 'react';
+import type { MouseEvent, PointerEvent as ReactPointerEvent } from 'react';
 import { Button } from '../components/ui/Button';
 import { ArrowRightIcon, DownloadIcon } from '../components/ui/Icons';
 import { useLanguage } from '../i18n';
 import { scrollToSection } from '../utils/scroll';
+
+const techMarks: Record<string, string> = {
+  PYTHON: 'Py',
+  TYPESCRIPT: 'TS',
+  FASTAPI: 'FA',
+  POSTGRESQL: 'PG',
+  'TELEGRAM WEB APPS': 'TG',
+};
 
 const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
   event.preventDefault();
@@ -13,100 +22,199 @@ const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) =
 export const HeroSection = () => {
   const reducedMotion = useReducedMotion();
   const { t } = useLanguage();
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const cardRotateXValue = useMotionValue(0);
+  const cardRotateYValue = useMotionValue(0);
+  const cardRotateX = useSpring(cardRotateXValue, { stiffness: 140, damping: 22 });
+  const cardRotateY = useSpring(cardRotateYValue, { stiffness: 140, damping: 22 });
+
+  const handleHeroPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+
+    event.currentTarget.style.setProperty('--mouse-x', `${x * 100}%`);
+    event.currentTarget.style.setProperty('--mouse-y', `${y * 100}%`);
+
+    if (!reducedMotion) {
+      event.currentTarget.style.setProperty('--parallax-x', `${(x - 0.5) * 20}px`);
+      event.currentTarget.style.setProperty('--parallax-y', `${(y - 0.5) * 16}px`);
+    }
+
+    if (cursorRef.current) {
+      cursorRef.current.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+      cursorRef.current.classList.add('is-visible');
+
+      const target = event.target instanceof Element ? event.target : null;
+      cursorRef.current.classList.toggle(
+        'is-active',
+        Boolean(target?.closest('a, button, .hero-showcase')),
+      );
+    }
+  };
+
+  const handleHeroPointerLeave = () => {
+    cursorRef.current?.classList.remove('is-visible', 'is-active');
+  };
+
+  const handleCardPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+
+    event.currentTarget.style.setProperty('--card-x', `${x * 100}%`);
+    event.currentTarget.style.setProperty('--card-y', `${y * 100}%`);
+
+    if (!reducedMotion) {
+      cardRotateXValue.set((0.5 - y) * 5);
+      cardRotateYValue.set((x - 0.5) * 5);
+    }
+  };
+
+  const handleCardPointerLeave = () => {
+    cardRotateXValue.set(0);
+    cardRotateYValue.set(0);
+  };
 
   return (
-    <section className="hero">
-      <video
-        className="hero-bg-video"
-        aria-hidden="true"
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/videos/hero-poster.webp"
-      >
-        <source media="(max-width: 720px)" src="/videos/hero-lite.mp4" type="video/mp4" />
-        <source src="/videos/hero-optimized.mp4" type="video/mp4" />
-      </video>
-      <div className="hero-bg-overlay" aria-hidden="true" />
+    <section
+      className="hero"
+      onPointerMove={handleHeroPointerMove}
+      onPointerLeave={handleHeroPointerLeave}
+    >
+      <div className="hero-aura hero-aura-one" aria-hidden="true" />
+      <div className="hero-aura hero-aura-two" aria-hidden="true" />
+      <div className="hero-mesh" aria-hidden="true" />
+      <div className="hero-signal-field" aria-hidden="true">
+        <svg viewBox="0 0 900 300" preserveAspectRatio="none">
+          <path d="M-40 230C150 100 282 280 470 162C610 74 710 94 940 18" />
+          <path d="M-40 278C180 152 310 310 500 210C660 126 766 148 940 70" />
+        </svg>
+        <span className="hero-particle particle-one" />
+        <span className="hero-particle particle-two" />
+        <span className="hero-particle particle-three" />
+        <span className="hero-particle particle-four" />
+      </div>
 
-      <motion.div
-        className="hero-copy"
-        initial={reducedMotion ? false : { opacity: 0, y: 30 }}
-        animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <span className="pill">
-          <span className="pulse" />
-          {t.hero.pill}
-        </span>
-        <h1>{t.hero.title}</h1>
-        <p className="hero-sub">
-          {t.hero.subtitleStart}
-          <strong>{t.hero.subtitleStrong}</strong>
-          {t.hero.subtitleEnd}
-        </p>
-        <div className="hero-actions">
-          <Button
-            variant="primary"
-            href="#projects"
-            onClick={(event) => handleAnchorClick(event, '#projects')}
+      <div className="hero-inner">
+        <motion.div
+          className="hero-copy"
+          initial={reducedMotion ? false : { y: 24 }}
+          animate={reducedMotion ? undefined : { y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.span
+            className="pill"
+            initial={reducedMotion ? false : { clipPath: 'inset(0 100% 0 0)' }}
+            animate={reducedMotion ? undefined : { clipPath: 'inset(0 0% 0 0)' }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            {t.hero.viewProjects}
-            <ArrowRightIcon className="arrow" />
-          </Button>
-          <Button href="#about" onClick={(event) => handleAnchorClick(event, '#about')}>
-            {t.hero.about}
-          </Button>
-          <Button href="/resume/shx-dev-resume.pdf" download>
-            {t.hero.resume}
-            <DownloadIcon />
-          </Button>
-        </div>
-        <div className="hero-tags">
-          {t.hero.tags.map((tag) => (
-            <span className="tag" key={tag}>
-              {tag}
-            </span>
-          ))}
-        </div>
-      </motion.div>
+            <span className="pulse" />
+            {t.hero.pill}
+          </motion.span>
+          <motion.h1
+            initial={reducedMotion ? false : { clipPath: 'inset(0 0 100% 0)', y: 70 }}
+            animate={reducedMotion ? undefined : { clipPath: 'inset(0 0 0% 0)', y: 0 }}
+            transition={{ duration: 1.05, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {t.hero.title}
+          </motion.h1>
+          <motion.p
+            className="hero-sub"
+            initial={reducedMotion ? false : { clipPath: 'inset(0 0 100% 0)', y: 24 }}
+            animate={reducedMotion ? undefined : { clipPath: 'inset(0 0 0% 0)', y: 0 }}
+            transition={{ duration: 0.8, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {t.hero.subtitleStart}
+            <strong>{t.hero.subtitleStrong}</strong>
+            {t.hero.subtitleEnd}
+          </motion.p>
+          <motion.p
+            className="hero-story"
+            initial={reducedMotion ? false : { clipPath: 'inset(0 0 100% 0)', y: 20 }}
+            animate={reducedMotion ? undefined : { clipPath: 'inset(0 0 0% 0)', y: 0 }}
+            transition={{ duration: 0.8, delay: 0.44, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {t.hero.proof} <strong>{t.hero.proofStrong}</strong>
+          </motion.p>
+          <div className="hero-actions">
+            <Button
+              variant="primary"
+              href="#projects"
+              onClick={(event) => handleAnchorClick(event, '#projects')}
+            >
+              {t.hero.viewProjects}
+              <ArrowRightIcon className="arrow" />
+            </Button>
+            <Button href="#about" onClick={(event) => handleAnchorClick(event, '#about')}>
+              {t.hero.about}
+            </Button>
+            <Button href="/resume/shx-dev-resume.pdf" download>
+              {t.hero.resume}
+              <DownloadIcon />
+            </Button>
+          </div>
+          <div className="hero-tags">
+            {t.hero.tags.map((tag) => (
+              <span className="tag" key={tag}>
+                <i aria-hidden="true">{techMarks[tag] ?? tag.slice(0, 2)}</i>
+                <span>{tag}</span>
+              </span>
+            ))}
+          </div>
+        </motion.div>
 
-      <motion.div
-        className="hero-profile"
-        initial={reducedMotion ? false : { opacity: 0, scale: 0.96 }}
-        animate={reducedMotion ? undefined : { opacity: 1, scale: 1 }}
-        transition={{ duration: 1.1, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <div className="profile-card">
-          <div className="avatar-shell" aria-hidden="true">
-            <span className="avatar-mark">SHX</span>
+        <motion.aside
+          className="hero-showcase"
+          initial={reducedMotion ? false : { opacity: 0, x: 30 }}
+          animate={reducedMotion ? undefined : { opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+          style={
+            reducedMotion
+              ? undefined
+              : {
+                  rotateX: cardRotateX,
+                  rotateY: cardRotateY,
+                  transformPerspective: 1200,
+                }
+          }
+          onPointerMove={handleCardPointerMove}
+          onPointerLeave={handleCardPointerLeave}
+        >
+          <div className="hero-showcase-light" aria-hidden="true" />
+          <div className="hero-showcase-head">
+            <span>SHX / PROFILE</span>
+            <span className="hero-showcase-status">
+              <i />
+              2026
+            </span>
           </div>
-          <div>
-            <p className="profile-kicker">{t.hero.profileKicker}</p>
-            <h2>{t.hero.profileTitle}</h2>
-            <p>{t.hero.profileText}</p>
-          </div>
-        </div>
-        <div className="proof-grid">
-          {t.hero.metrics.map(([value, label]) => (
-            <div key={label}>
-              <span>{value}</span>
-              <p>{label}</p>
+
+          <div className="hero-showcase-main">
+            <div>
+              <p className="profile-kicker">{t.hero.profileKicker}</p>
+              <h2>{t.hero.profileTitle}</h2>
+              <p className="hero-showcase-text">{t.hero.profileText}</p>
             </div>
-          ))}
-        </div>
-        <div className="stack-strip" aria-label={t.hero.stackLabel}>
-          <span>React</span>
-          <span>TypeScript</span>
-          <span>Python</span>
-          <span>FastAPI</span>
-          <span>PostgreSQL</span>
-          <span>Docker</span>
-          <span>Linux</span>
-          <span>Telegram API</span>
-        </div>
-      </motion.div>
+          </div>
+
+          <div className="proof-grid">
+            {t.hero.metrics.map(([value, label]) => (
+              <div key={label}>
+                <span>{value}</span>
+                <p>{label}</p>
+              </div>
+            ))}
+          </div>
+        </motion.aside>
+      </div>
+
+      <div className="hero-index" aria-hidden="true">
+        <span>01</span>
+        <i />
+        <span>SHX DEV</span>
+      </div>
+      <div ref={cursorRef} className="hero-cursor" aria-hidden="true" />
     </section>
   );
 };

@@ -13,7 +13,7 @@ export const journey = [
   },
   {
     year: '2025',
-    title: 'Scaled to 30,000+ users.',
+    title: 'Scaled to 50,000+ users.',
     description:
       'Expanded into Cyber Donate, Stars Pay and Cyber Mate, with reusable patterns for Telegram Web Apps, payments and dashboards.',
   },

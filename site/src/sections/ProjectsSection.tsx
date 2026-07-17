@@ -1,3 +1,4 @@
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useCallback, useMemo, useState } from 'react';
 import { ProjectCard } from '../components/ProjectCard';
 import { ProjectModal } from '../components/ProjectModal';
@@ -11,6 +12,7 @@ const featuredTitles = ['CYBER DONATE', 'STARS PAY', 'CYBER MATE', 'SHX-Dev'];
 
 export const ProjectsSection = () => {
   const { projects, t } = useLanguage();
+  const reducedMotion = useReducedMotion();
   const [activeGroup, setActiveGroup] = useState<ProjectGroup>('main');
   const [selectedTitle, setSelectedTitle] = useState<string | null>(null);
 
@@ -64,22 +66,43 @@ export const ProjectsSection = () => {
             onClick={() => setActiveGroup(tab.id)}
             key={tab.id}
           >
-            {tab.label}
+            {activeGroup === tab.id ? (
+              <motion.span
+                className="project-tab-indicator"
+                layoutId="project-tab-indicator"
+                transition={
+                  reducedMotion
+                    ? { duration: 0 }
+                    : { type: 'spring', stiffness: 430, damping: 36, mass: 0.82 }
+                }
+              />
+            ) : null}
+            <span className="project-tab-label">{tab.label}</span>
           </button>
         ))}
       </div>
 
-      <div className={`projects-browser-grid ${activeGroup === 'main' ? 'is-featured' : ''}`} role="tabpanel">
-        {visibleProjects.map((project) => (
-          <ProjectCard
-            key={project.title}
-            project={project}
-            compact={activeGroup !== 'main'}
-            exploreLabel={t.projects.explore}
-            onExplore={(selected) => setSelectedTitle(selected.title)}
-          />
-        ))}
-      </div>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          className={`projects-browser-grid ${activeGroup === 'main' ? 'is-featured' : ''}`}
+          role="tabpanel"
+          key={activeGroup}
+          initial={reducedMotion ? false : { opacity: 0, y: 12, filter: 'blur(6px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          exit={reducedMotion ? undefined : { opacity: 0, y: -8, filter: 'blur(4px)' }}
+          transition={{ duration: reducedMotion ? 0 : 0.34, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {visibleProjects.map((project) => (
+            <ProjectCard
+              key={project.title}
+              project={project}
+              compact={activeGroup !== 'main'}
+              exploreLabel={t.projects.explore}
+              onExplore={(selected) => setSelectedTitle(selected.title)}
+            />
+          ))}
+        </motion.div>
+      </AnimatePresence>
 
       <p className="project-browser-note">{t.projects.note}</p>
 

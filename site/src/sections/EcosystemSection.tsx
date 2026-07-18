@@ -86,7 +86,7 @@ export const EcosystemSection = () => {
   );
 
   return (
-    <AnimatedSection id="ecosystem" className="ecosystem-v2">
+    <AnimatedSection id="stack" className="ecosystem-v2">
       <SectionFX variant="ecosystem" />
       <span id="stack" className="anchor-target" />
       <SectionHeading

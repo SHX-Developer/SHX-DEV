@@ -16,6 +16,7 @@ export type Project = {
   stack?: string[];
   href?: string;
   screenshot?: string;
+  gallery?: readonly [string, string, string];
   products: string[];
   monetization?: string[];
   tags: string[];
@@ -23,9 +24,19 @@ export type Project = {
   icon: ProjectIcon;
 };
 
+const projectAssets = (slug: string) => ({
+  screenshot: `/projects/${slug}/Preview.png`,
+  gallery: [
+    `/projects/${slug}/preview_1.png`,
+    `/projects/${slug}/preview_2.png`,
+    `/projects/${slug}/preview_3.png`,
+  ] as const,
+});
+
 export const projects: Project[] = [
   {
     title: 'CYBER DONATE',
+    ...projectAssets('cyber-donate'),
     category: 'Main Projects',
     theme: 'violet',
     description:
@@ -34,7 +45,7 @@ export const projects: Project[] = [
     metric: '50,000+ users',
     stats: [
       ['50,000+', 'Users'],
-      ['50,000+', 'Orders processed'],
+      ['30,000+', 'Orders processed'],
       ['5+', 'Product surfaces'],
       ['2023—', 'Development'],
     ],
@@ -51,7 +62,6 @@ export const projects: Project[] = [
     outcomes: ['50,000+ users', 'Commercial launch', 'Payment automation', 'Telegram Mini App', 'Own product architecture'],
     stack: ['FastAPI', 'PostgreSQL', 'Telegram WebApp', 'Payments'],
     href: 'https://cyberdonate.net',
-    screenshot: '/projects/cyber-donate-live.png',
     products: ['cyberdonate.net', 'Cyber Donate Bot', 'Cyber Donate Web App'],
     monetization: ['Service sales', 'Gaming currency marketplace', 'Digital product ecosystem'],
     tags: ['50K+ USERS', 'PAYMENTS', 'FASTAPI', 'POSTGRESQL'],
@@ -60,6 +70,7 @@ export const projects: Project[] = [
   },
   {
     title: 'STARS PAY',
+    ...projectAssets('stars-pay'),
     category: 'Main Projects',
     theme: 'gold',
     description:
@@ -85,7 +96,6 @@ export const projects: Project[] = [
     outcomes: ['Commercial platform', '24/7 payment automation', 'Telegram services marketplace', 'Unified admin workflow'],
     stack: ['Telegram API', 'Web App', 'Admin Panel', 'Automation'],
     href: 'https://starspay.uz',
-    screenshot: '/projects/stars-pay-live.png',
     products: ['starspay.uz', 'StarsPay Bot', 'StarsPay Web App'],
     monetization: ['Service sales', 'Telegram digital services'],
     tags: ['TELEGRAM', 'PAYMENT AUTOMATION', 'ADMIN PANEL'],
@@ -94,6 +104,7 @@ export const projects: Project[] = [
   },
   {
     title: 'CYBER MATE',
+    ...projectAssets('cyber-mate'),
     category: 'Main Projects',
     theme: 'blue',
     description:
@@ -126,6 +137,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Dev',
+    ...projectAssets('shx-dev'),
     category: 'SHX Ecosystem',
     theme: 'white',
     description:
@@ -158,6 +170,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Gram',
+    ...projectAssets('shx-gram'),
     category: 'SHX Ecosystem',
     description: 'Personal messaging platform and modern communication ecosystem.',
     products: ['shxgram.com', 'SHX-Gram Web App'],
@@ -168,6 +181,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Tube',
+    ...projectAssets('shx-tube'),
     category: 'SHX Ecosystem',
     description:
       'Video platform and creator ecosystem with channels, creators and media content systems.',
@@ -179,6 +193,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Social',
+    ...projectAssets('shx-social'),
     category: 'SHX Ecosystem',
     description:
       'Social networking platform for profiles, posts, communities, messages and creator-driven audience growth.',
@@ -190,6 +205,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-TikTok',
+    ...projectAssets('shx-tiktok'),
     category: 'SHX Ecosystem',
     description:
       'Short-video platform concept for vertical clips, creators, recommendations and viral content discovery.',
@@ -201,6 +217,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-ToDo',
+    ...projectAssets('shx-todo'),
     category: 'SHX Ecosystem',
     description: 'Modern task management system for personal productivity and organization.',
     products: ['SHX-ToDo Bot', 'SHX-ToDo Web App'],
@@ -211,6 +228,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Finance',
+    ...projectAssets('shx-finance'),
     category: 'SHX Ecosystem',
     description:
       'Personal finance management platform for tracking expenses, budgets and analytics.',
@@ -222,6 +240,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-2048',
+    ...projectAssets('shx-2048'),
     category: 'Experimental & Entertainment',
     description: 'Advanced Telegram version of the classic 2048 game for Telegram Web Apps.',
     products: ['SHX-2048 Web App'],
@@ -232,6 +251,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-BlockBlast',
+    ...projectAssets('shx-blockblast'),
     category: 'Experimental & Entertainment',
     description:
       'Telegram version of Block Blast. A modern puzzle experience adapted for Telegram.',
@@ -243,6 +263,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Royale',
+    ...projectAssets('shx-royale'),
     category: 'Experimental & Entertainment',
     description:
       'Clash Royale inspired Telegram Web Game. Experimental strategy game project inspired by arena mechanics.',
@@ -254,6 +275,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Legends',
+    ...projectAssets('shx-legends'),
     category: 'Experimental & Entertainment',
     description:
       'Mobile Legends inspired Telegram Web Game. MOBA-inspired Telegram gaming platform.',
@@ -265,6 +287,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Craft',
+    ...projectAssets('shx-craft'),
     category: 'Experimental & Entertainment',
     description:
       'Browser sandbox game. A web-based sandbox survival experience inspired by voxel gameplay.',
@@ -276,6 +299,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Dash',
+    ...projectAssets('shx-dash'),
     category: 'Experimental & Entertainment',
     description:
       'Geometry Dash inspired browser game. Fast-paced rhythm platformer adapted for web platforms.',

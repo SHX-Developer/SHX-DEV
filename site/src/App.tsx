@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { BackToTop } from './components/BackToTop';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
+import { SiteCursor } from './components/SiteCursor';
 import { LanguageProvider, useLanguage } from './i18n';
 import { AboutSection } from './sections/AboutSection';
 import { BuildProcessSection } from './sections/BuildProcessSection';
@@ -54,6 +55,7 @@ const AppContent = () => {
 
   return (
     <>
+      <div className="top-atmosphere" aria-hidden="true" />
       <motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} />
       <a className="skip-link" href="#content">
         {t.header.skip}
@@ -71,6 +73,7 @@ const AppContent = () => {
       </main>
       <Footer />
       <BackToTop />
+      <SiteCursor />
     </>
   );
 };

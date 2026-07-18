@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { useRef } from 'react';
 
 type SectionFXVariant =
   | 'hero'
@@ -11,16 +12,27 @@ type SectionFXVariant =
 
 export const SectionFX = ({ variant }: { variant: SectionFXVariant }) => {
   const reducedMotion = useReducedMotion();
+  const fxRef = useRef<HTMLDivElement>(null);
+  const isNearViewport = useInView(fxRef, { margin: '360px 0px 360px 0px' });
 
   return (
     <motion.div
-      className={`section-fx section-fx-${variant}${reducedMotion ? ' is-reduced' : ''}`}
+      ref={fxRef}
+      className={`section-fx section-fx-${variant}${isNearViewport ? ' is-active' : ''}${
+        reducedMotion ? ' is-reduced' : ''
+      }`}
       initial={reducedMotion ? false : { opacity: 0 }}
       whileInView={reducedMotion ? undefined : { opacity: 1 }}
       viewport={{ once: true, amount: 0.12 }}
       transition={{ duration: 1.1 }}
       aria-hidden="true"
     >
+      <span className="fx-ambient fx-ambient-primary" />
+      <span className="fx-ambient fx-ambient-secondary" />
+      <span className="fx-starfield" />
+      <span className="fx-depth-grid" />
+      <span className="fx-edge-light" />
+
       {variant === 'hero' ? (
         <>
           <span className="fx-hero-ring fx-hero-ring-one" />

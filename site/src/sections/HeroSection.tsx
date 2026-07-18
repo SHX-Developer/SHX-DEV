@@ -62,7 +62,6 @@ const CounterValue = ({ value, locale }: { value: string; locale: 'en' | 'ru' })
 export const HeroSection = () => {
   const reducedMotion = useReducedMotion();
   const { language, t } = useLanguage();
-  const cursorRef = useRef<HTMLDivElement>(null);
   const cardRotateXValue = useMotionValue(0);
   const cardRotateYValue = useMotionValue(0);
   const cardRotateX = useSpring(cardRotateXValue, { stiffness: 140, damping: 22 });
@@ -73,28 +72,11 @@ export const HeroSection = () => {
     const x = (event.clientX - rect.left) / rect.width;
     const y = (event.clientY - rect.top) / rect.height;
 
-    event.currentTarget.style.setProperty('--mouse-x', `${x * 100}%`);
-    event.currentTarget.style.setProperty('--mouse-y', `${y * 100}%`);
-
     if (!reducedMotion) {
       event.currentTarget.style.setProperty('--parallax-x', `${(x - 0.5) * 20}px`);
       event.currentTarget.style.setProperty('--parallax-y', `${(y - 0.5) * 16}px`);
     }
 
-    if (cursorRef.current) {
-      cursorRef.current.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-      cursorRef.current.classList.add('is-visible');
-
-      const target = event.target instanceof Element ? event.target : null;
-      cursorRef.current.classList.toggle(
-        'is-active',
-        Boolean(target?.closest('a, button, .hero-showcase')),
-      );
-    }
-  };
-
-  const handleHeroPointerLeave = () => {
-    cursorRef.current?.classList.remove('is-visible', 'is-active');
   };
 
   const handleCardPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
@@ -120,7 +102,6 @@ export const HeroSection = () => {
     <section
       className="hero"
       onPointerMove={handleHeroPointerMove}
-      onPointerLeave={handleHeroPointerLeave}
     >
       <SectionFX variant="hero" />
       <div className="hero-aura hero-aura-one" aria-hidden="true" />
@@ -269,7 +250,6 @@ export const HeroSection = () => {
         <i />
         <span>SHX DEV</span>
       </div>
-      <div ref={cursorRef} className="hero-cursor" aria-hidden="true" />
     </section>
   );
 };

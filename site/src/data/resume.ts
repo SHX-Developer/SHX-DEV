@@ -15,7 +15,7 @@ export const experience = [
     year: '2025',
     role: 'Scaled to 50,000+ users',
     company: 'Cyber Donate, Stars Pay and Cyber Mate patterns across Telegram Web Apps',
-    meta: '50K+ ORDERS',
+    meta: '30K+ ORDERS',
   },
   {
     year: '2026',

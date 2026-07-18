@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import type { MouseEvent } from 'react';
 import type { Project } from '../data/projects';
 import { useLanguage } from '../i18n';
@@ -19,6 +20,7 @@ export const ProjectCard = ({
   onExplore,
 }: ProjectCardProps) => {
   const { t } = useLanguage();
+  const [coverFailed, setCoverFailed] = useState(false);
 
   const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -32,6 +34,7 @@ export const ProjectCard = ({
       data-theme={project.theme ?? 'violet'}
       layoutId={`project-${project.title}`}
       onMouseMove={handleMouseMove}
+      onClick={() => onExplore(project)}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
@@ -48,8 +51,8 @@ export const ProjectCard = ({
 
       {compact ? null : (
         <div className="project-preview" aria-hidden="true">
-          {project.screenshot ? (
-            <img src={project.screenshot} alt="" />
+          {project.screenshot && !coverFailed ? (
+            <img src={project.screenshot} alt="" onError={() => setCoverFailed(true)} />
           ) : (
             <>
               <div className="preview-topbar">
@@ -99,7 +102,14 @@ export const ProjectCard = ({
           ))}
         </div>
         <div className="card-meta">
-          <button className="card-explore" type="button" onClick={() => onExplore(project)}>
+          <button
+            className="card-explore"
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              onExplore(project);
+            }}
+          >
             {exploreLabel}
             <ArrowRightIcon />
             <span className="sr-only">

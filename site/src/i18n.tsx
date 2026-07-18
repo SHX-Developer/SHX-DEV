@@ -33,7 +33,7 @@ const projectRu: Record<string, LocalizedProject> = {
     metric: '50 000+ пользователей',
     stats: [
       ['50 000+', 'Пользователей'],
-      ['50 000+', 'Обработанных заказов'],
+      ['30 000+', 'Обработанных заказов'],
       ['5+', 'Продуктовых поверхностей'],
       ['2023—', 'Разработка'],
     ],
@@ -264,7 +264,7 @@ const dictionaries = {
       profileText: 'Built end to end: Telegram Mini Apps, payments and modern web platforms.',
       metrics: [
         ['50,000+', 'Users'],
-        ['50,000+', 'Orders processed'],
+        ['30,000+', 'Orders processed'],
         ['5+', 'Commercial products'],
         ['3+', 'Years building'],
       ],
@@ -286,7 +286,7 @@ const dictionaries = {
       explore: 'VIEW DETAILS',
       close: 'Close project',
       overview: 'Project overview',
-      gallery: ['Interface', 'User journey', 'Architecture', 'Mobile view', 'Dashboard'] as const,
+      gallery: ['Preview 1', 'Preview 2', 'Preview 3'] as const,
       stack: 'Stack',
       surface: 'Product surface',
       business: 'Business model',
@@ -312,7 +312,7 @@ const dictionaries = {
         'Cyber Donate started as a focused Telegram product and grew into a marketplace-style system with Web App flows, payments, order handling and admin operations.',
       metrics: [
         { value: '50,000+', label: 'users served' },
-        { value: '50,000+', label: 'orders completed' },
+        { value: '30,000+', label: 'orders completed' },
         { value: 'Telegram', label: 'primary platform' },
       ],
       built: 'What I built',
@@ -486,7 +486,7 @@ const dictionaries = {
           'Scaling',
           'STARS PAY',
           'A new payment product built on reusable architecture and operational automation.',
-          [['50,000+', 'users'], ['50,000+', 'orders']],
+          [['50,000+', 'users'], ['30,000+', 'orders']],
           ['PAYMENTS', 'FASTAPI', 'POSTGRESQL'],
         ],
         [
@@ -525,7 +525,7 @@ const dictionaries = {
       items: [
         ['2023', 'Started Cyber Donate', 'Telegram commerce, gaming services and order flows', 'LAUNCHED'],
         ['2024', 'Reached 10,000+ users', 'Improved payments, support, admin tools and product operations', '10K+ USERS'],
-        ['2025', 'Scaled to 50,000+ users', 'Cyber Donate, Stars Pay and Cyber Mate patterns across Telegram Web Apps', '50K+ ORDERS'],
+        ['2025', 'Scaled to 50,000+ users', 'Cyber Donate, Stars Pay and Cyber Mate patterns across Telegram Web Apps', '30K+ ORDERS'],
         ['2026', 'Building SHX ecosystem', 'Shared technology, identity and infrastructure for product work', 'CURRENT'],
       ],
       timelineLabel: 'PRODUCT EVIDENCE / 2023—2026',
@@ -547,7 +547,7 @@ const dictionaries = {
       metrics: [
         ['50,000+', 'Users'],
         ['5+', 'Products'],
-        ['50,000+', 'Orders'],
+        ['30,000+', 'Orders'],
         ['3+', 'Years'],
       ],
     },
@@ -609,7 +609,7 @@ const dictionaries = {
       profileText: 'Полный цикл разработки: Telegram Mini Apps, платежи и современные веб-платформы.',
       metrics: [
         ['50 000+', 'Пользователей'],
-        ['50 000+', 'Обработанных заказов'],
+        ['30 000+', 'Обработанных заказов'],
         ['5+', 'Коммерческих продуктов'],
         ['3+', 'Года разработки'],
       ],
@@ -631,7 +631,7 @@ const dictionaries = {
       explore: 'ПОДРОБНЕЕ',
       close: 'Закрыть проект',
       overview: 'О проекте',
-      gallery: ['Интерфейс', 'Путь пользователя', 'Архитектура', 'Мобильная версия', 'Дашборд'] as const,
+      gallery: ['Preview 1', 'Preview 2', 'Preview 3'] as const,
       stack: 'Стек',
       surface: 'Поверхность продукта',
       business: 'Бизнес-модель',
@@ -657,7 +657,7 @@ const dictionaries = {
         'Cyber Donate начался как Telegram-продукт и вырос в marketplace-систему с Web App, платежами, обработкой заказов и admin-операциями.',
       metrics: [
         { value: '50 000+', label: 'пользователей' },
-        { value: '50 000+', label: 'заказов' },
+        { value: '30 000+', label: 'заказов' },
         { value: 'Telegram', label: 'основная платформа' },
       ],
       built: 'Что я собрал',
@@ -831,7 +831,7 @@ const dictionaries = {
           'Масштабирование',
           'STARS PAY',
           'Новый платежный продукт на переиспользуемой архитектуре и операционной автоматизации.',
-          [['50 000+', 'пользователей'], ['50 000+', 'заказов']],
+          [['50 000+', 'пользователей'], ['30 000+', 'заказов']],
           ['PAYMENTS', 'FASTAPI', 'POSTGRESQL'],
         ],
         [
@@ -870,7 +870,7 @@ const dictionaries = {
       items: [
         ['2023', 'Запустил Cyber Donate', 'Telegram commerce, игровые услуги и сценарии заказов', 'ЗАПУСК'],
         ['2024', 'Достиг 10 000+ пользователей', 'Платежи, поддержка, админ-инструменты и продуктовые операции', '10K+ ПОЛЬЗОВАТЕЛЕЙ'],
-        ['2025', 'Вырос до 50 000+ пользователей', 'Паттерны Cyber Donate, Stars Pay и Cyber Mate в Telegram Web Apps', '50K+ ЗАКАЗОВ'],
+        ['2025', 'Вырос до 50 000+ пользователей', 'Паттерны Cyber Donate, Stars Pay и Cyber Mate в Telegram Web Apps', '30K+ ЗАКАЗОВ'],
         ['2026', 'Строю экосистему SHX', 'Общий стек, идентичность и инфраструктура для продуктовой работы', 'СЕЙЧАС'],
       ],
       timelineLabel: 'PRODUCT EVIDENCE / 2023—2026',
@@ -892,7 +892,7 @@ const dictionaries = {
       metrics: [
         ['50 000+', 'Пользователей'],
         ['5+', 'Продуктов'],
-        ['50 000+', 'Заказов'],
+        ['30 000+', 'Заказов'],
         ['3+', 'Года'],
       ],
     },

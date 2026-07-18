@@ -7,16 +7,8 @@ import { ArrowRightIcon, CloseIcon, ExternalLinkIcon } from './ui/Icons';
 type ProjectModalLabels = {
   close: string;
   overview: string;
-  gallery: readonly [string, string, string, string, string];
-  stack: string;
-  surface: string;
-  business: string;
-  role: string;
+  gallery: readonly [string, string, string];
   result: string;
-  timeline: string;
-  delivered: string;
-  challenges: string;
-  outcomes: string;
   openLive: string;
   inDevelopment: string;
 };
@@ -28,6 +20,7 @@ type ProjectModalProps = {
 };
 
 const ProductPreview = ({ project, active }: { project: Project; active: number }) => {
+  const [imageFailed, setImageFailed] = useState(false);
   const renderProjectMark = () =>
     project.title === 'SHX-Dev' ? (
       <img src="/brand/shx-logo.png" alt="" />
@@ -35,8 +28,26 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
       project.title.slice(0, 2)
     );
 
+  const galleryImage = project.gallery?.[active];
+  const imageSource = galleryImage ?? (active === 0 ? project.screenshot : undefined);
+
+  useEffect(() => {
+    setImageFailed(false);
+  }, [active, imageSource, project.title]);
+
+  if (imageSource && !imageFailed) {
+    return (
+      <img
+        className={`showcase-live-shot${galleryImage ? ' is-gallery' : ''}`}
+        src={imageSource}
+        onError={() => setImageFailed(true)}
+        alt={`${project.title} — ${String(active + 1).padStart(2, '0')}`}
+      />
+    );
+  }
+
   if (active === 0) {
-    if (!project.screenshot) {
+    if (!project.screenshot || imageFailed) {
       return (
         <div className="showcase-ui" aria-hidden="true">
           <div className="showcase-sidebar">
@@ -111,23 +122,28 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
 
   if (active === 3) {
     return (
-      <div className="showcase-mobile" aria-hidden="true">
-        <div className="mobile-device">
-          <div className="mobile-device-head">
-            <span>{renderProjectMark()}</span>
-            <i />
+      <div className="showcase-architecture" aria-hidden="true">
+        <div className="architecture-heading">
+          <span>{renderProjectMark()}</span>
+          <div>
+            <small>PRODUCT ARCHITECTURE</small>
+            <strong>{project.title}</strong>
           </div>
-          <div className="mobile-device-hero">
-            <small>{project.headline ?? project.meta}</small>
-            <strong>{project.metric ?? project.title}</strong>
+        </div>
+        <div className="architecture-layers">
+          <div>
+            <small>01 / EXPERIENCE</small>
+            <strong>{project.headline ?? project.meta}</strong>
           </div>
-          <div className="mobile-device-list">
-            {project.products.slice(0, 3).map((item) => (
-              <div key={item}>
-                <i />
-                <span>{item}</span>
-              </div>
-            ))}
+          <i />
+          <div>
+            <small>02 / PRODUCT</small>
+            <strong>{project.products.slice(0, 2).join(' · ')}</strong>
+          </div>
+          <i />
+          <div>
+            <small>03 / SYSTEM</small>
+            <strong>{(project.stack ?? project.tags).slice(0, 3).join(' · ')}</strong>
           </div>
         </div>
       </div>
@@ -186,19 +202,20 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
   );
 };
 
-const DetailList = ({ items }: { items: string[] }) => (
-  <ul>
-    {items.map((item) => (
-      <li key={item}>{item}</li>
-    ))}
-  </ul>
-);
-
 export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) => {
   const [activePreview, setActivePreview] = useState(0);
   const reducedMotion = useReducedMotion();
   const titleId = useId();
   const previewCount = labels.gallery.length;
+  const modalStats =
+    project?.stats ??
+    (project
+      ? [
+          [String(project.products.length), 'Product surfaces'],
+          [String(project.tags.length), 'Core areas'],
+          ['IN DEV', 'Status'],
+        ]
+      : []);
 
   const showPrevious = useCallback(() => {
     setActivePreview((current) => (current - 1 + previewCount) % previewCount);
@@ -212,6 +229,10 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
     if (!project) return;
 
     setActivePreview(0);
+    project.gallery?.forEach((source) => {
+      const image = new Image();
+      image.src = source;
+    });
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
@@ -254,10 +275,7 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="project-modal-header">
-              <div>
-                <span className="project-modal-kicker">{project.meta}</span>
-                <h2 id={titleId}>{project.title}</h2>
-              </div>
+              <h2 id={titleId}>{project.title}</h2>
               <button
                 className="project-modal-close"
                 type="button"
@@ -341,7 +359,6 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                       onClick={() => setActivePreview(index)}
                       key={label}
                     >
-                      <span>{String(index + 1).padStart(2, '0')}</span>
                       {label}
                     </button>
                   ))}
@@ -349,13 +366,11 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
               </div>
 
               <div className="project-modal-info">
-                <span className="project-modal-eyebrow">{labels.overview}</span>
-                <h3>{project.headline ?? project.title}</h3>
                 <p>{project.description}</p>
 
-                {project.stats?.length ? (
+                {modalStats.length ? (
                   <div className="modal-result-grid" aria-label={labels.result}>
-                    {project.stats.map(([value, label]) => (
+                    {modalStats.map(([value, label]) => (
                       <div key={`${value}-${label}`}>
                         <strong>{value}</strong>
                         <span>{label}</span>
@@ -363,26 +378,6 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                     ))}
                   </div>
                 ) : null}
-
-                {project.roles?.length ? (
-                  <div className="project-info-block">
-                    <span>{labels.role}</span>
-                    <div className="project-info-tags project-role-tags">
-                      {project.roles.map((item) => (
-                        <i key={item}>{item}</i>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-
-                <div className="project-info-block">
-                  <span>{labels.stack}</span>
-                  <div className="project-info-tags">
-                    {(project.stack ?? project.tags).map((item) => (
-                      <i key={item}>{item}</i>
-                    ))}
-                  </div>
-                </div>
 
                 {project.href ? (
                   <a
@@ -401,49 +396,6 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                 )}
               </div>
             </div>
-
-            {project.timeline?.length ||
-            project.delivered?.length ||
-            project.challenges?.length ||
-            project.outcomes?.length ? (
-              <div className="project-case-details">
-                {project.timeline?.length ? (
-                  <section className="project-timeline">
-                    <span className="project-modal-eyebrow">{labels.timeline}</span>
-                    <div className="project-timeline-track">
-                      {project.timeline.map(([year, milestone], index) => (
-                        <div key={`${year}-${milestone}`}>
-                          <i>{String(index + 1).padStart(2, '0')}</i>
-                          <strong>{year}</strong>
-                          <span>{milestone}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                ) : null}
-
-                <div className="project-case-columns">
-                  {project.delivered?.length ? (
-                    <section>
-                      <span className="project-modal-eyebrow">{labels.delivered}</span>
-                      <DetailList items={project.delivered} />
-                    </section>
-                  ) : null}
-                  {project.challenges?.length ? (
-                    <section>
-                      <span className="project-modal-eyebrow">{labels.challenges}</span>
-                      <DetailList items={project.challenges} />
-                    </section>
-                  ) : null}
-                  {project.outcomes?.length ? (
-                    <section className="is-outcomes">
-                      <span className="project-modal-eyebrow">{labels.outcomes}</span>
-                      <DetailList items={project.outcomes} />
-                    </section>
-                  ) : null}
-                </div>
-              </div>
-            ) : null}
           </motion.section>
         </motion.div>
       ) : null}

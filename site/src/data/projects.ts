@@ -25,11 +25,11 @@ export type Project = {
 };
 
 const projectAssets = (slug: string) => ({
-  screenshot: `/projects/${slug}/Preview.png`,
+  screenshot: `/projects/${slug}/Preview.webp`,
   gallery: [
-    `/projects/${slug}/preview_1.png`,
-    `/projects/${slug}/preview_2.png`,
-    `/projects/${slug}/preview_3.png`,
+    `/projects/${slug}/preview_1.webp`,
+    `/projects/${slug}/preview_2.webp`,
+    `/projects/${slug}/preview_3.webp`,
   ] as const,
 });
 
@@ -146,7 +146,7 @@ export const projects: Project[] = [
     metric: 'Personal brand and products',
     stats: [
       ['15+', 'Projects'],
-      ['2', 'Languages'],
+      ['3', 'Languages'],
       ['100%', 'Custom design'],
       ['LIVE', 'Portfolio'],
     ],
@@ -158,9 +158,9 @@ export const projects: Project[] = [
       ['04', 'Project case studies'],
       ['LIVE', 'Public portfolio'],
     ],
-    delivered: ['Product strategy', 'Visual identity', 'React frontend', 'Bilingual content', 'Case studies', 'Responsive design', 'CI/CD'],
+    delivered: ['Product strategy', 'Visual identity', 'React frontend', 'Trilingual content', 'Case studies', 'Responsive design', 'CI/CD'],
     challenges: ['Turning technical work into clear stories', 'Keeping a consistent product identity', 'Balancing motion and performance', 'Responsive content hierarchy'],
-    outcomes: ['Unified personal brand', 'Interactive project portfolio', 'Reusable design system', 'Bilingual product narrative'],
+    outcomes: ['Unified personal brand', 'Interactive project portfolio', 'Reusable design system', 'Trilingual product narrative'],
     stack: ['React', 'TypeScript', 'Vite', 'Portfolio'],
     products: ['shx.dev', 'SHX-Dev Bot', 'SHX-Dev App'],
     monetization: ['Collaborations', 'Freelance opportunities', 'Partnerships'],

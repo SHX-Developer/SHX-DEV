@@ -12,6 +12,8 @@ import { Button } from '../components/ui/Button';
 import { ArrowRightIcon, DownloadIcon } from '../components/ui/Icons';
 import { SectionFX } from '../components/ui/SectionFX';
 import { useLanguage } from '../i18n';
+import type { Language } from '../i18n';
+import { isPerformanceLite } from '../utils/performance';
 import { scrollToSection } from '../utils/scroll';
 
 const techMarks: Record<string, string> = {
@@ -27,7 +29,7 @@ const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) =
   scrollToSection(href);
 };
 
-const CounterValue = ({ value, locale }: { value: string; locale: 'en' | 'ru' }) => {
+const CounterValue = ({ value, locale }: { value: string; locale: Language }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const reducedMotion = useReducedMotion();
   const inView = useInView(ref, { once: true, amount: 0.8 });
@@ -48,7 +50,7 @@ const CounterValue = ({ value, locale }: { value: string; locale: 'en' | 'ru' })
       onUpdate: (latest) => {
         if (!ref.current) return;
         ref.current.textContent = `${Math.round(latest).toLocaleString(
-          locale === 'ru' ? 'ru-RU' : 'en-US',
+          locale === 'ru' ? 'ru-RU' : locale === 'uz' ? 'uz-UZ' : 'en-US',
         )}${suffix}`;
       },
     });
@@ -62,12 +64,14 @@ const CounterValue = ({ value, locale }: { value: string; locale: 'en' | 'ru' })
 export const HeroSection = () => {
   const reducedMotion = useReducedMotion();
   const { language, t } = useLanguage();
+  const performanceLite = isPerformanceLite();
   const cardRotateXValue = useMotionValue(0);
   const cardRotateYValue = useMotionValue(0);
   const cardRotateX = useSpring(cardRotateXValue, { stiffness: 140, damping: 22 });
   const cardRotateY = useSpring(cardRotateYValue, { stiffness: 140, damping: 22 });
 
   const handleHeroPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+    if (performanceLite) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width;
     const y = (event.clientY - rect.top) / rect.height;
@@ -80,6 +84,7 @@ export const HeroSection = () => {
   };
 
   const handleCardPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+    if (performanceLite) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width;
     const y = (event.clientY - rect.top) / rect.height;
@@ -192,7 +197,7 @@ export const HeroSection = () => {
           animate={reducedMotion ? undefined : { opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           style={
-            reducedMotion
+            reducedMotion || performanceLite
               ? undefined
               : {
                   rotateX: cardRotateX,
@@ -205,7 +210,9 @@ export const HeroSection = () => {
         >
           <div className="hero-showcase-light" aria-hidden="true" />
           <div className="hero-showcase-head">
-            <span>SHX / PROFILE</span>
+            <span>
+              SHX / {{ ru: 'ПРОФИЛЬ', uz: 'PROFIL', en: 'PROFILE' }[language]}
+            </span>
             <span className="hero-showcase-status">
               <i />
               2026
@@ -219,14 +226,16 @@ export const HeroSection = () => {
               <p className="hero-showcase-text">{t.hero.profileText}</p>
               <div className="hero-personal-note">
                 <span className="hero-personal-avatar" aria-hidden="true">
-                  <img src="/brand/shx-logo.png" alt="" />
+                  <img src="/brand/shx-logo.webp" alt="" />
                 </span>
                 <div>
                   <strong>Shahrizod</strong>
                   <small>
-                    {language === 'ru'
-                      ? 'Создаю продукты из Ташкента'
-                      : 'Building products from Tashkent'}
+                    {{
+                      ru: 'Создаю продукты из Ташкента',
+                      uz: 'Toshkentdan turib mahsulotlar yarataman',
+                      en: 'Building products from Tashkent',
+                    }[language]}
                   </small>
                 </div>
                 <i aria-hidden="true" />

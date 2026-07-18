@@ -7,15 +7,16 @@ import type {
 import type { Language } from '../i18n';
 import { useLanguage } from '../i18n';
 import { scrollToSection } from '../utils/scroll';
+import { isPerformanceLite } from '../utils/performance';
 
 const languages: Array<{
-  value: Language | 'uz';
+  value: Language;
   flag: string;
   label: string;
   disabled?: boolean;
 }> = [
   { value: 'ru', flag: '🇷🇺', label: 'Русский' },
-  { value: 'uz', flag: '🇺🇿', label: 'O‘zbek', disabled: true },
+  { value: 'uz', flag: '🇺🇿', label: 'O‘zbekcha' },
   { value: 'en', flag: '🇺🇸', label: 'English' },
 ];
 
@@ -26,6 +27,17 @@ export const Header = () => {
   const [activeHref, setActiveHref] = useState<string | null>(null);
   const languageRef = useRef<HTMLDivElement>(null);
   const { language, setLanguage, t } = useLanguage();
+  const performanceLite = isPerformanceLite();
+  const languageMenuLabel = {
+    ru: 'Язык интерфейса',
+    uz: 'Interfeys tili',
+    en: 'Interface language',
+  }[language];
+  const soonLabel = {
+    ru: 'Скоро',
+    uz: 'Tez orada',
+    en: 'Soon',
+  }[language];
 
   useEffect(() => {
     const updateScrollState = () => {
@@ -104,6 +116,7 @@ export const Header = () => {
   };
 
   const handleMagneticMove = (event: ReactPointerEvent<HTMLElement>) => {
+    if (performanceLite) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width - 0.5) * 8;
     const y = ((event.clientY - rect.top) / rect.height - 0.5) * 8;
@@ -117,6 +130,7 @@ export const Header = () => {
   };
 
   const handleHeaderLight = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (performanceLite) return;
     const rect = event.currentTarget.getBoundingClientRect();
     event.currentTarget.style.setProperty('--header-light-opacity', '0.82');
     event.currentTarget.style.setProperty(
@@ -156,10 +170,11 @@ export const Header = () => {
           onPointerMove={handleMagneticMove}
           onPointerLeave={resetMagnetic}
         >
-          <span className="brand-mark" aria-hidden="true">
-            <img src="/brand/shx-logo.png" alt="" />
-          </span>
-          <span className="brand-name">SHX&nbsp;DEV</span>
+          <img
+            className="brand-lockup brand-lockup--header"
+            src="/brand/shx-dev-lockup.png"
+            alt="SHX DEV"
+          />
         </a>
 
         <nav className="nav-links" aria-label={t.header.primaryNav}>
@@ -215,7 +230,7 @@ export const Header = () => {
                   transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <span className="language-menu-label">
-                    {language === 'ru' ? 'Язык интерфейса' : 'Interface language'}
+                    {languageMenuLabel}
                   </span>
                   {languages.map((item) => {
                     const isSelected = item.value === language;
@@ -227,7 +242,7 @@ export const Header = () => {
                         disabled={item.disabled}
                         className={isSelected ? 'is-selected' : ''}
                         onClick={() => {
-                          if (!item.disabled) chooseLanguage(item.value as Language);
+                          if (!item.disabled) chooseLanguage(item.value);
                         }}
                         key={item.value}
                       >
@@ -236,7 +251,7 @@ export const Header = () => {
                         </span>
                         <span>{item.label}</span>
                         {item.disabled ? (
-                          <small>{language === 'ru' ? 'Скоро' : 'Soon'}</small>
+                          <small>{soonLabel}</small>
                         ) : (
                           <i aria-hidden="true">{isSelected ? '✓' : ''}</i>
                         )}

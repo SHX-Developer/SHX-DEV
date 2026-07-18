@@ -3,6 +3,7 @@ import { useState } from 'react';
 import type { MouseEvent } from 'react';
 import type { Project } from '../data/projects';
 import { useLanguage } from '../i18n';
+import { isPerformanceLite } from '../utils/performance';
 import { ProjectIcon } from './ProjectIcon';
 import { ArrowRightIcon } from './ui/Icons';
 
@@ -21,8 +22,10 @@ export const ProjectCard = ({
 }: ProjectCardProps) => {
   const { t } = useLanguage();
   const [coverFailed, setCoverFailed] = useState(false);
+  const performanceLite = isPerformanceLite();
 
   const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
+    if (performanceLite) return;
     const rect = event.currentTarget.getBoundingClientRect();
     event.currentTarget.style.setProperty('--mx', `${event.clientX - rect.left}px`);
     event.currentTarget.style.setProperty('--my', `${event.clientY - rect.top}px`);
@@ -41,7 +44,7 @@ export const ProjectCard = ({
       <div className="card-topline">
         <div className={`card-icon${project.title === 'SHX-Dev' ? ' is-brand' : ''}`}>
           {project.title === 'SHX-Dev' ? (
-            <img src="/brand/shx-logo.png" alt="" aria-hidden="true" />
+            <img src="/brand/shx-logo.webp" alt="" aria-hidden="true" />
           ) : (
             <ProjectIcon icon={project.icon} />
           )}
@@ -52,7 +55,13 @@ export const ProjectCard = ({
       {compact ? null : (
         <div className="project-preview" aria-hidden="true">
           {project.screenshot && !coverFailed ? (
-            <img src={project.screenshot} alt="" onError={() => setCoverFailed(true)} />
+            <img
+              src={project.screenshot}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              onError={() => setCoverFailed(true)}
+            />
           ) : (
             <>
               <div className="preview-topbar">

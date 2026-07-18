@@ -7,9 +7,8 @@ export const TimelineSection = () => {
   const { language, t } = useLanguage();
   const reducedMotion = useReducedMotion();
 
-  const copy =
-    language === 'ru'
-      ? {
+  const copy = {
+    ru: {
           eyebrow: 'Путь продукта',
           title: 'Одна линия времени.',
           accent: 'Без повторов.',
@@ -18,8 +17,18 @@ export const TimelineSection = () => {
           evidence: 'РЕАЛЬНЫЙ РОСТ · 2023—СЕЙЧАС',
           now: 'СЕЙЧАС И ДАЛЬШЕ',
           progress: 'ПРОГРЕСС',
-        }
-      : {
+        },
+    uz: {
+          eyebrow: 'Mahsulot yo‘li',
+          title: 'Yagona vaqt chizig‘i.',
+          accent: 'Takrorlarsiz.',
+          subtitle:
+            'Ishga tushirishlar, o‘sish, joriy holat va keyingi qadam — barchasi bitta izchil hikoyada.',
+          evidence: 'REAL O‘SISH · 2023—HOZIR',
+          now: 'HOZIR VA KEYIN',
+          progress: 'JARAYON',
+        },
+    en: {
           eyebrow: 'Product journey',
           title: 'One continuous timeline.',
           accent: 'No repeated story.',
@@ -28,7 +37,13 @@ export const TimelineSection = () => {
           evidence: 'VERIFIED GROWTH · 2023—NOW',
           now: 'NOW & NEXT',
           progress: 'PROGRESS',
-        };
+        },
+  }[language];
+  const nowLabel = {
+    ru: 'СЕЙЧАС',
+    uz: 'HOZIR',
+    en: 'NOW',
+  }[language];
 
   return (
     <AnimatedSection id="journey" className="timeline-v2">
@@ -101,7 +116,7 @@ export const TimelineSection = () => {
           >
             <div className="timeline-v2-marker">
               <i />
-              <strong>{language === 'ru' ? 'СЕЙЧАС' : 'NOW'}</strong>
+              <strong>{nowLabel}</strong>
             </div>
             <div className="timeline-v2-event-copy">
               <small>{copy.now}</small>

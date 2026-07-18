@@ -1,5 +1,6 @@
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { useRef } from 'react';
+import { useLanguage } from '../../i18n';
 
 type SectionFXVariant =
   | 'hero'
@@ -11,6 +12,7 @@ type SectionFXVariant =
   | 'contact';
 
 export const SectionFX = ({ variant }: { variant: SectionFXVariant }) => {
+  const { language } = useLanguage();
   const reducedMotion = useReducedMotion();
   const fxRef = useRef<HTMLDivElement>(null);
   const isNearViewport = useInView(fxRef, { margin: '360px 0px 360px 0px' });
@@ -86,7 +88,9 @@ export const SectionFX = ({ variant }: { variant: SectionFXVariant }) => {
           <span className="fx-timeline-rail" />
           <span className="fx-timeline-signal" />
           <span className="fx-timeline-year fx-timeline-year-one">2023</span>
-          <span className="fx-timeline-year fx-timeline-year-two">NOW</span>
+          <span className="fx-timeline-year fx-timeline-year-two">
+            {{ ru: 'СЕЙЧАС', uz: 'HOZIR', en: 'NOW' }[language]}
+          </span>
         </>
       ) : null}
 

@@ -7,8 +7,25 @@ import { useLanguage } from '../i18n';
 const initiativeIcons = [CodeIcon, UserIcon, GridIcon, CubeIcon];
 
 export const CurrentWorkSection = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const reducedMotion = useReducedMotion();
+  const labels = {
+    ru: {
+      tracks: '04 АКТИВНЫХ НАПРАВЛЕНИЯ',
+      roadmap: 'ROADMAP / В РАБОТЕ',
+      directions: 'НАПРАВЛЕНИЯ ПРОДУКТОВ',
+    },
+    uz: {
+      tracks: '04 FAOL YO‘NALISH',
+      roadmap: 'YO‘L XARITASI / JONLI',
+      directions: 'MAHSULOT YO‘NALISHLARI',
+    },
+    en: {
+      tracks: '04 ACTIVE TRACKS',
+      roadmap: 'ROADMAP / LIVE',
+      directions: 'PRODUCT DIRECTIONS',
+    },
+  }[language];
 
   return (
     <AnimatedSection id="current">
@@ -34,14 +51,14 @@ export const CurrentWorkSection = () => {
         <div className="current-board-bar">
           <div aria-hidden="true"><i /><i /><i /></div>
           <span>{t.current.boardLabel}</span>
-          <small><i /> 04 ACTIVE TRACKS</small>
+          <small><i /> {labels.tracks}</small>
         </div>
 
         <div className="current-board-summary">
           <div>
-            <small>ROADMAP / LIVE</small>
+            <small>{labels.roadmap}</small>
             <strong>04</strong>
-            <span>PRODUCT DIRECTIONS</span>
+            <span>{labels.directions}</span>
           </div>
           <div>
             {t.current.items.map(([status, statusLabel]) => (

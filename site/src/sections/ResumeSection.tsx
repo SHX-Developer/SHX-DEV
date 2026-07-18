@@ -14,8 +14,25 @@ import { useLanguage } from '../i18n';
 import { scrollToSection } from '../utils/scroll';
 
 export const ResumeSection = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const reducedMotion = useReducedMotion();
+  const labels = {
+    ru: {
+      growth: 'ПОДТВЕРЖДЁННЫЙ РОСТ',
+      ready: 'ГОТОВ СОЗДАВАТЬ / SHX',
+      page: 'PDF / 1 СТРАНИЦА',
+    },
+    uz: {
+      growth: 'TASDIQLANGAN O‘SISH',
+      ready: 'YARATISHGA TAYYOR / SHX',
+      page: 'PDF / 1 SAHIFA',
+    },
+    en: {
+      growth: 'VERIFIED GROWTH',
+      ready: 'READY TO BUILD / SHX',
+      page: 'PDF / 1 PAGE',
+    },
+  }[language];
 
   const channels = [
     { label: 'TELEGRAM', href: 'https://t.me/shxdev', Icon: TelegramIcon },
@@ -48,7 +65,7 @@ export const ResumeSection = () => {
           <div className="proof-window-bar">
             <div aria-hidden="true"><i /><i /><i /></div>
             <span>{t.resume.timelineLabel}</span>
-            <small><i /> VERIFIED GROWTH</small>
+            <small><i /> {labels.growth}</small>
           </div>
 
           <div className="proof-timeline-list">
@@ -98,7 +115,7 @@ export const ResumeSection = () => {
           </div>
 
           <div className="proof-ready-copy">
-            <span>READY TO BUILD / SHX</span>
+            <span>{labels.ready}</span>
             <h3>{t.resume.readyTitle}</h3>
             <p>{t.resume.collaborationText}</p>
           </div>
@@ -109,7 +126,7 @@ export const ResumeSection = () => {
             </span>
             <div className="proof-document-main">
               <strong>{t.resume.projectResume}</strong>
-              <small>PDF / 1 PAGE</small>
+              <small>{labels.page}</small>
             </div>
             <dl>
               <div>

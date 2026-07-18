@@ -7,11 +7,12 @@ export const Footer = () => {
     <footer>
       <div className="shell foot">
         <div className="left">
-          <span className="brand-mark" aria-hidden="true">
-            <img src="/brand/shx-logo.png" alt="" />
-          </span>
+          <img
+            className="brand-lockup brand-lockup--footer"
+            src="/brand/shx-dev-lockup.png"
+            alt="SHX DEV"
+          />
           <div>
-            <div className="footer-brand">SHX&nbsp;DEV</div>
             <div className="tagline mt-1">
               {t.footer.tagline}
             </div>

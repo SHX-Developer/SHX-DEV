@@ -4,6 +4,7 @@ import { AnimatedSection } from '../components/ui/AnimatedSection';
 import { SectionFX } from '../components/ui/SectionFX';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { useLanguage } from '../i18n';
+import { isPerformanceLite } from '../utils/performance';
 
 const products = [
   {
@@ -75,6 +76,7 @@ type ProductId = (typeof products)[number]['id'];
 export const EcosystemSection = () => {
   const { language, t } = useLanguage();
   const reducedMotion = useReducedMotion();
+  const limitMotion = Boolean(reducedMotion || isPerformanceLite());
   const [activeProduct, setActiveProduct] = useState<ProductId>('cyber-donate');
 
   const activeIndex = products.findIndex((product) => product.id === activeProduct);
@@ -84,6 +86,31 @@ export const EcosystemSection = () => {
     () => new Set(active.infrastructure),
     [active.infrastructure],
   );
+  const liveSystemLabel = {
+    ru: 'СИСТЕМА РАБОТАЕТ',
+    uz: 'TIZIM ISHLAMOQDA',
+    en: 'LIVE SYSTEM',
+  }[language];
+  const modulesLabel = {
+    ru: 'МОДУЛЕЙ',
+    uz: 'MODUL',
+    en: 'MODULES',
+  }[language];
+  const activeProductLabel = {
+    ru: 'АКТИВНЫЙ ПРОДУКТ',
+    uz: 'FAOL MAHSULOT',
+    en: 'ACTIVE PRODUCT',
+  }[language];
+  const operatingSystemLabel = {
+    ru: 'SHX / ОПЕРАЦИОННАЯ СИСТЕМА ПРОДУКТОВ',
+    uz: 'SHX / MAHSULOT OPERATSION TIZIMI',
+    en: 'SHX / PRODUCT OPERATING SYSTEM',
+  }[language];
+  const productOsLabel = {
+    ru: 'PRODUCT OS',
+    uz: 'MAHSULOT OS',
+    en: 'PRODUCT OS',
+  }[language];
 
   return (
     <AnimatedSection id="stack" className="ecosystem-v2">
@@ -109,10 +136,10 @@ export const EcosystemSection = () => {
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="product-os-bar">
-          <span>SHX / PRODUCT OPERATING SYSTEM</span>
+          <span>{operatingSystemLabel}</span>
           <small>
             <i />
-            {language === 'ru' ? 'СИСТЕМА РАБОТАЕТ' : 'LIVE SYSTEM'}
+            {liveSystemLabel}
           </small>
         </div>
 
@@ -136,7 +163,7 @@ export const EcosystemSection = () => {
           <motion.div
             className="product-os-core"
             animate={
-              reducedMotion
+              limitMotion
                 ? undefined
                 : {
                     boxShadow: [
@@ -148,11 +175,11 @@ export const EcosystemSection = () => {
             }
             transition={{ duration: 3.2, repeat: Infinity }}
           >
-            <small>PRODUCT OS</small>
+            <small>{productOsLabel}</small>
             <strong className="product-os-logo" aria-hidden="true">
-              <img src="/brand/shx-logo.png" alt="" />
+              <img src="/brand/shx-logo.webp" alt="" />
             </strong>
-            <span>17 {language === 'ru' ? 'МОДУЛЕЙ' : 'MODULES'}</span>
+            <span>17 {modulesLabel}</span>
           </motion.div>
 
           {t.ecosystem.products.map(([name, category], index) => {
@@ -172,7 +199,7 @@ export const EcosystemSection = () => {
               >
                 <span>
                   {product.mark === 'SHX' ? (
-                    <img src="/brand/shx-logo.png" alt="" aria-hidden="true" />
+                    <img src="/brand/shx-logo.webp" alt="" aria-hidden="true" />
                   ) : (
                     product.mark
                   )}
@@ -190,7 +217,7 @@ export const EcosystemSection = () => {
         <div className="product-os-inspector" aria-live="polite">
           <div className="product-os-active-copy">
             <small>
-              {language === 'ru' ? 'АКТИВНЫЙ ПРОДУКТ' : 'ACTIVE PRODUCT'} /{' '}
+              {activeProductLabel} /{' '}
               {String(activeIndex + 1).padStart(2, '0')}
             </small>
             <h3>{activeCopy[0]}</h3>

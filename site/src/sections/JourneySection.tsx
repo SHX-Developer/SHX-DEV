@@ -7,15 +7,35 @@ import { useLanguage } from '../i18n';
 const journeyIcons = [ArrowRightIcon, GridIcon, CodeIcon, CubeIcon];
 
 const journeyVisuals = [
-  { image: '/projects/cyber-donate-live.png', mark: 'CD', label: 'FIRST PRODUCT' },
+  { image: '/projects/cyber-donate-live.webp', mark: 'CD', label: 'FIRST PRODUCT' },
   { image: null, mark: '10K', label: 'COMMERCE GROWTH' },
-  { image: '/projects/stars-pay-live.png', mark: 'SP', label: 'PAYMENT SCALE' },
+  { image: '/projects/stars-pay-live.webp', mark: 'SP', label: 'PAYMENT SCALE' },
   { image: null, mark: 'SHX', label: 'PRODUCT PLATFORM' },
 ] as const;
 
 export const JourneySection = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const reducedMotion = useReducedMotion();
+  const labels = {
+    ru: {
+      live: 'ПУТЬ В РЕАЛЬНОМ ВРЕМЕНИ',
+      product: 'ПРОДУКТ',
+      interface: 'интерфейс',
+      visuals: ['ПЕРВЫЙ ПРОДУКТ', 'РОСТ COMMERCE', 'МАСШТАБ ПЛАТЕЖЕЙ', 'ПРОДУКТОВАЯ ПЛАТФОРМА'],
+    },
+    uz: {
+      live: 'JONLI MAHSULOT YO‘LI',
+      product: 'MAHSULOT',
+      interface: 'interfeysi',
+      visuals: ['BIRINCHI MAHSULOT', 'COMMERCE O‘SISHI', 'TO‘LOVLAR MASSHTABI', 'MAHSULOT PLATFORMASI'],
+    },
+    en: {
+      live: 'LIVE JOURNEY',
+      product: 'PRODUCT',
+      interface: 'interface',
+      visuals: ['FIRST PRODUCT', 'COMMERCE GROWTH', 'PAYMENT SCALE', 'PRODUCT PLATFORM'],
+    },
+  }[language];
 
   return (
     <AnimatedSection id="journey">
@@ -41,7 +61,7 @@ export const JourneySection = () => {
         <div className="journey-dashboard-bar">
           <div aria-hidden="true"><i /><i /><i /></div>
           <span>{t.journey.rangeLabel}</span>
-          <small><i /> LIVE JOURNEY</small>
+          <small><i /> {labels.live}</small>
         </div>
 
         <div className="journey-track">
@@ -95,7 +115,7 @@ export const JourneySection = () => {
 
                   <div className={`journey-visual${visual.image ? ' has-image' : ''}`}>
                     {visual.image ? (
-                      <img src={visual.image} alt={`${product} interface`} loading="lazy" />
+                      <img src={visual.image} alt={`${product} ${labels.interface}`} loading="lazy" />
                     ) : (
                       <div className="journey-generated-visual" aria-hidden="true">
                         <span>{visual.mark}</span>
@@ -104,10 +124,10 @@ export const JourneySection = () => {
                         <i />
                       </div>
                     )}
-                    <small>{visual.label}</small>
+                    <small>{labels.visuals[index]}</small>
                   </div>
 
-                  <span className="journey-product-label">PRODUCT</span>
+                  <span className="journey-product-label">{labels.product}</span>
                   <h3>{product}</h3>
                   <p>{description}</p>
 

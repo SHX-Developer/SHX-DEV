@@ -52,8 +52,34 @@ const technologyLogos = [
 ] as const;
 
 export const TechStackSection = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const reducedMotion = useReducedMotion();
+  const labels = {
+    ru: {
+      ready: 'ГОТОВО К PRODUCTION',
+      capabilities: '10 ВОЗМОЖНОСТЕЙ',
+      endToEnd: 'ПОЛНЫЙ ЦИКЛ',
+      output: 'РЕЗУЛЬТАТ',
+      product: 'МАСШТАБИРУЕМЫЙ ПРОДУКТ',
+      tools: 'ИНСТРУМЕНТЫ, НА КОТОРЫХ РАБОТАЕТ СИСТЕМА',
+    },
+    uz: {
+      ready: 'PRODUCTION UCHUN TAYYOR',
+      capabilities: '10 IMKONIYAT',
+      endToEnd: 'TO‘LIQ SIKL',
+      output: 'NATIJA',
+      product: 'MASSHTABLANUVCHI MAHSULOT',
+      tools: 'TIZIMNI ISHLATUVCHI VOSITALAR',
+    },
+    en: {
+      ready: 'PRODUCTION READY',
+      capabilities: '10 CAPABILITIES',
+      endToEnd: 'END TO END',
+      output: 'OUTPUT',
+      product: 'SCALABLE PRODUCT',
+      tools: 'TOOLS THAT POWER THE SYSTEM',
+    },
+  }[language];
 
   return (
     <AnimatedSection id="stack">
@@ -79,7 +105,7 @@ export const TechStackSection = () => {
         <div className="stack-workbench-bar">
           <div aria-hidden="true"><i /><i /><i /></div>
           <span>shx.product-stack.ts</span>
-          <small><i /> PRODUCTION READY</small>
+          <small><i /> {labels.ready}</small>
         </div>
 
         <div className="stack-proof">
@@ -100,7 +126,7 @@ export const TechStackSection = () => {
           <section className="stack-capabilities">
             <div className="stack-block-heading">
               <span>{t.stack.capabilitiesLabel}</span>
-              <small>10 CAPABILITIES</small>
+              <small>{labels.capabilities}</small>
             </div>
 
             <div className="stack-capability-grid">
@@ -147,7 +173,7 @@ export const TechStackSection = () => {
           >
             <div className="stack-block-heading">
               <span>{t.stack.architectureLabel}</span>
-              <small>END TO END</small>
+              <small>{labels.endToEnd}</small>
             </div>
             <p>{t.stack.architectureDescription}</p>
 
@@ -180,11 +206,11 @@ export const TechStackSection = () => {
 
             <div className="stack-architecture-result">
               <span className="stack-architecture-logo" aria-hidden="true">
-                <img src="/brand/shx-logo.png" alt="" />
+                <img src="/brand/shx-logo.webp" alt="" />
               </span>
               <div>
-                <small>OUTPUT</small>
-                <strong>SCALABLE PRODUCT</strong>
+                <small>{labels.output}</small>
+                <strong>{labels.product}</strong>
               </div>
             </div>
           </motion.aside>
@@ -193,7 +219,7 @@ export const TechStackSection = () => {
         <div className="stack-technology-layer">
           <div className="stack-block-heading">
             <span>{t.stack.technologyLabel}</span>
-            <small>TOOLS THAT POWER THE SYSTEM</small>
+            <small>{labels.tools}</small>
           </div>
           <div className="stack-logo-grid">
             {technologyLogos.map(({ name, Icon, color }, index) => (

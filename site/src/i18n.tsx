@@ -3,8 +3,9 @@ import { createContext, useContext, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { Project } from './data/projects';
 import { projects } from './data/projects';
+import { projectUz, uzDictionary } from './i18n.uz';
 
-export type Language = 'en' | 'ru';
+export type Language = 'en' | 'ru' | 'uz';
 
 type LocalizedProject = Partial<
   Pick<
@@ -114,7 +115,7 @@ const projectRu: Record<string, LocalizedProject> = {
     metric: 'Личный бренд и продукты',
     stats: [
       ['15+', 'Проектов'],
-      ['2', 'Языка'],
+      ['3', 'Языка'],
       ['100%', 'Авторский дизайн'],
       ['LIVE', 'Портфолио'],
     ],
@@ -126,9 +127,9 @@ const projectRu: Record<string, LocalizedProject> = {
       ['04', 'Кейсы проектов'],
       ['LIVE', 'Публичное портфолио'],
     ],
-    delivered: ['Продуктовая стратегия', 'Визуальная идентичность', 'React frontend', 'Два языка', 'Кейсы проектов', 'Адаптивный дизайн', 'CI/CD'],
+    delivered: ['Продуктовая стратегия', 'Визуальная идентичность', 'React frontend', 'Три языка', 'Кейсы проектов', 'Адаптивный дизайн', 'CI/CD'],
     challenges: ['Превращение технической работы в понятные истории', 'Единая продуктовая идентичность', 'Баланс анимаций и производительности', 'Адаптивная иерархия контента'],
-    outcomes: ['Единый личный бренд', 'Интерактивное портфолио проектов', 'Переиспользуемая дизайн-система', 'Двуязычный продуктовый нарратив'],
+    outcomes: ['Единый личный бренд', 'Интерактивное портфолио проектов', 'Переиспользуемая дизайн-система', 'Трёхъязычный продуктовый нарратив'],
     products: ['shx.dev', 'SHX-Dev Bot', 'SHX-Dev App'],
     monetization: ['Коллаборации', 'Freelance-возможности', 'Партнёрства'],
     tags: ['ПОРТФОЛИО', 'БРЕНД', 'DEV'],
@@ -223,7 +224,11 @@ const projectRu: Record<string, LocalizedProject> = {
 };
 
 const getProjects = (language: Language) =>
-  projects.map((project) => (language === 'ru' ? { ...project, ...projectRu[project.title] } : project));
+  projects.map((project) => {
+    if (language === 'ru') return { ...project, ...projectRu[project.title] };
+    if (language === 'uz') return { ...project, ...projectUz[project.title] };
+    return project;
+  });
 
 const dictionaries = {
   en: {
@@ -916,6 +921,7 @@ const dictionaries = {
     },
     socials: 'Социальные ссылки',
   },
+  uz: uzDictionary,
 } as const;
 
 type Translation = (typeof dictionaries)[Language];
@@ -937,7 +943,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     }
 
     const stored = window.localStorage.getItem('shx-language');
-    return stored === 'ru' || stored === 'en' ? stored : 'en';
+    return stored === 'ru' || stored === 'en' || stored === 'uz' ? stored : 'en';
   });
 
   const value = useMemo<LanguageContextValue>(() => {
@@ -949,7 +955,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     return {
       language,
       setLanguage: setAndStore,
-      toggleLanguage: () => setAndStore(language === 'en' ? 'ru' : 'en'),
+      toggleLanguage: () =>
+        setAndStore(language === 'en' ? 'ru' : language === 'ru' ? 'uz' : 'en'),
       t: dictionaries[language],
       projects: getProjects(language),
     };

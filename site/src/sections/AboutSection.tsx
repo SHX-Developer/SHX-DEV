@@ -6,6 +6,21 @@ import { useLanguage } from '../i18n';
 export const AboutSection = () => {
   const { language, t } = useLanguage();
   const reducedMotion = useReducedMotion();
+  const personalLabel = {
+    ru: 'ЛИЧНО',
+    uz: 'SHAXSAN',
+    en: 'PERSONALLY',
+  }[language];
+  const mission = {
+    ru: '«Делать полезные продукты»',
+    uz: '“Foydali mahsulotlar yaratish”',
+    en: '“Make useful software”',
+  }[language];
+  const role = {
+    ru: 'Основатель · Fullstack Product Engineer',
+    uz: 'Asoschi · Fullstack Product Engineer',
+    en: 'Founder · Fullstack Product Engineer',
+  }[language];
 
   return (
     <AnimatedSection id="about" className="about-v2">
@@ -34,12 +49,12 @@ export const AboutSection = () => {
         >
           <div className="about-v2-person">
             <span className="about-v2-avatar" aria-hidden="true">
-              <img src="/brand/shx-logo.png" alt="" />
+              <img src="/brand/shx-logo.webp" alt="" />
             </span>
             <div>
-              <small>{language === 'ru' ? 'ЛИЧНО' : 'PERSONALLY'}</small>
+              <small>{personalLabel}</small>
               <strong>Shahrizod</strong>
-              <p>Founder · Fullstack Product Engineer</p>
+              <p>{role}</p>
             </div>
             <span className="about-v2-live">
               <i />
@@ -73,7 +88,7 @@ export const AboutSection = () => {
           </div>
 
           <code>
-            mission: {language === 'ru' ? '«Делать полезные продукты»' : '“Make useful software”'}
+            mission: {mission}
           </code>
         </motion.div>
       </div>

@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useCallback, useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { Project } from '../data/projects';
+import { useLanguage } from '../i18n';
 import { ArrowRightIcon, CloseIcon, ExternalLinkIcon } from './ui/Icons';
 
 type ProjectModalLabels = {
@@ -20,10 +21,58 @@ type ProjectModalProps = {
 };
 
 const ProductPreview = ({ project, active }: { project: Project; active: number }) => {
+  const { language } = useLanguage();
   const [imageFailed, setImageFailed] = useState(false);
+  const copy = {
+    ru: {
+      liveInterface: 'рабочий интерфейс',
+      architecture: 'АРХИТЕКТУРА ПРОДУКТА',
+      experience: 'ОПЫТ',
+      product: 'ПРОДУКТ',
+      system: 'СИСТЕМА',
+      adminLive: 'АДМИН / В РАБОТЕ',
+      productStatus: 'Статус продукта',
+      productSurfaces: 'Интерфейсы продукта',
+      coreModules: 'Основные модули',
+      surface: 'ИНТЕРФЕЙС ПРОДУКТА',
+      status: 'СТАТУС',
+      activity: 'АКТИВНОСТЬ',
+      active: 'АКТИВЕН',
+    },
+    uz: {
+      liveInterface: 'ishlaydigan interfeys',
+      architecture: 'MAHSULOT ARXITEKTURASI',
+      experience: 'TAJRIBA',
+      product: 'MAHSULOT',
+      system: 'TIZIM',
+      adminLive: 'ADMIN / JONLI',
+      productStatus: 'Mahsulot holati',
+      productSurfaces: 'Mahsulot interfeyslari',
+      coreModules: 'Asosiy modullar',
+      surface: 'MAHSULOT INTERFEYSI',
+      status: 'HOLAT',
+      activity: 'FAOLLIK',
+      active: 'FAOL',
+    },
+    en: {
+      liveInterface: 'live interface',
+      architecture: 'PRODUCT ARCHITECTURE',
+      experience: 'EXPERIENCE',
+      product: 'PRODUCT',
+      system: 'SYSTEM',
+      adminLive: 'ADMIN / LIVE',
+      productStatus: 'Product status',
+      productSurfaces: 'Product surfaces',
+      coreModules: 'Core modules',
+      surface: 'PRODUCT SURFACE',
+      status: 'STATUS',
+      activity: 'ACTIVITY',
+      active: 'ACTIVE',
+    },
+  }[language];
   const renderProjectMark = () =>
     project.title === 'SHX-Dev' ? (
-      <img src="/brand/shx-logo.png" alt="" />
+      <img src="/brand/shx-logo.webp" alt="" />
     ) : (
       project.title.slice(0, 2)
     );
@@ -40,6 +89,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
       <img
         className={`showcase-live-shot${galleryImage ? ' is-gallery' : ''}`}
         src={imageSource}
+        decoding="async"
         onError={() => setImageFailed(true)}
         alt={`${project.title} — ${String(active + 1).padStart(2, '0')}`}
       />
@@ -83,7 +133,8 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
       <img
         className="showcase-live-shot"
         src={project.screenshot}
-        alt={`${project.title} live interface`}
+        decoding="async"
+        alt={`${project.title} — ${copy.liveInterface}`}
       />
     );
   }
@@ -107,7 +158,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
       <div className="showcase-system" aria-hidden="true">
         <div className="system-core">
           <span className="system-core-logo">
-            <img src="/brand/shx-logo.png" alt="" />
+            <img src="/brand/shx-logo.webp" alt="" />
           </span>
           <strong>{project.title}</strong>
         </div>
@@ -126,23 +177,23 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
         <div className="architecture-heading">
           <span>{renderProjectMark()}</span>
           <div>
-            <small>PRODUCT ARCHITECTURE</small>
+            <small>{copy.architecture}</small>
             <strong>{project.title}</strong>
           </div>
         </div>
         <div className="architecture-layers">
           <div>
-            <small>01 / EXPERIENCE</small>
+            <small>01 / {copy.experience}</small>
             <strong>{project.headline ?? project.meta}</strong>
           </div>
           <i />
           <div>
-            <small>02 / PRODUCT</small>
+            <small>02 / {copy.product}</small>
             <strong>{project.products.slice(0, 2).join(' · ')}</strong>
           </div>
           <i />
           <div>
-            <small>03 / SYSTEM</small>
+            <small>03 / {copy.system}</small>
             <strong>{(project.stack ?? project.tags).slice(0, 3).join(' · ')}</strong>
           </div>
         </div>
@@ -157,13 +208,13 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
           <span>{renderProjectMark()}</span>
           <strong>{project.title}</strong>
         </div>
-        <small>ADMIN / LIVE</small>
+        <small>{copy.adminLive}</small>
       </div>
       <div className="showcase-admin-metrics">
         {(project.stats ?? [
-          [project.metric ?? 'LIVE', 'Product status'],
-          [String(project.products.length), 'Product surfaces'],
-          [String(project.tags.length), 'Core modules'],
+          [project.metric ?? 'LIVE', copy.productStatus],
+          [String(project.products.length), copy.productSurfaces],
+          [String(project.tags.length), copy.coreModules],
         ])
           .slice(0, 3)
           .map(([value, label]) => (
@@ -176,9 +227,9 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
       </div>
       <div className="showcase-admin-table">
         <div className="showcase-admin-table-head">
-          <span>PRODUCT SURFACE</span>
-          <span>STATUS</span>
-          <span>ACTIVITY</span>
+          <span>{copy.surface}</span>
+          <span>{copy.status}</span>
+          <span>{copy.activity}</span>
         </div>
         {project.products.slice(0, 4).map((item, index) => (
           <div className="showcase-admin-row" key={item}>
@@ -186,7 +237,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
               <i>{String(index + 1).padStart(2, '0')}</i>
               {item}
             </span>
-            <strong>ACTIVE</strong>
+            <strong>{copy.active}</strong>
             <span>
               <i style={{ width: `${84 - index * 13}%` }} />
             </span>
@@ -203,17 +254,38 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
 };
 
 export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) => {
+  const { language } = useLanguage();
   const [activePreview, setActivePreview] = useState(0);
   const reducedMotion = useReducedMotion();
   const titleId = useId();
   const previewCount = labels.gallery.length;
+  const fallbackLabels = {
+    ru: {
+      surfaces: 'Интерфейсы продукта',
+      areas: 'Ключевые области',
+      inDevelopment: 'В РАЗРАБОТКЕ',
+      status: 'Статус',
+    },
+    uz: {
+      surfaces: 'Mahsulot interfeyslari',
+      areas: 'Asosiy yo‘nalishlar',
+      inDevelopment: 'ISHLAB CHIQILMOQDA',
+      status: 'Holat',
+    },
+    en: {
+      surfaces: 'Product surfaces',
+      areas: 'Core areas',
+      inDevelopment: 'IN DEV',
+      status: 'Status',
+    },
+  }[language];
   const modalStats =
     project?.stats ??
     (project
       ? [
-          [String(project.products.length), 'Product surfaces'],
-          [String(project.tags.length), 'Core areas'],
-          ['IN DEV', 'Status'],
+          [String(project.products.length), fallbackLabels.surfaces],
+          [String(project.tags.length), fallbackLabels.areas],
+          [fallbackLabels.inDevelopment, fallbackLabels.status],
         ]
       : []);
 

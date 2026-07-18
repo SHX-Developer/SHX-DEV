@@ -15,7 +15,11 @@ export const BackToTop = () => {
   const reducedMotion = useReducedMotion();
   const [isVisible, setIsVisible] = useState(false);
   const [progress, setProgress] = useState(0);
-  const label = language === 'ru' ? 'Наверх' : 'Back to top';
+  const label = {
+    ru: 'Наверх',
+    uz: 'Yuqoriga',
+    en: 'Back to top',
+  }[language];
 
   useMotionValueEvent(scrollY, 'change', (value) => {
     setIsVisible(value > 520);

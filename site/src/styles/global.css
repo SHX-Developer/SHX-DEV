@@ -356,6 +356,31 @@ svg {
   transform: translate(-50%, -50%) scale(1);
 }
 
+.brand-lockup {
+  display: block;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+  filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.28));
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    filter 0.22s ease,
+    transform 0.22s ease;
+}
+
+.brand-lockup--header {
+  width: 136px;
+  height: 28px;
+}
+
+.brand:hover .brand-lockup {
+  filter:
+    brightness(1.12)
+    drop-shadow(0 0 14px rgba(196, 181, 253, 0.68));
+  transform: scale(1.025);
+}
+
 .brand-mark {
   position: relative;
   width: 32px;
@@ -437,6 +462,11 @@ svg {
 
 .nav.is-scrolled .brand-name {
   font-size: 13px;
+}
+
+.nav.is-scrolled .brand-lockup--header {
+  width: 124px;
+  height: 25px;
 }
 
 .nav-links {
@@ -6385,6 +6415,12 @@ footer::after {
   gap: 14px;
 }
 
+.brand-lockup--footer {
+  width: 164px;
+  height: 36px;
+  flex: 0 0 auto;
+}
+
 .footer-brand {
   font-size: 13px;
   font-weight: 600;
@@ -7051,6 +7087,12 @@ footer::after {
 
   .brand-name {
     display: none;
+  }
+
+  .brand-lockup--header,
+  .nav.is-scrolled .brand-lockup--header {
+    width: 108px;
+    height: 23px;
   }
 
   .hero {
@@ -10556,4 +10598,103 @@ footer::after {
   .back-to-top-core::after {
     display: none;
   }
+}
+
+/* Performance mode
+   Safari on Apple hardware repaints large blurred and blended layers during
+   scroll. Keep the same composition while reducing continuous GPU work. */
+
+html.performance-lite body::before {
+  position: absolute;
+}
+
+html.performance-lite .nav-inner,
+html.performance-lite .nav.is-scrolled .nav-inner,
+html.performance-lite .language-menu,
+html.performance-lite .mobile-menu {
+  background:
+    linear-gradient(135deg, rgba(22, 17, 36, 0.96), rgba(8, 7, 13, 0.94)),
+    #0a0811;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html.performance-lite .nav-reflection {
+  display: none;
+}
+
+html.performance-lite .site-cursor-glow {
+  width: 300px;
+  height: 300px;
+  margin: -150px 0 0 -150px;
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.075) 0%,
+    rgba(99, 61, 190, 0.03) 38%,
+    transparent 70%
+  );
+  filter: none;
+  mix-blend-mode: normal;
+  will-change: transform;
+}
+
+html.performance-lite .site-cursor-glow.is-visible {
+  opacity: 0.72;
+}
+
+html.performance-lite .section-fx *,
+html.performance-lite .section-fx *::before,
+html.performance-lite .section-fx *::after,
+html.performance-lite .top-atmosphere::after,
+html.performance-lite .hero *,
+html.performance-lite .hero *::before,
+html.performance-lite .hero *::after,
+html.performance-lite .product-os *,
+html.performance-lite .product-os *::before,
+html.performance-lite .product-os *::after,
+html.performance-lite .timeline-v2 *,
+html.performance-lite .timeline-v2 *::before,
+html.performance-lite .timeline-v2 *::after,
+html.performance-lite .contact-v2 *,
+html.performance-lite .contact-v2 *::before,
+html.performance-lite .contact-v2 *::after,
+html.performance-lite footer::after,
+html.performance-lite .back-to-top::before,
+html.performance-lite .back-to-top svg {
+  animation: none !important;
+}
+
+html.performance-lite .fx-ambient,
+html.performance-lite .top-atmosphere::after,
+html.performance-lite .hero-aura,
+html.performance-lite .contact-v2-glow {
+  filter: none;
+  will-change: auto;
+}
+
+html.performance-lite .fx-ambient {
+  opacity: 0.34;
+}
+
+html.performance-lite .fx-ambient-secondary,
+html.performance-lite .fx-depth-grid {
+  display: none;
+}
+
+html.performance-lite .hero-showcase,
+html.performance-lite .section-fx {
+  will-change: auto;
+}
+
+html.performance-lite .hero-showcase::after {
+  display: none;
+}
+
+html.performance-lite .hero-signal-field {
+  opacity: 0.28;
+}
+
+html.performance-lite .project-modal-backdrop {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }

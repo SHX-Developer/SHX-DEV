@@ -9,10 +9,12 @@ import {
 import { AnimatedSection } from '../components/ui/AnimatedSection';
 import { SectionFX } from '../components/ui/SectionFX';
 import { useLanguage } from '../i18n';
+import { isPerformanceLite } from '../utils/performance';
 
 export const ContactSection = () => {
   const { language, t } = useLanguage();
   const reducedMotion = useReducedMotion();
+  const limitMotion = Boolean(reducedMotion || isPerformanceLite());
   const [copied, setCopied] = useState(false);
 
   const copyEmail = async () => {
@@ -41,20 +43,31 @@ export const ContactSection = () => {
     { label: t.contact.email, value: 'hello@shx.dev', href: 'mailto:hello@shx.dev', Icon: MailIcon },
   ];
 
-  const steps =
-    language === 'ru'
-      ? [
+  const steps = {
+    ru: [
           ['01', 'Напишите', 'Коротко опишите идею или задачу.'],
           ['02', 'Созвонимся', 'Уточним контекст, цели и ограничения.'],
           ['03', 'Соберём план', 'Зафиксируем архитектуру, этапы и результат.'],
           ['04', 'Начнём', 'Перейдём к первому рабочему релизу.'],
-        ]
-      : [
+        ],
+    uz: [
+          ['01', 'Xabar yozing', 'G‘oya yoki vazifani qisqacha tasvirlab bering.'],
+          ['02', 'Suhbatlashamiz', 'Kontekst, maqsadlar va cheklovlarni aniqlaymiz.'],
+          ['03', 'Reja tuzamiz', 'Arxitektura, bosqichlar va natijani belgilaymiz.'],
+          ['04', 'Boshlaymiz', 'Birinchi ishlaydigan relizga o‘tamiz.'],
+        ],
+    en: [
           ['01', 'Send a message', 'Share the idea or problem in a few lines.'],
           ['02', 'Quick call', 'We clarify the context, goals and constraints.'],
           ['03', 'Shape the plan', 'We define architecture, stages and outcome.'],
           ['04', 'Start building', 'We move toward the first working release.'],
-        ];
+        ],
+  }[language];
+  const nextStepsLabel = {
+    ru: 'ЧТО БУДЕТ ПОСЛЕ СООБЩЕНИЯ',
+    uz: 'XABARDAN KEYIN NIMA BO‘LADI',
+    en: 'WHAT HAPPENS AFTER YOUR MESSAGE',
+  }[language];
 
   return (
     <AnimatedSection id="contact" className="contact-v2">
@@ -62,7 +75,7 @@ export const ContactSection = () => {
       <motion.div
         className="contact-v2-glow"
         animate={
-          reducedMotion
+          limitMotion
             ? undefined
             : { opacity: [0.28, 0.6, 0.28], scale: [0.94, 1.06, 0.94] }
         }
@@ -81,7 +94,7 @@ export const ContactSection = () => {
       </div>
 
       <div className="contact-v2-path">
-        <small>{language === 'ru' ? 'ЧТО БУДЕТ ПОСЛЕ СООБЩЕНИЯ' : 'WHAT HAPPENS AFTER YOUR MESSAGE'}</small>
+        <small>{nextStepsLabel}</small>
         <div>
           {steps.map(([number, title, description], index) => (
             <motion.article

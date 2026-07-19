@@ -135,86 +135,86 @@ const projectRu: Record<string, LocalizedProject> = {
     tags: ['ПОРТФОЛИО', 'БРЕНД', 'DEV'],
     meta: 'ЭКОСИСТЕМА · БРЕНД',
   },
-  'SHX-Gram': {
+  'SHX Connect': {
     description: 'Персональная messaging-платформа и современная коммуникационная экосистема.',
-    products: ['shxgram.com', 'SHX-Gram Web App'],
+    products: ['shxgram.com', 'SHX Connect Web App'],
     monetization: ['Премиум-подписки', 'Внутренняя валюта', 'Интеграции экосистемы'],
     tags: ['СООБЩЕНИЯ', 'СОЦИАЛЬНОЕ', 'WEB APP'],
     meta: 'ЭКОСИСТЕМА · СОЦСЕТЬ',
   },
-  'SHX-Tube': {
+  'SHX Stream': {
     description: 'Видео-платформа и creator-экосистема с каналами, авторами и медиа-системами.',
-    products: ['shxtube.com', 'SHX-Tube App'],
+    products: ['shxtube.com', 'SHX Stream App'],
     monetization: ['Реклама', 'Партнёрства с авторами', 'Премиум-системы'],
     tags: ['ВИДЕО', 'АВТОРЫ', 'МЕДИА'],
     meta: 'ЭКОСИСТЕМА · МЕДИА',
   },
-  'SHX-Social': {
+  'SHX Canvas': {
     description:
       'Социальная сеть для профилей, постов, сообществ, сообщений и роста creator-аудитории.',
-    products: ['shxsocial.com', 'SHX-Social App'],
+    products: ['shxsocial.com', 'SHX Canvas App'],
     monetization: ['Премиум-профили', 'Бусты сообществ', 'Creator tools'],
     tags: ['СОЦСЕТЬ', 'СООБЩЕСТВА', 'АВТОРЫ'],
     meta: 'ЭКОСИСТЕМА · СЕТЬ',
   },
-  'SHX-TikTok': {
+  'SHX Loop': {
     description:
       'Концепт short-video платформы для вертикальных роликов, авторов, рекомендаций и viral discovery.',
-    products: ['shxtiktok.com', 'SHX-TikTok App'],
+    products: ['shxtiktok.com', 'SHX Loop App'],
     monetization: ['Реклама', 'Монетизация авторов', 'Премиум-эффекты'],
     tags: ['КОРОТКИЕ ВИДЕО', 'АВТОРЫ', 'ЛЕНТА'],
     meta: 'ЭКОСИСТЕМА · SHORTS',
   },
-  'SHX-ToDo': {
+  'SHX Flow': {
     description: 'Современная система управления задачами для личной продуктивности и организации.',
-    products: ['SHX-ToDo Bot', 'SHX-ToDo Web App'],
+    products: ['SHX Flow Bot', 'SHX Flow Web App'],
     monetization: ['Премиум-подписки', 'Productivity tools'],
     tags: ['ПРОДУКТИВНОСТЬ', 'ЗАДАЧИ', 'TELEGRAM'],
     meta: 'ЭКОСИСТЕМА · ПРОДУКТИВНОСТЬ',
   },
-  'SHX-Finance': {
+  'SHX Vault': {
     description: 'Платформа личных финансов для расходов, бюджетов и аналитики.',
-    products: ['SHX-Finance Bot', 'SHX-Finance Web App'],
+    products: ['SHX Vault Bot', 'SHX Vault Web App'],
     monetization: ['Премиум-подписки', 'Расширенная аналитика'],
     tags: ['ФИНАНСЫ', 'АНАЛИТИКА', 'БЮДЖЕТЫ'],
     meta: 'ЭКОСИСТЕМА · ФИНАНСЫ',
   },
-  'SHX-2048': {
+  'SHX Digits': {
     description: 'Продвинутая Telegram-версия классической игры 2048 для Telegram Web Apps.',
-    products: ['SHX-2048 Web App'],
+    products: ['SHX Digits Web App'],
     monetization: ['Темы', 'Эффекты', 'Премиум-подписки'],
     tags: ['ИГРА', '2048', 'TELEGRAM'],
     meta: 'ИГРА · ГОЛОВОЛОМКА',
   },
-  'SHX-BlockBlast': {
+  'SHX Blocks': {
     description: 'Telegram-версия Block Blast: современный puzzle experience, адаптированный под Telegram.',
-    products: ['SHX-BlockBlast Web App'],
+    products: ['SHX Blocks Web App'],
     monetization: ['Темы', 'Эффекты', 'Премиум-подписки'],
     tags: ['ИГРА', 'ГОЛОВОЛОМКА', 'TELEGRAM'],
     meta: 'ИГРА · ГОЛОВОЛОМКА',
   },
-  'SHX-Royale': {
+  'SHX Arena': {
     description: 'Telegram Web Game, вдохновлённая Clash Royale и arena-механиками.',
-    products: ['SHX-Royale Web App'],
+    products: ['SHX Arena Web App'],
     monetization: ['Внутренняя игровая валюта', 'Косметика'],
     tags: ['ИГРА', 'СТРАТЕГИЯ', 'WEB APP'],
     meta: 'ИГРА · СТРАТЕГИЯ',
   },
-  'SHX-Legends': {
+  'SHX Heroes': {
     description: 'MOBA-inspired Telegram gaming platform, вдохновлённая Mobile Legends.',
-    products: ['SHX-Legends Web App'],
+    products: ['SHX Heroes Web App'],
     monetization: ['Внутренняя экономика', 'Премиум-контент'],
     tags: ['ИГРА', 'MOBA', 'TELEGRAM'],
     meta: 'ИГРА · MOBA',
   },
-  'SHX-Craft': {
+  'SHX Terra': {
     description: 'Браузерная sandbox survival игра, вдохновлённая voxel-геймплеем.',
     products: ['shxcraft.game'],
     monetization: ['Реклама', 'Косметические системы'],
     tags: ['ИГРА', 'ПЕСОЧНИЦА', 'БРАУЗЕР'],
     meta: 'ИГРА · ПЕСОЧНИЦА',
   },
-  'SHX-Dash': {
+  'SHX Pulse': {
     description: 'Браузерная rhythm-platformer игра, вдохновлённая Geometry Dash.',
     products: ['shxdash.game'],
     monetization: ['Реклама', 'Скины', 'Премиум-эффекты'],

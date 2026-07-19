@@ -128,84 +128,84 @@ export const projectUz: Record<string, LocalizedProject> = {
     tags: ['PORTFOLIO', 'BREND', 'DEV'],
     meta: 'EKOTIZIM · BREND',
   },
-  'SHX-Gram': {
+  'SHX Connect': {
     description: 'Shaxsiy xabar almashish platformasi va zamonaviy kommunikatsiya ekotizimi.',
-    products: ['shxgram.com', 'SHX-Gram Web App'],
+    products: ['shxgram.com', 'SHX Connect Web App'],
     monetization: ['Premium obunalar', 'Ichki valyuta', 'Ekotizim integratsiyalari'],
     tags: ['XABARLAR', 'IJTIMOIY', 'WEB APP'],
     meta: 'EKOTIZIM · IJTIMOIY TARMOQ',
   },
-  'SHX-Tube': {
+  'SHX Stream': {
     description: 'Kanallar, mualliflar va media tizimlariga ega video platforma hamda ijodkorlar ekotizimi.',
-    products: ['shxtube.com', 'SHX-Tube App'],
+    products: ['shxtube.com', 'SHX Stream App'],
     monetization: ['Reklama', 'Mualliflar bilan hamkorlik', 'Premium tizimlar'],
     tags: ['VIDEO', 'MUALLIFLAR', 'MEDIA'],
     meta: 'EKOTIZIM · MEDIA',
   },
-  'SHX-Social': {
+  'SHX Canvas': {
     description: 'Profillar, postlar, hamjamiyatlar, xabarlar va ijodkor auditoriyasini o‘stirish uchun ijtimoiy tarmoq.',
-    products: ['shxsocial.com', 'SHX-Social App'],
+    products: ['shxsocial.com', 'SHX Canvas App'],
     monetization: ['Premium profillar', 'Hamjamiyat boostlari', 'Ijodkor vositalari'],
     tags: ['IJTIMOIY TARMOQ', 'HAMJAMIYATLAR', 'MUALLIFLAR'],
     meta: 'EKOTIZIM · TARMOQ',
   },
-  'SHX-TikTok': {
+  'SHX Loop': {
     description: 'Vertikal videolar, mualliflar, tavsiyalar va viral kontent topish uchun qisqa video platformasi konsepti.',
-    products: ['shxtiktok.com', 'SHX-TikTok App'],
+    products: ['shxtiktok.com', 'SHX Loop App'],
     monetization: ['Reklama', 'Mualliflar monetizatsiyasi', 'Premium effektlar'],
     tags: ['QISQA VIDEOLAR', 'MUALLIFLAR', 'LENTA'],
     meta: 'EKOTIZIM · SHORTS',
   },
-  'SHX-ToDo': {
+  'SHX Flow': {
     description: 'Shaxsiy samaradorlik va tartib uchun zamonaviy vazifalarni boshqarish tizimi.',
-    products: ['SHX-ToDo Bot', 'SHX-ToDo Web App'],
+    products: ['SHX Flow Bot', 'SHX Flow Web App'],
     monetization: ['Premium obunalar', 'Samaradorlik vositalari'],
     tags: ['SAMARADORLIK', 'VAZIFALAR', 'TELEGRAM'],
     meta: 'EKOTIZIM · SAMARADORLIK',
   },
-  'SHX-Finance': {
+  'SHX Vault': {
     description: 'Xarajatlar, budjetlar va tahlil uchun shaxsiy moliya platformasi.',
-    products: ['SHX-Finance Bot', 'SHX-Finance Web App'],
+    products: ['SHX Vault Bot', 'SHX Vault Web App'],
     monetization: ['Premium obunalar', 'Kengaytirilgan tahlil'],
     tags: ['MOLIYA', 'TAHLIL', 'BUDJETLAR'],
     meta: 'EKOTIZIM · MOLIYA',
   },
-  'SHX-2048': {
+  'SHX Digits': {
     description: 'Telegram Web Apps uchun klassik 2048 o‘yinining rivojlantirilgan Telegram talqini.',
-    products: ['SHX-2048 Web App'],
+    products: ['SHX Digits Web App'],
     monetization: ['Mavzular', 'Effektlar', 'Premium obunalar'],
     tags: ['O‘YIN', '2048', 'TELEGRAM'],
     meta: 'O‘YIN · BOSHQOTIRMA',
   },
-  'SHX-BlockBlast': {
+  'SHX Blocks': {
     description: 'Block Blast o‘yinining Telegram uchun moslashtirilgan zamonaviy boshqotirma talqini.',
-    products: ['SHX-BlockBlast Web App'],
+    products: ['SHX Blocks Web App'],
     monetization: ['Mavzular', 'Effektlar', 'Premium obunalar'],
     tags: ['O‘YIN', 'BOSHQOTIRMA', 'TELEGRAM'],
     meta: 'O‘YIN · BOSHQOTIRMA',
   },
-  'SHX-Royale': {
+  'SHX Arena': {
     description: 'Clash Royale va arena mexanikalaridan ilhomlangan Telegram Web Game.',
-    products: ['SHX-Royale Web App'],
+    products: ['SHX Arena Web App'],
     monetization: ['Ichki o‘yin valyutasi', 'Kosmetik elementlar'],
     tags: ['O‘YIN', 'STRATEGIYA', 'WEB APP'],
     meta: 'O‘YIN · STRATEGIYA',
   },
-  'SHX-Legends': {
+  'SHX Heroes': {
     description: 'Mobile Legends o‘yinidan ilhomlangan MOBA uslubidagi Telegram o‘yin platformasi.',
-    products: ['SHX-Legends Web App'],
+    products: ['SHX Heroes Web App'],
     monetization: ['Ichki iqtisodiyot', 'Premium kontent'],
     tags: ['O‘YIN', 'MOBA', 'TELEGRAM'],
     meta: 'O‘YIN · MOBA',
   },
-  'SHX-Craft': {
+  'SHX Terra': {
     description: 'Voksel geympleyidan ilhomlangan brauzer sandbox survival o‘yini.',
     products: ['shxcraft.game'],
     monetization: ['Reklama', 'Kosmetik tizimlar'],
     tags: ['O‘YIN', 'SANDBOX', 'BRAUZER'],
     meta: 'O‘YIN · SANDBOX',
   },
-  'SHX-Dash': {
+  'SHX Pulse': {
     description: 'Geometry Dash o‘yinidan ilhomlangan brauzer ritm-platformer o‘yini.',
     products: ['shxdash.game'],
     monetization: ['Reklama', 'Skinlar', 'Premium effektlar'],

@@ -10,6 +10,14 @@ import { useLanguage } from '../i18n';
 type ProjectGroup = 'main' | 'ecosystem' | 'experiments';
 
 const featuredTitles = ['CYBER DONATE', 'STARS PAY', 'CYBER MATE', 'SHX-Dev'];
+const ecosystemTitles = [
+  'SHX Flow',
+  'SHX Vault',
+  'SHX Connect',
+  'SHX Stream',
+  'SHX Canvas',
+  'SHX Loop',
+];
 
 export const ProjectsSection = () => {
   const { projects, t } = useLanguage();
@@ -23,9 +31,15 @@ export const ProjectsSection = () => {
     }
 
     if (activeGroup === 'ecosystem') {
-      return projects.filter(
-        (project) => project.category === 'SHX Ecosystem' && !featuredTitles.includes(project.title),
-      );
+      return projects
+        .filter(
+          (project) =>
+            project.category === 'SHX Ecosystem' && !featuredTitles.includes(project.title),
+        )
+        .sort(
+          (first, second) =>
+            ecosystemTitles.indexOf(first.title) - ecosystemTitles.indexOf(second.title),
+        );
     }
 
     return projects.filter((project) => project.category === 'Experimental & Entertainment');

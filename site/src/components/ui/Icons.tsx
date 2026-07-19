@@ -8,6 +8,18 @@ export const ArrowRightIcon = (props: IconProps) => (
   </svg>
 );
 
+export const ChevronLeftIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+    <path d="M15 5l-7 7 7 7" />
+  </svg>
+);
+
+export const ChevronRightIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+    <path d="M9 5l7 7-7 7" />
+  </svg>
+);
+
 export const DownloadIcon = (props: IconProps) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
     <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />

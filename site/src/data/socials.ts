@@ -9,8 +9,8 @@ type Social = {
 };
 
 export const socials: Social[] = [
-  { href: 'https://github.com/shxdev', label: 'GitHub', Icon: GitHubIcon },
+  { href: 'https://github.com/SHX-Developer', label: 'GitHub', Icon: GitHubIcon },
   { href: 'https://t.me/shxdev', label: 'Telegram', Icon: TelegramIcon },
   { href: 'https://x.com/shxdev', label: 'X', Icon: XIcon },
-  { href: 'mailto:hello@shx.dev', label: 'Email', Icon: MailIcon, separated: true },
+  { href: 'mailto:geomangd2003@gmail.com', label: 'Email', Icon: MailIcon, separated: true },
 ];

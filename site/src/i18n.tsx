@@ -46,9 +46,29 @@ const projectRu: Record<string, LocalizedProject> = {
       ['2024', '10 000 пользователей'],
       ['2025', '50 000+ пользователей'],
     ],
-    delivered: ['Backend', 'Telegram Bot', 'Web App', 'REST API', 'Платежи', 'Админ-панель', 'CI/CD', 'VPS-инфраструктура'],
-    challenges: ['Высокая нагрузка на обработку заказов', 'Telegram и внешние платежные сценарии', 'Полная автоматизация заказов', 'Масштабирование без остановки сервиса'],
-    outcomes: ['50 000+ пользователей', 'Коммерческий запуск', 'Автоматизация платежей', 'Telegram Mini App', 'Собственная архитектура'],
+    delivered: [
+      'Backend',
+      'Telegram Bot',
+      'Web App',
+      'REST API',
+      'Платежи',
+      'Админ-панель',
+      'CI/CD',
+      'VPS-инфраструктура',
+    ],
+    challenges: [
+      'Высокая нагрузка на обработку заказов',
+      'Telegram и внешние платежные сценарии',
+      'Полная автоматизация заказов',
+      'Масштабирование без остановки сервиса',
+    ],
+    outcomes: [
+      '50 000+ пользователей',
+      'Коммерческий запуск',
+      'Автоматизация платежей',
+      'Telegram Mini App',
+      'Собственная архитектура',
+    ],
     products: ['cyberdonate.net', 'Cyber Donate Bot', 'Cyber Donate Web App'],
     monetization: ['Продажа услуг', 'Маркетплейс игровой валюты', 'Цифровые продукты'],
     tags: ['50K+ ПОЛЬЗОВАТЕЛЕЙ', 'ПЛАТЕЖИ', 'FASTAPI', 'POSTGRESQL'],
@@ -73,9 +93,28 @@ const projectRu: Record<string, LocalizedProject> = {
       ['04', 'Автоматизация админки'],
       ['LIVE', 'Коммерческий запуск'],
     ],
-    delivered: ['Backend', 'Telegram Bot', 'Web App', 'Платежные сценарии', 'Подписки', 'Админ-панель', 'Автоматизация', 'Мониторинг'],
-    challenges: ['Надёжная обработка статусов оплаты', 'UX для локальной валюты', 'Автоматическая выдача услуг', 'Масштабируемые admin-операции'],
-    outcomes: ['Коммерческая платформа', 'Автоматизация платежей 24/7', 'Маркетплейс Telegram-услуг', 'Единый admin-процесс'],
+    delivered: [
+      'Backend',
+      'Telegram Bot',
+      'Web App',
+      'Платежные сценарии',
+      'Подписки',
+      'Админ-панель',
+      'Автоматизация',
+      'Мониторинг',
+    ],
+    challenges: [
+      'Надёжная обработка статусов оплаты',
+      'UX для локальной валюты',
+      'Автоматическая выдача услуг',
+      'Масштабируемые admin-операции',
+    ],
+    outcomes: [
+      'Коммерческая платформа',
+      'Автоматизация платежей 24/7',
+      'Маркетплейс Telegram-услуг',
+      'Единый admin-процесс',
+    ],
     products: ['starspay.uz', 'StarsPay Bot', 'StarsPay Web App'],
     monetization: ['Продажа услуг', 'Telegram digital services'],
     tags: ['TELEGRAM', 'АВТОМАТИЗАЦИЯ ПЛАТЕЖЕЙ', 'АДМИН-ПАНЕЛЬ'],
@@ -100,15 +139,33 @@ const projectRu: Record<string, LocalizedProject> = {
       ['04', 'Чаты и сообщества'],
       ['MVP', 'Интерактивный прототип'],
     ],
-    delivered: ['Архитектура продукта', 'Профили', 'Realtime-чаты', 'Группы', 'Сообщества', 'Matchmaking', 'Web App UX'],
-    challenges: ['Проектирование realtime-взаимодействий', 'Структура социального графа', 'Сценарии модерации', 'Масштабируемая identity-система'],
-    outcomes: ['Цельная social-концепция', 'Переиспользуемые realtime-паттерны', 'Telegram Web App experience', 'Готовая продуктовая архитектура'],
+    delivered: [
+      'Архитектура продукта',
+      'Профили',
+      'Realtime-чаты',
+      'Группы',
+      'Сообщества',
+      'Matchmaking',
+      'Web App UX',
+    ],
+    challenges: [
+      'Проектирование realtime-взаимодействий',
+      'Структура социального графа',
+      'Сценарии модерации',
+      'Масштабируемая identity-система',
+    ],
+    outcomes: [
+      'Цельная social-концепция',
+      'Переиспользуемые realtime-паттерны',
+      'Telegram Web App experience',
+      'Готовая продуктовая архитектура',
+    ],
     products: ['Cyber Mate Bot', 'Cyber Mate Web App'],
     monetization: ['Премиум-подписки', 'Featured-профили', 'Бусты сообществ'],
     tags: ['СОЦСЕТЬ', 'ГЕЙМЕРЫ', 'WEB APP'],
     meta: 'КОНЦЕПТ ПРОДУКТА',
   },
-  'SHX-Dev': {
+  'SHX DEV': {
     description:
       'Личная developer-платформа для портфолио, проектов, коллабораций и технической идентичности под брендом SHX.',
     headline: 'Экосистема разработчика',
@@ -127,94 +184,113 @@ const projectRu: Record<string, LocalizedProject> = {
       ['04', 'Кейсы проектов'],
       ['LIVE', 'Публичное портфолио'],
     ],
-    delivered: ['Продуктовая стратегия', 'Визуальная идентичность', 'React frontend', 'Три языка', 'Кейсы проектов', 'Адаптивный дизайн', 'CI/CD'],
-    challenges: ['Превращение технической работы в понятные истории', 'Единая продуктовая идентичность', 'Баланс анимаций и производительности', 'Адаптивная иерархия контента'],
-    outcomes: ['Единый личный бренд', 'Интерактивное портфолио проектов', 'Переиспользуемая дизайн-система', 'Трёхъязычный продуктовый нарратив'],
-    products: ['shx.dev', 'SHX-Dev Bot', 'SHX-Dev App'],
+    delivered: [
+      'Продуктовая стратегия',
+      'Визуальная идентичность',
+      'React frontend',
+      'Три языка',
+      'Кейсы проектов',
+      'Адаптивный дизайн',
+      'CI/CD',
+    ],
+    challenges: [
+      'Превращение технической работы в понятные истории',
+      'Единая продуктовая идентичность',
+      'Баланс анимаций и производительности',
+      'Адаптивная иерархия контента',
+    ],
+    outcomes: [
+      'Единый личный бренд',
+      'Интерактивное портфолио проектов',
+      'Переиспользуемая дизайн-система',
+      'Трёхъязычный продуктовый нарратив',
+    ],
+    products: ['shx.dev', 'SHX DEV Bot', 'SHX DEV App'],
     monetization: ['Коллаборации', 'Freelance-возможности', 'Партнёрства'],
     tags: ['ПОРТФОЛИО', 'БРЕНД', 'DEV'],
     meta: 'ЭКОСИСТЕМА · БРЕНД',
   },
-  'SHX Connect': {
+  'SHX-Connect': {
     description: 'Персональная messaging-платформа и современная коммуникационная экосистема.',
-    products: ['shxgram.com', 'SHX Connect Web App'],
+    products: ['shxgram.com', 'SHX-Connect Web App'],
     monetization: ['Премиум-подписки', 'Внутренняя валюта', 'Интеграции экосистемы'],
     tags: ['СООБЩЕНИЯ', 'СОЦИАЛЬНОЕ', 'WEB APP'],
     meta: 'ЭКОСИСТЕМА · СОЦСЕТЬ',
   },
-  'SHX Stream': {
+  'SHX-Stream': {
     description: 'Видео-платформа и creator-экосистема с каналами, авторами и медиа-системами.',
-    products: ['shxtube.com', 'SHX Stream App'],
+    products: ['shxtube.com', 'SHX-Stream App'],
     monetization: ['Реклама', 'Партнёрства с авторами', 'Премиум-системы'],
     tags: ['ВИДЕО', 'АВТОРЫ', 'МЕДИА'],
     meta: 'ЭКОСИСТЕМА · МЕДИА',
   },
-  'SHX Canvas': {
+  'SHX-Canvas': {
     description:
       'Социальная сеть для профилей, постов, сообществ, сообщений и роста creator-аудитории.',
-    products: ['shxsocial.com', 'SHX Canvas App'],
+    products: ['shxsocial.com', 'SHX-Canvas App'],
     monetization: ['Премиум-профили', 'Бусты сообществ', 'Creator tools'],
     tags: ['СОЦСЕТЬ', 'СООБЩЕСТВА', 'АВТОРЫ'],
     meta: 'ЭКОСИСТЕМА · СЕТЬ',
   },
-  'SHX Loop': {
+  'SHX-Loop': {
     description:
       'Концепт short-video платформы для вертикальных роликов, авторов, рекомендаций и viral discovery.',
-    products: ['shxtiktok.com', 'SHX Loop App'],
+    products: ['shxtiktok.com', 'SHX-Loop App'],
     monetization: ['Реклама', 'Монетизация авторов', 'Премиум-эффекты'],
     tags: ['КОРОТКИЕ ВИДЕО', 'АВТОРЫ', 'ЛЕНТА'],
     meta: 'ЭКОСИСТЕМА · SHORTS',
   },
-  'SHX Flow': {
+  'SHX-Flow': {
     description: 'Современная система управления задачами для личной продуктивности и организации.',
-    products: ['SHX Flow Bot', 'SHX Flow Web App'],
+    products: ['SHX-Flow Bot', 'SHX-Flow Web App'],
     monetization: ['Премиум-подписки', 'Productivity tools'],
     tags: ['ПРОДУКТИВНОСТЬ', 'ЗАДАЧИ', 'TELEGRAM'],
     meta: 'ЭКОСИСТЕМА · ПРОДУКТИВНОСТЬ',
   },
-  'SHX Vault': {
+  'SHX-Vault': {
     description: 'Платформа личных финансов для расходов, бюджетов и аналитики.',
-    products: ['SHX Vault Bot', 'SHX Vault Web App'],
+    products: ['SHX-Vault Bot', 'SHX-Vault Web App'],
     monetization: ['Премиум-подписки', 'Расширенная аналитика'],
     tags: ['ФИНАНСЫ', 'АНАЛИТИКА', 'БЮДЖЕТЫ'],
     meta: 'ЭКОСИСТЕМА · ФИНАНСЫ',
   },
-  'SHX Digits': {
+  'SHX-Digits': {
     description: 'Продвинутая Telegram-версия классической игры 2048 для Telegram Web Apps.',
-    products: ['SHX Digits Web App'],
+    products: ['SHX-Digits Web App'],
     monetization: ['Темы', 'Эффекты', 'Премиум-подписки'],
     tags: ['ИГРА', '2048', 'TELEGRAM'],
     meta: 'ИГРА · ГОЛОВОЛОМКА',
   },
-  'SHX Blocks': {
-    description: 'Telegram-версия Block Blast: современный puzzle experience, адаптированный под Telegram.',
-    products: ['SHX Blocks Web App'],
+  'SHX-Blocks': {
+    description:
+      'Telegram-версия Block Blast: современный puzzle experience, адаптированный под Telegram.',
+    products: ['SHX-Blocks Web App'],
     monetization: ['Темы', 'Эффекты', 'Премиум-подписки'],
     tags: ['ИГРА', 'ГОЛОВОЛОМКА', 'TELEGRAM'],
     meta: 'ИГРА · ГОЛОВОЛОМКА',
   },
-  'SHX Arena': {
+  'SHX-Arena': {
     description: 'Telegram Web Game, вдохновлённая Clash Royale и arena-механиками.',
-    products: ['SHX Arena Web App'],
+    products: ['SHX-Arena Web App'],
     monetization: ['Внутренняя игровая валюта', 'Косметика'],
     tags: ['ИГРА', 'СТРАТЕГИЯ', 'WEB APP'],
     meta: 'ИГРА · СТРАТЕГИЯ',
   },
-  'SHX Heroes': {
+  'SHX-Heroes': {
     description: 'MOBA-inspired Telegram gaming platform, вдохновлённая Mobile Legends.',
-    products: ['SHX Heroes Web App'],
+    products: ['SHX-Heroes Web App'],
     monetization: ['Внутренняя экономика', 'Премиум-контент'],
     tags: ['ИГРА', 'MOBA', 'TELEGRAM'],
     meta: 'ИГРА · MOBA',
   },
-  'SHX Terra': {
+  'SHX-Terra': {
     description: 'Браузерная sandbox survival игра, вдохновлённая voxel-геймплеем.',
     products: ['shxcraft.game'],
     monetization: ['Реклама', 'Косметические системы'],
     tags: ['ИГРА', 'ПЕСОЧНИЦА', 'БРАУЗЕР'],
     meta: 'ИГРА · ПЕСОЧНИЦА',
   },
-  'SHX Pulse': {
+  'SHX-Pulse': {
     description: 'Браузерная rhythm-platformer игра, вдохновлённая Geometry Dash.',
     products: ['shxdash.game'],
     monetization: ['Реклама', 'Скины', 'Премиум-эффекты'],
@@ -259,8 +335,10 @@ const dictionaries = {
       subtitleStart: 'I develop ',
       subtitleStrong: 'Telegram Mini Apps, payment systems and scalable web platforms',
       subtitleEnd: ' — from idea to launch and ongoing support.',
-      proof: 'Over the last few years, I have launched several commercial products used by more than 50,000 people.',
-      proofStrong: 'I design the architecture, build the functionality and support products after launch.',
+      proof:
+        'Over the last few years, I have launched several commercial products used by more than 50,000 people.',
+      proofStrong:
+        'I design the architecture, build the functionality and support products after launch.',
       viewProjects: 'VIEW PROJECTS',
       about: 'ABOUT ME',
       resume: 'RESUME',
@@ -285,8 +363,7 @@ const dictionaries = {
       main: 'Main products',
       ecosystem: 'SHX ecosystem',
       experiments: 'Experiments & Concepts',
-      note:
-        'Choose a category, then open any project to explore the interface, product flow, stack and business model.',
+      note: 'Choose a category, then open any project to explore the interface, product flow, stack and business model.',
       categories: 'Project categories',
       explore: 'VIEW DETAILS',
       close: 'Close project',
@@ -313,8 +390,7 @@ const dictionaries = {
         'The strongest project in the portfolio: a Telegram commerce product built around gaming services, payments, orders and support operations.',
       kicker: 'Telegram Commerce Platform',
       heading: 'From bot flow to product infrastructure.',
-      text:
-        'Cyber Donate started as a focused Telegram product and grew into a marketplace-style system with Web App flows, payments, order handling and admin operations.',
+      text: 'Cyber Donate started as a focused Telegram product and grew into a marketplace-style system with Web App flows, payments, order handling and admin operations.',
       metrics: [
         { value: '50,000+', label: 'users served' },
         { value: '30,000+', label: 'orders completed' },
@@ -347,8 +423,19 @@ const dictionaries = {
       portraitLabel: 'Shahrizod developer profile',
     },
     skills: [
-      { title: 'Product engineering', items: ['Telegram Web Apps', 'Payment systems', 'Admin dashboards', 'API architecture'] },
-      { title: 'Execution', items: ['Solo product delivery', 'Fast prototyping', 'Scalable releases', 'Support & iteration'] },
+      {
+        title: 'Product engineering',
+        items: ['Telegram Web Apps', 'Payment systems', 'Admin dashboards', 'API architecture'],
+      },
+      {
+        title: 'Execution',
+        items: [
+          'Solo product delivery',
+          'Fast prototyping',
+          'Scalable releases',
+          'Support & iteration',
+        ],
+      },
     ],
     process: {
       eyebrow: 'How I Build Products',
@@ -359,12 +446,27 @@ const dictionaries = {
       routeLabel: 'PROCESS · PRODUCT LIFECYCLE',
       finalLabel: 'WORKING PRODUCT',
       steps: [
-        ['Problem', 'Define the user need and the result that would make the solution genuinely useful.'],
-        ['MVP', 'Build the smallest working version and validate the core scenario without unnecessary complexity.'],
-        ['First launch', 'Release to the first users — often through a Telegram Bot, where an idea can be tested quickly.'],
-        ['Interface', 'Develop a clear web interface, payment flows and the tools needed to operate the product.'],
+        [
+          'Problem',
+          'Define the user need and the result that would make the solution genuinely useful.',
+        ],
+        [
+          'MVP',
+          'Build the smallest working version and validate the core scenario without unnecessary complexity.',
+        ],
+        [
+          'First launch',
+          'Release to the first users — often through a Telegram Bot, where an idea can be tested quickly.',
+        ],
+        [
+          'Interface',
+          'Develop a clear web interface, payment flows and the tools needed to operate the product.',
+        ],
         ['Growth', 'Strengthen architecture, automation and analytics as usage and load increase.'],
-        ['Product', 'The product becomes an independent system that solves a real problem, evolves and delivers value to users.'],
+        [
+          'Product',
+          'The product becomes an independent system that solves a real problem, evolves and delivers value to users.',
+        ],
       ],
     },
     ecosystem: {
@@ -442,16 +544,66 @@ const dictionaries = {
       architectureDescription: 'From the first user action to a stable production deployment.',
       usedInLabel: 'USED IN',
       capabilities: [
-        ['Telegram Mini Apps', 'Product interfaces that open directly inside Telegram.', 'React · TypeScript · Telegram API', 'CYBER DONATE · STARS PAY'],
-        ['Payment Systems', 'Payment flows, order states and operational automation.', 'FastAPI · PostgreSQL · Payments', 'CYBER DONATE · STARS PAY'],
-        ['REST APIs', 'Clear contracts between applications, services and integrations.', 'Python · FastAPI · Redis', 'ALL PRODUCTS'],
-        ['Authentication', 'Secure user identity and product access flows.', 'Telegram Auth · Tokens · PostgreSQL', 'STARS PAY · CYBER MATE'],
-        ['Admin Panels', 'Operational tools for orders, users, content and support.', 'React · TypeScript · REST API', 'CYBER DONATE · STARS PAY'],
-        ['Background Workers', 'Reliable asynchronous jobs and recurring product processes.', 'Python · Redis · Queues', 'COMMERCE PRODUCTS'],
-        ['Analytics', 'Events and dashboards that make product behavior visible.', 'Events · PostgreSQL · Dashboards', 'SHX ECOSYSTEM'],
-        ['Automation', 'Bots, webhooks and workflows that remove manual operations.', 'Telegram · Webhooks · Workers', 'CYBER DONATE · STARS PAY'],
-        ['CI/CD', 'Repeatable delivery from code change to production.', 'Docker · Linux · GitHub Actions', 'SHX ECOSYSTEM'],
-        ['Monitoring', 'Logs, metrics and alerts for products running in production.', 'Logs · Metrics · Alerts', 'PRODUCTION SYSTEMS'],
+        [
+          'Telegram Mini Apps',
+          'Product interfaces that open directly inside Telegram.',
+          'React · TypeScript · Telegram API',
+          'CYBER DONATE · STARS PAY',
+        ],
+        [
+          'Payment Systems',
+          'Payment flows, order states and operational automation.',
+          'FastAPI · PostgreSQL · Payments',
+          'CYBER DONATE · STARS PAY',
+        ],
+        [
+          'REST APIs',
+          'Clear contracts between applications, services and integrations.',
+          'Python · FastAPI · Redis',
+          'ALL PRODUCTS',
+        ],
+        [
+          'Authentication',
+          'Secure user identity and product access flows.',
+          'Telegram Auth · Tokens · PostgreSQL',
+          'STARS PAY · CYBER MATE',
+        ],
+        [
+          'Admin Panels',
+          'Operational tools for orders, users, content and support.',
+          'React · TypeScript · REST API',
+          'CYBER DONATE · STARS PAY',
+        ],
+        [
+          'Background Workers',
+          'Reliable asynchronous jobs and recurring product processes.',
+          'Python · Redis · Queues',
+          'COMMERCE PRODUCTS',
+        ],
+        [
+          'Analytics',
+          'Events and dashboards that make product behavior visible.',
+          'Events · PostgreSQL · Dashboards',
+          'SHX ECOSYSTEM',
+        ],
+        [
+          'Automation',
+          'Bots, webhooks and workflows that remove manual operations.',
+          'Telegram · Webhooks · Workers',
+          'CYBER DONATE · STARS PAY',
+        ],
+        [
+          'CI/CD',
+          'Repeatable delivery from code change to production.',
+          'Docker · Linux · GitHub Actions',
+          'SHX ECOSYSTEM',
+        ],
+        [
+          'Monitoring',
+          'Logs, metrics and alerts for products running in production.',
+          'Logs · Metrics · Alerts',
+          'PRODUCTION SYSTEMS',
+        ],
       ],
       architecture: [
         ['User Interface', 'React · TypeScript'],
@@ -467,7 +619,8 @@ const dictionaries = {
       eyebrow: 'Product Journey',
       title: 'From the first launch',
       accent: 'to an ecosystem',
-      subtitle: 'A product growth story: launch, first users, scaling and a shared platform that connects multiple products.',
+      subtitle:
+        'A product growth story: launch, first users, scaling and a shared platform that connects multiple products.',
       rangeLabel: 'PRODUCT GROWTH · 2023—2026',
       items: [
         [
@@ -475,7 +628,10 @@ const dictionaries = {
           'First launch',
           'CYBER DONATE',
           'The first commercial product and the beginning of a Telegram Commerce platform.',
-          [['1', 'product'], ['100+', 'first users']],
+          [
+            ['1', 'product'],
+            ['100+', 'first users'],
+          ],
           ['MVP', 'TELEGRAM COMMERCE', 'BOT'],
         ],
         [
@@ -483,7 +639,10 @@ const dictionaries = {
           'Growth',
           'TELEGRAM COMMERCE',
           'The product evolved from a bot flow into a complete commerce platform.',
-          [['10,000+', 'users'], ['WEB APP', 'new interface']],
+          [
+            ['10,000+', 'users'],
+            ['WEB APP', 'new interface'],
+          ],
           ['PAYMENTS', 'ADMIN', 'AUTOMATION'],
         ],
         [
@@ -491,7 +650,10 @@ const dictionaries = {
           'Scaling',
           'STARS PAY',
           'A new payment product built on reusable architecture and operational automation.',
-          [['50,000+', 'users'], ['30,000+', 'orders']],
+          [
+            ['50,000+', 'users'],
+            ['30,000+', 'orders'],
+          ],
           ['PAYMENTS', 'FASTAPI', 'POSTGRESQL'],
         ],
         [
@@ -499,7 +661,10 @@ const dictionaries = {
           'Ecosystem',
           'SHX ECOSYSTEM',
           'Multiple products connected by one architecture, shared components and a developer platform.',
-          [['4', 'core products'], ['1', 'shared architecture']],
+          [
+            ['4', 'core products'],
+            ['1', 'shared architecture'],
+          ],
           ['PLATFORM', 'SHARED UI', 'DEVELOPER BRAND'],
         ],
       ],
@@ -516,29 +681,83 @@ const dictionaries = {
       updatedLabel: 'CURRENT UPDATE',
       priorityLabel: 'PRIORITY',
       items: [
-        ['building', 'BUILDING', 'SHX DEV', 'Turning the portfolio into a developer platform with stronger product cases.', 80, 'CURRENT SPRINT', 'HIGH'],
-        ['next', 'NEXT', 'CYBER MATE', 'Preparing the next product cycle for profiles, communities and communication.', 20, 'NEXT CYCLE', 'MEDIUM'],
-        ['research', 'RESEARCH', 'AI TOOLS', 'Testing small tools for support, content and faster product operations.', 45, 'ACTIVE RESEARCH', 'EXPERIMENTAL'],
-        ['foundation', 'FOUNDATION', 'CORE PLATFORM', 'Building reusable payments, auth, UI, analytics and deployment patterns.', 65, 'CONTINUOUS', 'CORE'],
+        [
+          'building',
+          'BUILDING',
+          'SHX DEV',
+          'Turning the portfolio into a developer platform with stronger product cases.',
+          80,
+          'CURRENT SPRINT',
+          'HIGH',
+        ],
+        [
+          'next',
+          'NEXT',
+          'CYBER MATE',
+          'Preparing the next product cycle for profiles, communities and communication.',
+          20,
+          'NEXT CYCLE',
+          'MEDIUM',
+        ],
+        [
+          'research',
+          'RESEARCH',
+          'AI TOOLS',
+          'Testing small tools for support, content and faster product operations.',
+          45,
+          'ACTIVE RESEARCH',
+          'EXPERIMENTAL',
+        ],
+        [
+          'foundation',
+          'FOUNDATION',
+          'CORE PLATFORM',
+          'Building reusable payments, auth, UI, analytics and deployment patterns.',
+          65,
+          'CONTINUOUS',
+          'CORE',
+        ],
       ],
     },
     resume: {
       eyebrow: 'Proof',
       title: 'Real milestones,',
       accent: 'not fake job titles',
-      subtitle: 'A product-focused snapshot of what happened: launches, users, orders and the infrastructure behind them.',
+      subtitle:
+        'A product-focused snapshot of what happened: launches, users, orders and the infrastructure behind them.',
       items: [
-        ['2023', 'Started Cyber Donate', 'Telegram commerce, gaming services and order flows', 'LAUNCHED'],
-        ['2024', 'Reached 10,000+ users', 'Improved payments, support, admin tools and product operations', '10K+ USERS'],
-        ['2025', 'Scaled to 50,000+ users', 'Cyber Donate, Stars Pay and Cyber Mate patterns across Telegram Web Apps', '30K+ ORDERS'],
-        ['2026', 'Building SHX ecosystem', 'Shared technology, identity and infrastructure for product work', 'CURRENT'],
+        [
+          '2023',
+          'Started Cyber Donate',
+          'Telegram commerce, gaming services and order flows',
+          'LAUNCHED',
+        ],
+        [
+          '2024',
+          'Reached 10,000+ users',
+          'Improved payments, support, admin tools and product operations',
+          '10K+ USERS',
+        ],
+        [
+          '2025',
+          'Scaled to 50,000+ users',
+          'Cyber Donate, Stars Pay and Cyber Mate patterns across Telegram Web Apps',
+          '30K+ ORDERS',
+        ],
+        [
+          '2026',
+          'Building SHX ecosystem',
+          'Shared technology, identity and infrastructure for product work',
+          'CURRENT',
+        ],
       ],
       timelineLabel: 'PRODUCT EVIDENCE / 2023—2026',
       profileName: 'Shahrizod',
       profileRole: 'Fullstack Product Engineer',
       availability: 'OPEN TO NEW PROJECTS',
       readyTitle: 'Ready to build.',
-      collaborationText: 'If you are launching a product, scaling a Telegram service or looking for a technical partner, I would be glad to discuss it.',
+      collaborationText:
+        'If you are launching a product, scaling a Telegram service or looking for a technical partner, I would be glad to discuss it.',
       projectResume: 'Resume.pdf',
       documentUpdatedLabel: 'UPDATED',
       documentUpdated: 'JULY 2026',
@@ -604,14 +823,17 @@ const dictionaries = {
       subtitleStart: 'Разрабатываю ',
       subtitleStrong: 'Telegram Mini Apps, платежные системы и масштабируемые веб-платформы',
       subtitleEnd: ' — от идеи до запуска и поддержки.',
-      proof: 'За последние несколько лет запустил несколько коммерческих продуктов, которыми воспользовались более 50 000 человек.',
-      proofStrong: 'Проектирую архитектуру, разрабатываю функциональность и сопровождаю продукты после запуска.',
+      proof:
+        'За последние несколько лет запустил несколько коммерческих продуктов, которыми воспользовались более 50 000 человек.',
+      proofStrong:
+        'Проектирую архитектуру, разрабатываю функциональность и сопровождаю продукты после запуска.',
       viewProjects: 'СМОТРЕТЬ ПРОЕКТЫ',
       about: 'ОБО МНЕ',
       resume: 'РЕЗЮМЕ',
       profileKicker: 'SHAHRIZOD / UZBEKISTAN',
       profileTitle: 'Мои продукты используют более 50 000 человек.',
-      profileText: 'Полный цикл разработки: Telegram Mini Apps, платежи и современные веб-платформы.',
+      profileText:
+        'Полный цикл разработки: Telegram Mini Apps, платежи и современные веб-платформы.',
       metrics: [
         ['50 000+', 'Пользователей'],
         ['30 000+', 'Обработанных заказов'],
@@ -630,8 +852,7 @@ const dictionaries = {
       main: 'Главные продукты',
       ecosystem: 'Экосистема SHX',
       experiments: 'Эксперименты и концепты',
-      note:
-        'Выбери категорию и открой любой проект, чтобы изучить интерфейс, продуктовый сценарий, стек и бизнес-модель.',
+      note: 'Выбери категорию и открой любой проект, чтобы изучить интерфейс, продуктовый сценарий, стек и бизнес-модель.',
       categories: 'Категории проектов',
       explore: 'ПОДРОБНЕЕ',
       close: 'Закрыть проект',
@@ -658,8 +879,7 @@ const dictionaries = {
         'Самый сильный проект портфолио: Telegram-commerce продукт вокруг игровых услуг, платежей, заказов и поддержки.',
       kicker: 'Telegram commerce-платформа',
       heading: 'От сценария бота до продуктовой инфраструктуры.',
-      text:
-        'Cyber Donate начался как Telegram-продукт и вырос в marketplace-систему с Web App, платежами, обработкой заказов и admin-операциями.',
+      text: 'Cyber Donate начался как Telegram-продукт и вырос в marketplace-систему с Web App, платежами, обработкой заказов и admin-операциями.',
       metrics: [
         { value: '50 000+', label: 'пользователей' },
         { value: '30 000+', label: 'заказов' },
@@ -692,8 +912,19 @@ const dictionaries = {
       portraitLabel: 'Профиль разработчика Шахризода',
     },
     skills: [
-      { title: 'Продуктовая разработка', items: ['Telegram Web Apps', 'Платежные системы', 'Админ-панели', 'API-архитектура'] },
-      { title: 'Запуск продуктов', items: ['Разработка в одиночку', 'Быстрые прототипы', 'Масштабируемые релизы', 'Поддержка и итерации'] },
+      {
+        title: 'Продуктовая разработка',
+        items: ['Telegram Web Apps', 'Платежные системы', 'Админ-панели', 'API-архитектура'],
+      },
+      {
+        title: 'Запуск продуктов',
+        items: [
+          'Разработка в одиночку',
+          'Быстрые прототипы',
+          'Масштабируемые релизы',
+          'Поддержка и итерации',
+        ],
+      },
     ],
     process: {
       eyebrow: 'Как я строю продукты',
@@ -704,12 +935,30 @@ const dictionaries = {
       routeLabel: 'PROCESS · PRODUCT LIFECYCLE',
       finalLabel: 'РАБОТАЮЩИЙ ПРОДУКТ',
       steps: [
-        ['Проблема', 'Формулирую задачу пользователя и результат, который сделает решение действительно полезным.'],
-        ['MVP', 'Собираю минимальную рабочую версию и проверяю ключевой сценарий без лишней сложности.'],
-        ['Первый запуск', 'Запускаю продукт для первых пользователей — часто через Telegram Bot, где быстрее всего проверить идею.'],
-        ['Интерфейс', 'Развиваю понятный веб-интерфейс, платежные сценарии и инструменты управления продуктом.'],
-        ['Рост', 'Укрепляю архитектуру, автоматизацию и аналитику под растущую аудиторию и нагрузку.'],
-        ['Продукт', 'Продукт становится самостоятельной системой, которая решает реальную задачу, развивается и приносит ценность пользователям.'],
+        [
+          'Проблема',
+          'Формулирую задачу пользователя и результат, который сделает решение действительно полезным.',
+        ],
+        [
+          'MVP',
+          'Собираю минимальную рабочую версию и проверяю ключевой сценарий без лишней сложности.',
+        ],
+        [
+          'Первый запуск',
+          'Запускаю продукт для первых пользователей — часто через Telegram Bot, где быстрее всего проверить идею.',
+        ],
+        [
+          'Интерфейс',
+          'Развиваю понятный веб-интерфейс, платежные сценарии и инструменты управления продуктом.',
+        ],
+        [
+          'Рост',
+          'Укрепляю архитектуру, автоматизацию и аналитику под растущую аудиторию и нагрузку.',
+        ],
+        [
+          'Продукт',
+          'Продукт становится самостоятельной системой, которая решает реальную задачу, развивается и приносит ценность пользователям.',
+        ],
       ],
     },
     ecosystem: {
@@ -784,19 +1033,70 @@ const dictionaries = {
       proofUnit: 'пользователей продуктов',
       capabilitiesLabel: 'ЧТО Я УМЕЮ СТРОИТЬ',
       architectureLabel: 'АРХИТЕКТУРА ПРОДУКТА',
-      architectureDescription: 'От первого действия пользователя до стабильного production-развертывания.',
+      architectureDescription:
+        'От первого действия пользователя до стабильного production-развертывания.',
       usedInLabel: 'ИСПОЛЬЗУЕТСЯ В',
       capabilities: [
-        ['Telegram Mini Apps', 'Продуктовые интерфейсы, которые открываются прямо внутри Telegram.', 'React · TypeScript · Telegram API', 'CYBER DONATE · STARS PAY'],
-        ['Платежные системы', 'Платежные сценарии, статусы заказов и операционная автоматизация.', 'FastAPI · PostgreSQL · Payments', 'CYBER DONATE · STARS PAY'],
-        ['REST API', 'Понятные контракты между приложениями, сервисами и интеграциями.', 'Python · FastAPI · Redis', 'ВСЕ ПРОДУКТЫ'],
-        ['Авторизация', 'Безопасная идентификация пользователя и управление доступом.', 'Telegram Auth · Tokens · PostgreSQL', 'STARS PAY · CYBER MATE'],
-        ['Админ-панели', 'Инструменты управления заказами, пользователями, контентом и поддержкой.', 'React · TypeScript · REST API', 'CYBER DONATE · STARS PAY'],
-        ['Фоновые задачи', 'Надежные асинхронные задачи и регулярные продуктовые процессы.', 'Python · Redis · Queues', 'COMMERCE-ПРОДУКТЫ'],
-        ['Аналитика', 'События и dashboards, которые показывают реальное поведение продукта.', 'Events · PostgreSQL · Dashboards', 'SHX ECOSYSTEM'],
-        ['Автоматизация', 'Боты, webhooks и процессы, которые заменяют ручные операции.', 'Telegram · Webhooks · Workers', 'CYBER DONATE · STARS PAY'],
-        ['CI/CD', 'Повторяемая доставка изменений от кода до production.', 'Docker · Linux · GitHub Actions', 'SHX ECOSYSTEM'],
-        ['Мониторинг', 'Логи, метрики и уведомления для работающих продуктов.', 'Logs · Metrics · Alerts', 'PRODUCTION-СИСТЕМЫ'],
+        [
+          'Telegram Mini Apps',
+          'Продуктовые интерфейсы, которые открываются прямо внутри Telegram.',
+          'React · TypeScript · Telegram API',
+          'CYBER DONATE · STARS PAY',
+        ],
+        [
+          'Платежные системы',
+          'Платежные сценарии, статусы заказов и операционная автоматизация.',
+          'FastAPI · PostgreSQL · Payments',
+          'CYBER DONATE · STARS PAY',
+        ],
+        [
+          'REST API',
+          'Понятные контракты между приложениями, сервисами и интеграциями.',
+          'Python · FastAPI · Redis',
+          'ВСЕ ПРОДУКТЫ',
+        ],
+        [
+          'Авторизация',
+          'Безопасная идентификация пользователя и управление доступом.',
+          'Telegram Auth · Tokens · PostgreSQL',
+          'STARS PAY · CYBER MATE',
+        ],
+        [
+          'Админ-панели',
+          'Инструменты управления заказами, пользователями, контентом и поддержкой.',
+          'React · TypeScript · REST API',
+          'CYBER DONATE · STARS PAY',
+        ],
+        [
+          'Фоновые задачи',
+          'Надежные асинхронные задачи и регулярные продуктовые процессы.',
+          'Python · Redis · Queues',
+          'COMMERCE-ПРОДУКТЫ',
+        ],
+        [
+          'Аналитика',
+          'События и dashboards, которые показывают реальное поведение продукта.',
+          'Events · PostgreSQL · Dashboards',
+          'SHX ECOSYSTEM',
+        ],
+        [
+          'Автоматизация',
+          'Боты, webhooks и процессы, которые заменяют ручные операции.',
+          'Telegram · Webhooks · Workers',
+          'CYBER DONATE · STARS PAY',
+        ],
+        [
+          'CI/CD',
+          'Повторяемая доставка изменений от кода до production.',
+          'Docker · Linux · GitHub Actions',
+          'SHX ECOSYSTEM',
+        ],
+        [
+          'Мониторинг',
+          'Логи, метрики и уведомления для работающих продуктов.',
+          'Logs · Metrics · Alerts',
+          'PRODUCTION-СИСТЕМЫ',
+        ],
       ],
       architecture: [
         ['Пользовательский слой', 'React · TypeScript'],
@@ -812,7 +1112,8 @@ const dictionaries = {
       eyebrow: 'Product Journey',
       title: 'От первого запуска',
       accent: 'к экосистеме',
-      subtitle: 'История роста продуктов: запуск, первые пользователи, масштабирование и общая платформа, которая объединяет несколько продуктов.',
+      subtitle:
+        'История роста продуктов: запуск, первые пользователи, масштабирование и общая платформа, которая объединяет несколько продуктов.',
       rangeLabel: 'РОСТ ПРОДУКТОВ · 2023—2026',
       items: [
         [
@@ -820,7 +1121,10 @@ const dictionaries = {
           'Первый запуск',
           'CYBER DONATE',
           'Первый коммерческий продукт и начало Telegram Commerce-платформы.',
-          [['1', 'продукт'], ['100+', 'первых пользователей']],
+          [
+            ['1', 'продукт'],
+            ['100+', 'первых пользователей'],
+          ],
           ['MVP', 'TELEGRAM COMMERCE', 'BOT'],
         ],
         [
@@ -828,7 +1132,10 @@ const dictionaries = {
           'Рост',
           'TELEGRAM COMMERCE',
           'Продукт вырос из bot-flow в полноценную торговую платформу.',
-          [['10 000+', 'пользователей'], ['WEB APP', 'новый интерфейс']],
+          [
+            ['10 000+', 'пользователей'],
+            ['WEB APP', 'новый интерфейс'],
+          ],
           ['PAYMENTS', 'ADMIN', 'AUTOMATION'],
         ],
         [
@@ -836,7 +1143,10 @@ const dictionaries = {
           'Масштабирование',
           'STARS PAY',
           'Новый платежный продукт на переиспользуемой архитектуре и операционной автоматизации.',
-          [['50 000+', 'пользователей'], ['30 000+', 'заказов']],
+          [
+            ['50 000+', 'пользователей'],
+            ['30 000+', 'заказов'],
+          ],
           ['PAYMENTS', 'FASTAPI', 'POSTGRESQL'],
         ],
         [
@@ -844,7 +1154,10 @@ const dictionaries = {
           'Экосистема',
           'SHX ECOSYSTEM',
           'Несколько продуктов объединены общей архитектурой, компонентами и developer-платформой.',
-          [['4', 'ключевых продукта'], ['1', 'общая архитектура']],
+          [
+            ['4', 'ключевых продукта'],
+            ['1', 'общая архитектура'],
+          ],
           ['PLATFORM', 'SHARED UI', 'DEVELOPER BRAND'],
         ],
       ],
@@ -853,7 +1166,8 @@ const dictionaries = {
       eyebrow: 'Current Roadmap',
       title: 'То, что я строю',
       accent: 'прямо сейчас',
-      subtitle: 'Следующие обновления и продуктовые направления, которые сейчас движутся по roadmap SHX.',
+      subtitle:
+        'Следующие обновления и продуктовые направления, которые сейчас движутся по roadmap SHX.',
       boardLabel: 'SHX PRODUCT BOARD',
       statusLabel: 'СТАТУС',
       initiativeLabel: 'НАПРАВЛЕНИЕ',
@@ -861,10 +1175,42 @@ const dictionaries = {
       updatedLabel: 'ТЕКУЩАЯ ИТЕРАЦИЯ',
       priorityLabel: 'ПРИОРИТЕТ',
       items: [
-        ['building', 'BUILDING', 'SHX DEV', 'Превращаю портфолио в developer-платформу с более сильными продуктовыми кейсами.', 80, 'ТЕКУЩИЙ СПРИНТ', 'HIGH'],
-        ['next', 'NEXT', 'CYBER MATE', 'Готовлю следующий продуктовый цикл для профилей, сообществ и коммуникации.', 20, 'СЛЕДУЮЩИЙ ЦИКЛ', 'MEDIUM'],
-        ['research', 'RESEARCH', 'AI TOOLS', 'Проверяю небольшие инструменты для поддержки, контента и продуктовых операций.', 45, 'АКТИВНОЕ ИССЛЕДОВАНИЕ', 'EXPERIMENTAL'],
-        ['foundation', 'FOUNDATION', 'CORE PLATFORM', 'Развиваю общие платежи, авторизацию, UI, аналитику и deployment-паттерны.', 65, 'ПОСТОЯННО', 'CORE'],
+        [
+          'building',
+          'BUILDING',
+          'SHX DEV',
+          'Превращаю портфолио в developer-платформу с более сильными продуктовыми кейсами.',
+          80,
+          'ТЕКУЩИЙ СПРИНТ',
+          'HIGH',
+        ],
+        [
+          'next',
+          'NEXT',
+          'CYBER MATE',
+          'Готовлю следующий продуктовый цикл для профилей, сообществ и коммуникации.',
+          20,
+          'СЛЕДУЮЩИЙ ЦИКЛ',
+          'MEDIUM',
+        ],
+        [
+          'research',
+          'RESEARCH',
+          'AI TOOLS',
+          'Проверяю небольшие инструменты для поддержки, контента и продуктовых операций.',
+          45,
+          'АКТИВНОЕ ИССЛЕДОВАНИЕ',
+          'EXPERIMENTAL',
+        ],
+        [
+          'foundation',
+          'FOUNDATION',
+          'CORE PLATFORM',
+          'Развиваю общие платежи, авторизацию, UI, аналитику и deployment-паттерны.',
+          65,
+          'ПОСТОЯННО',
+          'CORE',
+        ],
       ],
     },
     resume: {
@@ -873,17 +1219,38 @@ const dictionaries = {
       accent: 'а не выдуманные должности',
       subtitle: 'Продуктовый срез: запуски, пользователи, заказы и инфраструктура за ними.',
       items: [
-        ['2023', 'Запустил Cyber Donate', 'Telegram commerce, игровые услуги и сценарии заказов', 'ЗАПУСК'],
-        ['2024', 'Достиг 10 000+ пользователей', 'Платежи, поддержка, админ-инструменты и продуктовые операции', '10K+ ПОЛЬЗОВАТЕЛЕЙ'],
-        ['2025', 'Вырос до 50 000+ пользователей', 'Паттерны Cyber Donate, Stars Pay и Cyber Mate в Telegram Web Apps', '30K+ ЗАКАЗОВ'],
-        ['2026', 'Строю экосистему SHX', 'Общий стек, идентичность и инфраструктура для продуктовой работы', 'СЕЙЧАС'],
+        [
+          '2023',
+          'Запустил Cyber Donate',
+          'Telegram commerce, игровые услуги и сценарии заказов',
+          'ЗАПУСК',
+        ],
+        [
+          '2024',
+          'Достиг 10 000+ пользователей',
+          'Платежи, поддержка, админ-инструменты и продуктовые операции',
+          '10K+ ПОЛЬЗОВАТЕЛЕЙ',
+        ],
+        [
+          '2025',
+          'Вырос до 50 000+ пользователей',
+          'Паттерны Cyber Donate, Stars Pay и Cyber Mate в Telegram Web Apps',
+          '30K+ ЗАКАЗОВ',
+        ],
+        [
+          '2026',
+          'Строю экосистему SHX',
+          'Общий стек, идентичность и инфраструктура для продуктовой работы',
+          'СЕЙЧАС',
+        ],
       ],
       timelineLabel: 'PRODUCT EVIDENCE / 2023—2026',
       profileName: 'Shahrizod',
       profileRole: 'Fullstack Product Engineer',
       availability: 'ОТКРЫТ К НОВЫМ ПРОЕКТАМ',
       readyTitle: 'Готов создавать.',
-      collaborationText: 'Если вы запускаете продукт, масштабируете Telegram-сервис или ищете технического партнёра — буду рад обсудить задачу.',
+      collaborationText:
+        'Если вы запускаете продукт, масштабируете Telegram-сервис или ищете технического партнёра — буду рад обсудить задачу.',
       projectResume: 'Resume.pdf',
       documentUpdatedLabel: 'ОБНОВЛЕНО',
       documentUpdated: 'ИЮЛЬ 2026',
@@ -955,8 +1322,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     return {
       language,
       setLanguage: setAndStore,
-      toggleLanguage: () =>
-        setAndStore(language === 'en' ? 'ru' : language === 'ru' ? 'uz' : 'en'),
+      toggleLanguage: () => setAndStore(language === 'en' ? 'ru' : language === 'ru' ? 'uz' : 'en'),
       t: dictionaries[language],
       projects: getProjects(language),
     };

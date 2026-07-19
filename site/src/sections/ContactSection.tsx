@@ -1,11 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { useState } from 'react';
-import {
-  ArrowRightIcon,
-  GitHubIcon,
-  MailIcon,
-  TelegramIcon,
-} from '../components/ui/Icons';
+import { ArrowRightIcon, GitHubIcon, MailIcon, TelegramIcon } from '../components/ui/Icons';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
 import { SectionFX } from '../components/ui/SectionFX';
 import { useLanguage } from '../i18n';
@@ -15,53 +9,47 @@ export const ContactSection = () => {
   const { language, t } = useLanguage();
   const reducedMotion = useReducedMotion();
   const limitMotion = Boolean(reducedMotion || isPerformanceLite());
-  const [copied, setCopied] = useState(false);
-
-  const copyEmail = async () => {
-    const email = 'hello@shx.dev';
-
-    try {
-      await navigator.clipboard.writeText(email);
-    } catch {
-      const fallback = document.createElement('textarea');
-      fallback.value = email;
-      fallback.style.position = 'fixed';
-      fallback.style.opacity = '0';
-      document.body.appendChild(fallback);
-      fallback.select();
-      document.execCommand('copy');
-      fallback.remove();
-    }
-
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1800);
-  };
 
   const channels = [
-    { label: t.contact.telegram, value: '@shxdev', href: 'https://t.me/shxdev', Icon: TelegramIcon },
-    { label: t.contact.github, value: 'github.com/shxdev', href: 'https://github.com/shxdev', Icon: GitHubIcon },
-    { label: t.contact.email, value: 'hello@shx.dev', href: 'mailto:hello@shx.dev', Icon: MailIcon },
+    {
+      label: t.contact.telegram,
+      value: '@shxdev',
+      href: 'https://t.me/shxdev',
+      Icon: TelegramIcon,
+    },
+    {
+      label: t.contact.github,
+      value: 'github.com/SHX-Developer',
+      href: 'https://github.com/SHX-Developer',
+      Icon: GitHubIcon,
+    },
+    {
+      label: t.contact.email,
+      value: 'geomangd2003@gmail.com',
+      href: 'mailto:geomangd2003@gmail.com',
+      Icon: MailIcon,
+    },
   ];
 
   const steps = {
     ru: [
-          ['01', 'Напишите', 'Коротко опишите идею или задачу.'],
-          ['02', 'Созвонимся', 'Уточним контекст, цели и ограничения.'],
-          ['03', 'Соберём план', 'Зафиксируем архитектуру, этапы и результат.'],
-          ['04', 'Начнём', 'Перейдём к первому рабочему релизу.'],
-        ],
+      ['01', 'Напишите', 'Коротко опишите идею или задачу.'],
+      ['02', 'Созвонимся', 'Уточним контекст, цели и ограничения.'],
+      ['03', 'Соберём план', 'Зафиксируем архитектуру, этапы и результат.'],
+      ['04', 'Начнём', 'Перейдём к первому рабочему релизу.'],
+    ],
     uz: [
-          ['01', 'Xabar yozing', 'G‘oya yoki vazifani qisqacha tasvirlab bering.'],
-          ['02', 'Suhbatlashamiz', 'Kontekst, maqsadlar va cheklovlarni aniqlaymiz.'],
-          ['03', 'Reja tuzamiz', 'Arxitektura, bosqichlar va natijani belgilaymiz.'],
-          ['04', 'Boshlaymiz', 'Birinchi ishlaydigan relizga o‘tamiz.'],
-        ],
+      ['01', 'Xabar yozing', 'G‘oya yoki vazifani qisqacha tasvirlab bering.'],
+      ['02', 'Suhbatlashamiz', 'Kontekst, maqsadlar va cheklovlarni aniqlaymiz.'],
+      ['03', 'Reja tuzamiz', 'Arxitektura, bosqichlar va natijani belgilaymiz.'],
+      ['04', 'Boshlaymiz', 'Birinchi ishlaydigan relizga o‘tamiz.'],
+    ],
     en: [
-          ['01', 'Send a message', 'Share the idea or problem in a few lines.'],
-          ['02', 'Quick call', 'We clarify the context, goals and constraints.'],
-          ['03', 'Shape the plan', 'We define architecture, stages and outcome.'],
-          ['04', 'Start building', 'We move toward the first working release.'],
-        ],
+      ['01', 'Send a message', 'Share the idea or problem in a few lines.'],
+      ['02', 'Quick call', 'We clarify the context, goals and constraints.'],
+      ['03', 'Shape the plan', 'We define architecture, stages and outcome.'],
+      ['04', 'Start building', 'We move toward the first working release.'],
+    ],
   }[language];
   const nextStepsLabel = {
     ru: 'ЧТО БУДЕТ ПОСЛЕ СООБЩЕНИЯ',
@@ -75,9 +63,7 @@ export const ContactSection = () => {
       <motion.div
         className="contact-v2-glow"
         animate={
-          limitMotion
-            ? undefined
-            : { opacity: [0.28, 0.6, 0.28], scale: [0.94, 1.06, 0.94] }
+          limitMotion ? undefined : { opacity: [0.28, 0.6, 0.28], scale: [0.94, 1.06, 0.94] }
         }
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
         aria-hidden="true"
@@ -129,21 +115,6 @@ export const ContactSection = () => {
             {index === 0 ? <ArrowRightIcon /> : null}
           </a>
         ))}
-      </div>
-
-      <div className="contact-v2-bottom">
-        <span>
-          {t.contact.replies}
-          <a href="https://t.me/shxdev">@shxdev</a>
-        </span>
-        <div>
-          <button type="button" onClick={copyEmail}>
-            {copied ? t.contact.copied : t.contact.copyEmail}
-          </button>
-          <a href="/resume/shx-dev-resume.pdf" download>
-            {t.contact.resume}
-          </a>
-        </div>
       </div>
     </AnimatedSection>
   );

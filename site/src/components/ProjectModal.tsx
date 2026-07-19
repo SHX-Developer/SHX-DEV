@@ -71,7 +71,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
     },
   }[language];
   const renderProjectMark = () =>
-    project.title === 'SHX-Dev' ? (
+    project.title === 'SHX DEV' ? (
       <img src="/brand/shx-logo.webp" alt="" />
     ) : (
       project.title.slice(0, 2)
@@ -211,11 +211,13 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
         <small>{copy.adminLive}</small>
       </div>
       <div className="showcase-admin-metrics">
-        {(project.stats ?? [
-          [project.metric ?? 'LIVE', copy.productStatus],
-          [String(project.products.length), copy.productSurfaces],
-          [String(project.tags.length), copy.coreModules],
-        ])
+        {(
+          project.stats ?? [
+            [project.metric ?? 'LIVE', copy.productStatus],
+            [String(project.products.length), copy.productSurfaces],
+            [String(project.tags.length), copy.coreModules],
+          ]
+        )
           .slice(0, 3)
           .map(([value, label]) => (
             <div key={`${value}-${label}`}>
@@ -462,9 +464,7 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                     <ExternalLinkIcon />
                   </a>
                 ) : (
-                  <span className="project-live-link is-disabled">
-                    {labels.inDevelopment}
-                  </span>
+                  <span className="project-live-link is-disabled">{labels.inDevelopment}</span>
                 )}
               </div>
             </div>

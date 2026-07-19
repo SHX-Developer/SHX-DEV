@@ -170,11 +170,7 @@ export const Header = () => {
           onPointerMove={handleMagneticMove}
           onPointerLeave={resetMagnetic}
         >
-          <img
-            className="brand-lockup brand-lockup--header"
-            src="/brand/shx-dev-lockup.png"
-            alt="SHX DEV"
-          />
+          <span className="brand-name">SHX DEV</span>
         </a>
 
         <nav className="nav-links" aria-label={t.header.primaryNav}>

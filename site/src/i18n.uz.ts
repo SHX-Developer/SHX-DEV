@@ -39,9 +39,29 @@ export const projectUz: Record<string, LocalizedProject> = {
       ['2024', '10 000 foydalanuvchi'],
       ['2025', '50 000+ foydalanuvchi'],
     ],
-    delivered: ['Backend', 'Telegram Bot', 'Web App', 'REST API', 'To‘lovlar', 'Admin panel', 'CI/CD', 'VPS infratuzilmasi'],
-    challenges: ['Buyurtmalarni yuqori yuklamada qayta ishlash', 'Telegram va tashqi to‘lov ssenariylari', 'Buyurtmalarni to‘liq avtomatlashtirish', 'Xizmatni to‘xtatmasdan masshtablash'],
-    outcomes: ['50 000+ foydalanuvchi', 'Tijoriy ishga tushirish', 'To‘lovlar avtomatizatsiyasi', 'Telegram Mini App', 'Shaxsiy arxitektura'],
+    delivered: [
+      'Backend',
+      'Telegram Bot',
+      'Web App',
+      'REST API',
+      'To‘lovlar',
+      'Admin panel',
+      'CI/CD',
+      'VPS infratuzilmasi',
+    ],
+    challenges: [
+      'Buyurtmalarni yuqori yuklamada qayta ishlash',
+      'Telegram va tashqi to‘lov ssenariylari',
+      'Buyurtmalarni to‘liq avtomatlashtirish',
+      'Xizmatni to‘xtatmasdan masshtablash',
+    ],
+    outcomes: [
+      '50 000+ foydalanuvchi',
+      'Tijoriy ishga tushirish',
+      'To‘lovlar avtomatizatsiyasi',
+      'Telegram Mini App',
+      'Shaxsiy arxitektura',
+    ],
     products: ['cyberdonate.net', 'Cyber Donate Bot', 'Cyber Donate Web App'],
     monetization: ['Xizmatlar savdosi', 'O‘yin valyutasi marketpleysi', 'Raqamli mahsulotlar'],
     tags: ['50K+ FOYDALANUVCHI', 'TO‘LOVLAR', 'FASTAPI', 'POSTGRESQL'],
@@ -66,9 +86,28 @@ export const projectUz: Record<string, LocalizedProject> = {
       ['04', 'Admin panel avtomatizatsiyasi'],
       ['LIVE', 'Tijoriy ishga tushirish'],
     ],
-    delivered: ['Backend', 'Telegram Bot', 'Web App', 'To‘lov ssenariylari', 'Obunalar', 'Admin panel', 'Avtomatizatsiya', 'Monitoring'],
-    challenges: ['To‘lov holatlarini ishonchli qayta ishlash', 'Mahalliy valyuta uchun UX', 'Xizmatlarni avtomatik taqdim etish', 'Masshtablanuvchi admin jarayonlari'],
-    outcomes: ['Tijoriy platforma', '24/7 to‘lov avtomatizatsiyasi', 'Telegram xizmatlari marketpleysi', 'Yagona admin jarayoni'],
+    delivered: [
+      'Backend',
+      'Telegram Bot',
+      'Web App',
+      'To‘lov ssenariylari',
+      'Obunalar',
+      'Admin panel',
+      'Avtomatizatsiya',
+      'Monitoring',
+    ],
+    challenges: [
+      'To‘lov holatlarini ishonchli qayta ishlash',
+      'Mahalliy valyuta uchun UX',
+      'Xizmatlarni avtomatik taqdim etish',
+      'Masshtablanuvchi admin jarayonlari',
+    ],
+    outcomes: [
+      'Tijoriy platforma',
+      '24/7 to‘lov avtomatizatsiyasi',
+      'Telegram xizmatlari marketpleysi',
+      'Yagona admin jarayoni',
+    ],
     products: ['starspay.uz', 'StarsPay Bot', 'StarsPay Web App'],
     monetization: ['Xizmatlar savdosi', 'Telegram raqamli xizmatlari'],
     tags: ['TELEGRAM', 'TO‘LOVLAR AVTOMATIZATSIYASI', 'ADMIN PANEL'],
@@ -93,15 +132,33 @@ export const projectUz: Record<string, LocalizedProject> = {
       ['04', 'Chatlar va hamjamiyatlar'],
       ['MVP', 'Interaktiv prototip'],
     ],
-    delivered: ['Mahsulot arxitekturasi', 'Profillar', 'Realtime chatlar', 'Guruhlar', 'Hamjamiyatlar', 'Matchmaking', 'Web App UX'],
-    challenges: ['Realtime aloqalarni loyihalash', 'Ijtimoiy graf tuzilmasi', 'Moderatsiya ssenariylari', 'Masshtablanuvchi identifikatsiya tizimi'],
-    outcomes: ['Yaxlit ijtimoiy konsepsiya', 'Qayta ishlatiladigan realtime andozalar', 'Telegram Web App tajribasi', 'Tayyor mahsulot arxitekturasi'],
+    delivered: [
+      'Mahsulot arxitekturasi',
+      'Profillar',
+      'Realtime chatlar',
+      'Guruhlar',
+      'Hamjamiyatlar',
+      'Matchmaking',
+      'Web App UX',
+    ],
+    challenges: [
+      'Realtime aloqalarni loyihalash',
+      'Ijtimoiy graf tuzilmasi',
+      'Moderatsiya ssenariylari',
+      'Masshtablanuvchi identifikatsiya tizimi',
+    ],
+    outcomes: [
+      'Yaxlit ijtimoiy konsepsiya',
+      'Qayta ishlatiladigan realtime andozalar',
+      'Telegram Web App tajribasi',
+      'Tayyor mahsulot arxitekturasi',
+    ],
     products: ['Cyber Mate Bot', 'Cyber Mate Web App'],
     monetization: ['Premium obunalar', 'Ajratib ko‘rsatilgan profillar', 'Hamjamiyat boostlari'],
     tags: ['IJTIMOIY TARMOQ', 'GEYMERLAR', 'WEB APP'],
     meta: 'MAHSULOT KONSEPTI',
   },
-  'SHX-Dev': {
+  'SHX DEV': {
     description:
       'SHX brendi ostidagi portfolio, loyihalar, hamkorlik va texnik identifikatsiya uchun shaxsiy dasturchi platformasi.',
     headline: 'Dasturchi ekotizimi',
@@ -120,92 +177,115 @@ export const projectUz: Record<string, LocalizedProject> = {
       ['04', 'Loyiha keyslari'],
       ['LIVE', 'Ochiq portfolio'],
     ],
-    delivered: ['Mahsulot strategiyasi', 'Vizual identifikatsiya', 'React frontend', 'Uch til', 'Loyiha keyslari', 'Moslashuvchan dizayn', 'CI/CD'],
-    challenges: ['Texnik ishni tushunarli hikoyalarga aylantirish', 'Yagona mahsulot identifikatsiyasi', 'Animatsiya va unumdorlik muvozanati', 'Moslashuvchan kontent iyerarxiyasi'],
-    outcomes: ['Yagona shaxsiy brend', 'Interaktiv loyihalar portfoliosi', 'Qayta ishlatiladigan dizayn tizimi', 'Uch tilli mahsulot hikoyasi'],
-    products: ['shx.dev', 'SHX-Dev Bot', 'SHX-Dev App'],
+    delivered: [
+      'Mahsulot strategiyasi',
+      'Vizual identifikatsiya',
+      'React frontend',
+      'Uch til',
+      'Loyiha keyslari',
+      'Moslashuvchan dizayn',
+      'CI/CD',
+    ],
+    challenges: [
+      'Texnik ishni tushunarli hikoyalarga aylantirish',
+      'Yagona mahsulot identifikatsiyasi',
+      'Animatsiya va unumdorlik muvozanati',
+      'Moslashuvchan kontent iyerarxiyasi',
+    ],
+    outcomes: [
+      'Yagona shaxsiy brend',
+      'Interaktiv loyihalar portfoliosi',
+      'Qayta ishlatiladigan dizayn tizimi',
+      'Uch tilli mahsulot hikoyasi',
+    ],
+    products: ['shx.dev', 'SHX DEV Bot', 'SHX DEV App'],
     monetization: ['Hamkorliklar', 'Freelance imkoniyatlar', 'Sherikliklar'],
     tags: ['PORTFOLIO', 'BREND', 'DEV'],
     meta: 'EKOTIZIM · BREND',
   },
-  'SHX Connect': {
+  'SHX-Connect': {
     description: 'Shaxsiy xabar almashish platformasi va zamonaviy kommunikatsiya ekotizimi.',
-    products: ['shxgram.com', 'SHX Connect Web App'],
+    products: ['shxgram.com', 'SHX-Connect Web App'],
     monetization: ['Premium obunalar', 'Ichki valyuta', 'Ekotizim integratsiyalari'],
     tags: ['XABARLAR', 'IJTIMOIY', 'WEB APP'],
     meta: 'EKOTIZIM · IJTIMOIY TARMOQ',
   },
-  'SHX Stream': {
-    description: 'Kanallar, mualliflar va media tizimlariga ega video platforma hamda ijodkorlar ekotizimi.',
-    products: ['shxtube.com', 'SHX Stream App'],
+  'SHX-Stream': {
+    description:
+      'Kanallar, mualliflar va media tizimlariga ega video platforma hamda ijodkorlar ekotizimi.',
+    products: ['shxtube.com', 'SHX-Stream App'],
     monetization: ['Reklama', 'Mualliflar bilan hamkorlik', 'Premium tizimlar'],
     tags: ['VIDEO', 'MUALLIFLAR', 'MEDIA'],
     meta: 'EKOTIZIM · MEDIA',
   },
-  'SHX Canvas': {
-    description: 'Profillar, postlar, hamjamiyatlar, xabarlar va ijodkor auditoriyasini o‘stirish uchun ijtimoiy tarmoq.',
-    products: ['shxsocial.com', 'SHX Canvas App'],
+  'SHX-Canvas': {
+    description:
+      'Profillar, postlar, hamjamiyatlar, xabarlar va ijodkor auditoriyasini o‘stirish uchun ijtimoiy tarmoq.',
+    products: ['shxsocial.com', 'SHX-Canvas App'],
     monetization: ['Premium profillar', 'Hamjamiyat boostlari', 'Ijodkor vositalari'],
     tags: ['IJTIMOIY TARMOQ', 'HAMJAMIYATLAR', 'MUALLIFLAR'],
     meta: 'EKOTIZIM · TARMOQ',
   },
-  'SHX Loop': {
-    description: 'Vertikal videolar, mualliflar, tavsiyalar va viral kontent topish uchun qisqa video platformasi konsepti.',
-    products: ['shxtiktok.com', 'SHX Loop App'],
+  'SHX-Loop': {
+    description:
+      'Vertikal videolar, mualliflar, tavsiyalar va viral kontent topish uchun qisqa video platformasi konsepti.',
+    products: ['shxtiktok.com', 'SHX-Loop App'],
     monetization: ['Reklama', 'Mualliflar monetizatsiyasi', 'Premium effektlar'],
     tags: ['QISQA VIDEOLAR', 'MUALLIFLAR', 'LENTA'],
     meta: 'EKOTIZIM · SHORTS',
   },
-  'SHX Flow': {
+  'SHX-Flow': {
     description: 'Shaxsiy samaradorlik va tartib uchun zamonaviy vazifalarni boshqarish tizimi.',
-    products: ['SHX Flow Bot', 'SHX Flow Web App'],
+    products: ['SHX-Flow Bot', 'SHX-Flow Web App'],
     monetization: ['Premium obunalar', 'Samaradorlik vositalari'],
     tags: ['SAMARADORLIK', 'VAZIFALAR', 'TELEGRAM'],
     meta: 'EKOTIZIM · SAMARADORLIK',
   },
-  'SHX Vault': {
+  'SHX-Vault': {
     description: 'Xarajatlar, budjetlar va tahlil uchun shaxsiy moliya platformasi.',
-    products: ['SHX Vault Bot', 'SHX Vault Web App'],
+    products: ['SHX-Vault Bot', 'SHX-Vault Web App'],
     monetization: ['Premium obunalar', 'Kengaytirilgan tahlil'],
     tags: ['MOLIYA', 'TAHLIL', 'BUDJETLAR'],
     meta: 'EKOTIZIM · MOLIYA',
   },
-  'SHX Digits': {
-    description: 'Telegram Web Apps uchun klassik 2048 o‘yinining rivojlantirilgan Telegram talqini.',
-    products: ['SHX Digits Web App'],
+  'SHX-Digits': {
+    description:
+      'Telegram Web Apps uchun klassik 2048 o‘yinining rivojlantirilgan Telegram talqini.',
+    products: ['SHX-Digits Web App'],
     monetization: ['Mavzular', 'Effektlar', 'Premium obunalar'],
     tags: ['O‘YIN', '2048', 'TELEGRAM'],
     meta: 'O‘YIN · BOSHQOTIRMA',
   },
-  'SHX Blocks': {
-    description: 'Block Blast o‘yinining Telegram uchun moslashtirilgan zamonaviy boshqotirma talqini.',
-    products: ['SHX Blocks Web App'],
+  'SHX-Blocks': {
+    description:
+      'Block Blast o‘yinining Telegram uchun moslashtirilgan zamonaviy boshqotirma talqini.',
+    products: ['SHX-Blocks Web App'],
     monetization: ['Mavzular', 'Effektlar', 'Premium obunalar'],
     tags: ['O‘YIN', 'BOSHQOTIRMA', 'TELEGRAM'],
     meta: 'O‘YIN · BOSHQOTIRMA',
   },
-  'SHX Arena': {
+  'SHX-Arena': {
     description: 'Clash Royale va arena mexanikalaridan ilhomlangan Telegram Web Game.',
-    products: ['SHX Arena Web App'],
+    products: ['SHX-Arena Web App'],
     monetization: ['Ichki o‘yin valyutasi', 'Kosmetik elementlar'],
     tags: ['O‘YIN', 'STRATEGIYA', 'WEB APP'],
     meta: 'O‘YIN · STRATEGIYA',
   },
-  'SHX Heroes': {
+  'SHX-Heroes': {
     description: 'Mobile Legends o‘yinidan ilhomlangan MOBA uslubidagi Telegram o‘yin platformasi.',
-    products: ['SHX Heroes Web App'],
+    products: ['SHX-Heroes Web App'],
     monetization: ['Ichki iqtisodiyot', 'Premium kontent'],
     tags: ['O‘YIN', 'MOBA', 'TELEGRAM'],
     meta: 'O‘YIN · MOBA',
   },
-  'SHX Terra': {
+  'SHX-Terra': {
     description: 'Voksel geympleyidan ilhomlangan brauzer sandbox survival o‘yini.',
     products: ['shxcraft.game'],
     monetization: ['Reklama', 'Kosmetik tizimlar'],
     tags: ['O‘YIN', 'SANDBOX', 'BRAUZER'],
     meta: 'O‘YIN · SANDBOX',
   },
-  'SHX Pulse': {
+  'SHX-Pulse': {
     description: 'Geometry Dash o‘yinidan ilhomlangan brauzer ritm-platformer o‘yini.',
     products: ['shxdash.game'],
     monetization: ['Reklama', 'Skinlar', 'Premium effektlar'],
@@ -242,14 +322,17 @@ export const uzDictionary = {
     subtitleStart: 'Men ',
     subtitleStrong: 'Telegram Mini Apps, to‘lov tizimlari va masshtablanuvchi veb-platformalar',
     subtitleEnd: 'ni — g‘oyadan ishga tushirish va qo‘llab-quvvatlashgacha yarataman.',
-    proof: 'So‘nggi bir necha yil ichida 50 000 dan ortiq inson foydalangan bir nechta tijoriy mahsulotni ishga tushirdim.',
-    proofStrong: 'Arxitekturani loyihalayman, funksionallikni ishlab chiqaman va mahsulotlarni ishga tushirilgandan keyin ham rivojlantiraman.',
+    proof:
+      'So‘nggi bir necha yil ichida 50 000 dan ortiq inson foydalangan bir nechta tijoriy mahsulotni ishga tushirdim.',
+    proofStrong:
+      'Arxitekturani loyihalayman, funksionallikni ishlab chiqaman va mahsulotlarni ishga tushirilgandan keyin ham rivojlantiraman.',
     viewProjects: 'LOYIHALARNI KO‘RISH',
     about: 'MEN HAQIMDA',
     resume: 'REZYUME',
     profileKicker: 'SHAHRIZOD / O‘ZBEKISTON',
     profileTitle: 'Mahsulotlarimdan 50 000 dan ortiq inson foydalanadi.',
-    profileText: 'To‘liq ishlab chiqish sikli: Telegram Mini Apps, to‘lovlar va zamonaviy veb-platformalar.',
+    profileText:
+      'To‘liq ishlab chiqish sikli: Telegram Mini Apps, to‘lovlar va zamonaviy veb-platformalar.',
     metrics: [
       ['50 000+', 'Foydalanuvchi'],
       ['30 000+', 'Qayta ishlangan buyurtma'],
@@ -268,8 +351,7 @@ export const uzDictionary = {
     main: 'Asosiy mahsulotlar',
     ecosystem: 'SHX ekotizimi',
     experiments: 'Tajribalar va konseptlar',
-    note:
-      'Kategoriyani tanlang va interfeys, mahsulot ssenariysi, stek hamda biznes modelini ko‘rish uchun istalgan loyihani oching.',
+    note: 'Kategoriyani tanlang va interfeys, mahsulot ssenariysi, stek hamda biznes modelini ko‘rish uchun istalgan loyihani oching.',
     categories: 'Loyiha kategoriyalari',
     explore: 'BATAFSIL',
     close: 'Loyihani yopish',
@@ -296,8 +378,7 @@ export const uzDictionary = {
       'Portfoliodagi eng kuchli loyiha: o‘yin xizmatlari, to‘lovlar, buyurtmalar va qo‘llab-quvvatlash atrofida qurilgan Telegram commerce mahsuloti.',
     kicker: 'Telegram savdo platformasi',
     heading: 'Bot ssenariysidan mahsulot infratuzilmasigacha.',
-    text:
-      'Cyber Donate Telegram mahsuloti sifatida boshlandi va Web App, to‘lovlar, buyurtmalarni qayta ishlash hamda admin jarayonlariga ega marketpleys tizimiga aylandi.',
+    text: 'Cyber Donate Telegram mahsuloti sifatida boshlandi va Web App, to‘lovlar, buyurtmalarni qayta ishlash hamda admin jarayonlariga ega marketpleys tizimiga aylandi.',
     metrics: [
       { value: '50 000+', label: 'foydalanuvchi' },
       { value: '30 000+', label: 'buyurtma' },
@@ -330,8 +411,19 @@ export const uzDictionary = {
     portraitLabel: 'Shahrizod dasturchi profili',
   },
   skills: [
-    { title: 'Mahsulot ishlab chiqish', items: ['Telegram Web Apps', 'To‘lov tizimlari', 'Admin panellar', 'API arxitekturasi'] },
-    { title: 'Mahsulotni ishga tushirish', items: ['Mustaqil ishlab chiqish', 'Tezkor prototiplar', 'Masshtablanuvchi relizlar', 'Qo‘llab-quvvatlash va iteratsiyalar'] },
+    {
+      title: 'Mahsulot ishlab chiqish',
+      items: ['Telegram Web Apps', 'To‘lov tizimlari', 'Admin panellar', 'API arxitekturasi'],
+    },
+    {
+      title: 'Mahsulotni ishga tushirish',
+      items: [
+        'Mustaqil ishlab chiqish',
+        'Tezkor prototiplar',
+        'Masshtablanuvchi relizlar',
+        'Qo‘llab-quvvatlash va iteratsiyalar',
+      ],
+    },
   ],
   process: {
     eyebrow: 'Mahsulotlarni qanday yarataman',
@@ -342,12 +434,30 @@ export const uzDictionary = {
     routeLabel: 'JARAYON · MAHSULOT SIKLI',
     finalLabel: 'ISHLAYDIGAN MAHSULOT',
     steps: [
-      ['Muammo', 'Foydalanuvchi vazifasi va yechimni haqiqatan foydali qiladigan natijani aniqlayman.'],
-      ['MVP', 'Eng kichik ishlaydigan versiyani yaratib, ortiqcha murakkabliksiz asosiy ssenariyni tekshiraman.'],
-      ['Birinchi ishga tushirish', 'Mahsulotni dastlabki foydalanuvchilarga chiqaraman — ko‘pincha g‘oyani tez tekshirish mumkin bo‘lgan Telegram Bot orqali.'],
-      ['Interfeys', 'Tushunarli veb-interfeys, to‘lov ssenariylari va mahsulotni boshqarish vositalarini rivojlantiraman.'],
-      ['O‘sish', 'O‘sayotgan auditoriya va yuklama uchun arxitektura, avtomatizatsiya hamda tahlilni kuchaytiraman.'],
-      ['Mahsulot', 'Mahsulot real vazifani hal qiladigan, rivojlanadigan va foydalanuvchilarga qiymat beradigan mustaqil tizimga aylanadi.'],
+      [
+        'Muammo',
+        'Foydalanuvchi vazifasi va yechimni haqiqatan foydali qiladigan natijani aniqlayman.',
+      ],
+      [
+        'MVP',
+        'Eng kichik ishlaydigan versiyani yaratib, ortiqcha murakkabliksiz asosiy ssenariyni tekshiraman.',
+      ],
+      [
+        'Birinchi ishga tushirish',
+        'Mahsulotni dastlabki foydalanuvchilarga chiqaraman — ko‘pincha g‘oyani tez tekshirish mumkin bo‘lgan Telegram Bot orqali.',
+      ],
+      [
+        'Interfeys',
+        'Tushunarli veb-interfeys, to‘lov ssenariylari va mahsulotni boshqarish vositalarini rivojlantiraman.',
+      ],
+      [
+        'O‘sish',
+        'O‘sayotgan auditoriya va yuklama uchun arxitektura, avtomatizatsiya hamda tahlilni kuchaytiraman.',
+      ],
+      [
+        'Mahsulot',
+        'Mahsulot real vazifani hal qiladigan, rivojlanadigan va foydalanuvchilarga qiymat beradigan mustaqil tizimga aylanadi.',
+      ],
     ],
   },
   ecosystem: {
@@ -422,19 +532,70 @@ export const uzDictionary = {
     proofUnit: 'mahsulot foydalanuvchisiga',
     capabilitiesLabel: 'MEN YARATA OLADIGAN TIZIMLAR',
     architectureLabel: 'MAHSULOT ARXITEKTURASI',
-    architectureDescription: 'Foydalanuvchining birinchi amalidan barqaror production joylashtirishgacha.',
+    architectureDescription:
+      'Foydalanuvchining birinchi amalidan barqaror production joylashtirishgacha.',
     usedInLabel: 'ISHLATILADI',
     capabilities: [
-      ['Telegram Mini Apps', 'To‘g‘ridan-to‘g‘ri Telegram ichida ochiladigan mahsulot interfeyslari.', 'React · TypeScript · Telegram API', 'CYBER DONATE · STARS PAY'],
-      ['To‘lov tizimlari', 'To‘lov ssenariylari, buyurtma holatlari va operatsion avtomatizatsiya.', 'FastAPI · PostgreSQL · Payments', 'CYBER DONATE · STARS PAY'],
-      ['REST API', 'Ilovalar, servislar va integratsiyalar o‘rtasidagi tushunarli shartnomalar.', 'Python · FastAPI · Redis', 'BARCHA MAHSULOTLAR'],
-      ['Autentifikatsiya', 'Foydalanuvchini xavfsiz aniqlash va kirishni boshqarish.', 'Telegram Auth · Tokens · PostgreSQL', 'STARS PAY · CYBER MATE'],
-      ['Admin panellar', 'Buyurtmalar, foydalanuvchilar, kontent va qo‘llab-quvvatlashni boshqarish vositalari.', 'React · TypeScript · REST API', 'CYBER DONATE · STARS PAY'],
-      ['Fon vazifalari', 'Ishonchli asinxron vazifalar va muntazam mahsulot jarayonlari.', 'Python · Redis · Queues', 'COMMERCE MAHSULOTLARI'],
-      ['Tahlil', 'Mahsulotning real xatti-harakatini ko‘rsatadigan hodisalar va dashboardlar.', 'Events · PostgreSQL · Dashboards', 'SHX ECOSYSTEM'],
-      ['Avtomatizatsiya', 'Qo‘lda bajariladigan ishlarni almashtiruvchi botlar, webhooklar va jarayonlar.', 'Telegram · Webhooks · Workers', 'CYBER DONATE · STARS PAY'],
-      ['CI/CD', 'O‘zgarishlarni koddan productiongacha takrorlanuvchi tarzda yetkazish.', 'Docker · Linux · GitHub Actions', 'SHX ECOSYSTEM'],
-      ['Monitoring', 'Ishlayotgan mahsulotlar uchun loglar, metrikalar va bildirishnomalar.', 'Logs · Metrics · Alerts', 'PRODUCTION TIZIMLARI'],
+      [
+        'Telegram Mini Apps',
+        'To‘g‘ridan-to‘g‘ri Telegram ichida ochiladigan mahsulot interfeyslari.',
+        'React · TypeScript · Telegram API',
+        'CYBER DONATE · STARS PAY',
+      ],
+      [
+        'To‘lov tizimlari',
+        'To‘lov ssenariylari, buyurtma holatlari va operatsion avtomatizatsiya.',
+        'FastAPI · PostgreSQL · Payments',
+        'CYBER DONATE · STARS PAY',
+      ],
+      [
+        'REST API',
+        'Ilovalar, servislar va integratsiyalar o‘rtasidagi tushunarli shartnomalar.',
+        'Python · FastAPI · Redis',
+        'BARCHA MAHSULOTLAR',
+      ],
+      [
+        'Autentifikatsiya',
+        'Foydalanuvchini xavfsiz aniqlash va kirishni boshqarish.',
+        'Telegram Auth · Tokens · PostgreSQL',
+        'STARS PAY · CYBER MATE',
+      ],
+      [
+        'Admin panellar',
+        'Buyurtmalar, foydalanuvchilar, kontent va qo‘llab-quvvatlashni boshqarish vositalari.',
+        'React · TypeScript · REST API',
+        'CYBER DONATE · STARS PAY',
+      ],
+      [
+        'Fon vazifalari',
+        'Ishonchli asinxron vazifalar va muntazam mahsulot jarayonlari.',
+        'Python · Redis · Queues',
+        'COMMERCE MAHSULOTLARI',
+      ],
+      [
+        'Tahlil',
+        'Mahsulotning real xatti-harakatini ko‘rsatadigan hodisalar va dashboardlar.',
+        'Events · PostgreSQL · Dashboards',
+        'SHX ECOSYSTEM',
+      ],
+      [
+        'Avtomatizatsiya',
+        'Qo‘lda bajariladigan ishlarni almashtiruvchi botlar, webhooklar va jarayonlar.',
+        'Telegram · Webhooks · Workers',
+        'CYBER DONATE · STARS PAY',
+      ],
+      [
+        'CI/CD',
+        'O‘zgarishlarni koddan productiongacha takrorlanuvchi tarzda yetkazish.',
+        'Docker · Linux · GitHub Actions',
+        'SHX ECOSYSTEM',
+      ],
+      [
+        'Monitoring',
+        'Ishlayotgan mahsulotlar uchun loglar, metrikalar va bildirishnomalar.',
+        'Logs · Metrics · Alerts',
+        'PRODUCTION TIZIMLARI',
+      ],
     ],
     architecture: [
       ['Foydalanuvchi qatlami', 'React · TypeScript'],
@@ -450,7 +611,8 @@ export const uzDictionary = {
     eyebrow: 'Mahsulot yo‘li',
     title: 'Birinchi ishga tushirishdan',
     accent: 'ekotizimgacha',
-    subtitle: 'Mahsulotlar o‘sish tarixi: ishga tushirish, dastlabki foydalanuvchilar, masshtablash va bir nechta mahsulotni birlashtiradigan umumiy platforma.',
+    subtitle:
+      'Mahsulotlar o‘sish tarixi: ishga tushirish, dastlabki foydalanuvchilar, masshtablash va bir nechta mahsulotni birlashtiradigan umumiy platforma.',
     rangeLabel: 'MAHSULOTLAR O‘SISHI · 2023—2026',
     items: [
       [
@@ -458,7 +620,10 @@ export const uzDictionary = {
         'Birinchi ishga tushirish',
         'CYBER DONATE',
         'Birinchi tijoriy mahsulot va Telegram Commerce platformasining boshlanishi.',
-        [['1', 'mahsulot'], ['100+', 'dastlabki foydalanuvchi']],
+        [
+          ['1', 'mahsulot'],
+          ['100+', 'dastlabki foydalanuvchi'],
+        ],
         ['MVP', 'TELEGRAM COMMERCE', 'BOT'],
       ],
       [
@@ -466,7 +631,10 @@ export const uzDictionary = {
         'O‘sish',
         'TELEGRAM COMMERCE',
         'Mahsulot bot jarayonidan to‘liq savdo platformasiga aylandi.',
-        [['10 000+', 'foydalanuvchi'], ['WEB APP', 'yangi interfeys']],
+        [
+          ['10 000+', 'foydalanuvchi'],
+          ['WEB APP', 'yangi interfeys'],
+        ],
         ['PAYMENTS', 'ADMIN', 'AUTOMATION'],
       ],
       [
@@ -474,7 +642,10 @@ export const uzDictionary = {
         'Masshtablash',
         'STARS PAY',
         'Qayta ishlatiladigan arxitektura va operatsion avtomatizatsiyaga asoslangan yangi to‘lov mahsuloti.',
-        [['50 000+', 'foydalanuvchi'], ['30 000+', 'buyurtma']],
+        [
+          ['50 000+', 'foydalanuvchi'],
+          ['30 000+', 'buyurtma'],
+        ],
         ['PAYMENTS', 'FASTAPI', 'POSTGRESQL'],
       ],
       [
@@ -482,7 +653,10 @@ export const uzDictionary = {
         'Ekotizim',
         'SHX ECOSYSTEM',
         'Bir nechta mahsulot umumiy arxitektura, komponentlar va dasturchi platformasi bilan birlashtirildi.',
-        [['4', 'asosiy mahsulot'], ['1', 'umumiy arxitektura']],
+        [
+          ['4', 'asosiy mahsulot'],
+          ['1', 'umumiy arxitektura'],
+        ],
         ['PLATFORM', 'SHARED UI', 'DEVELOPER BRAND'],
       ],
     ],
@@ -491,7 +665,8 @@ export const uzDictionary = {
     eyebrow: 'Joriy yo‘l xaritasi',
     title: 'Men yaratayotgan narsalar',
     accent: 'ayni hozir',
-    subtitle: 'Hozir SHX yo‘l xaritasida rivojlanayotgan keyingi yangilanishlar va mahsulot yo‘nalishlari.',
+    subtitle:
+      'Hozir SHX yo‘l xaritasida rivojlanayotgan keyingi yangilanishlar va mahsulot yo‘nalishlari.',
     boardLabel: 'SHX PRODUCT BOARD',
     statusLabel: 'HOLAT',
     initiativeLabel: 'YO‘NALISH',
@@ -499,29 +674,83 @@ export const uzDictionary = {
     updatedLabel: 'JORIY ITERATSIYA',
     priorityLabel: 'USTUVORLIK',
     items: [
-      ['building', 'YARATILMOQDA', 'SHX DEV', 'Portfolioni kuchliroq mahsulot keyslari bilan dasturchi platformasiga aylantiryapman.', 80, 'JORIY SPRINT', 'YUQORI'],
-      ['next', 'KEYINGI', 'CYBER MATE', 'Profillar, hamjamiyatlar va muloqot uchun navbatdagi mahsulot siklini tayyorlayapman.', 20, 'KEYINGI SIKL', 'O‘RTA'],
-      ['research', 'TADQIQOT', 'AI TOOLS', 'Qo‘llab-quvvatlash, kontent va mahsulot amaliyotlari uchun kichik vositalarni sinayapman.', 45, 'FAOL TADQIQOT', 'TAJRIBAVIY'],
-      ['foundation', 'POYDEVOR', 'CORE PLATFORM', 'Umumiy to‘lovlar, autentifikatsiya, UI, tahlil va deployment andozalarini rivojlantiryapman.', 65, 'DOIMIY', 'ASOSIY'],
+      [
+        'building',
+        'YARATILMOQDA',
+        'SHX DEV',
+        'Portfolioni kuchliroq mahsulot keyslari bilan dasturchi platformasiga aylantiryapman.',
+        80,
+        'JORIY SPRINT',
+        'YUQORI',
+      ],
+      [
+        'next',
+        'KEYINGI',
+        'CYBER MATE',
+        'Profillar, hamjamiyatlar va muloqot uchun navbatdagi mahsulot siklini tayyorlayapman.',
+        20,
+        'KEYINGI SIKL',
+        'O‘RTA',
+      ],
+      [
+        'research',
+        'TADQIQOT',
+        'AI TOOLS',
+        'Qo‘llab-quvvatlash, kontent va mahsulot amaliyotlari uchun kichik vositalarni sinayapman.',
+        45,
+        'FAOL TADQIQOT',
+        'TAJRIBAVIY',
+      ],
+      [
+        'foundation',
+        'POYDEVOR',
+        'CORE PLATFORM',
+        'Umumiy to‘lovlar, autentifikatsiya, UI, tahlil va deployment andozalarini rivojlantiryapman.',
+        65,
+        'DOIMIY',
+        'ASOSIY',
+      ],
     ],
   },
   resume: {
     eyebrow: 'Dalillar',
     title: 'Real bosqichlar,',
     accent: 'o‘ylab topilgan lavozimlar emas',
-    subtitle: 'Mahsulotlar kesimi: ishga tushirishlar, foydalanuvchilar, buyurtmalar va ularning ortidagi infratuzilma.',
+    subtitle:
+      'Mahsulotlar kesimi: ishga tushirishlar, foydalanuvchilar, buyurtmalar va ularning ortidagi infratuzilma.',
     items: [
-      ['2023', 'Cyber Donate’ni ishga tushirdim', 'Telegram commerce, o‘yin xizmatlari va buyurtma ssenariylari', 'ISHGA TUSHIRISH'],
-      ['2024', '10 000+ foydalanuvchiga erishdim', 'To‘lovlar, qo‘llab-quvvatlash, admin vositalar va mahsulot amaliyotlari', '10K+ FOYDALANUVCHI'],
-      ['2025', '50 000+ foydalanuvchigacha o‘sdim', 'Telegram Web Apps ichidagi Cyber Donate, Stars Pay va Cyber Mate andozalari', '30K+ BUYURTMA'],
-      ['2026', 'SHX ekotizimini yaratyapman', 'Mahsulot ishlari uchun umumiy stek, identifikatsiya va infratuzilma', 'HOZIR'],
+      [
+        '2023',
+        'Cyber Donate’ni ishga tushirdim',
+        'Telegram commerce, o‘yin xizmatlari va buyurtma ssenariylari',
+        'ISHGA TUSHIRISH',
+      ],
+      [
+        '2024',
+        '10 000+ foydalanuvchiga erishdim',
+        'To‘lovlar, qo‘llab-quvvatlash, admin vositalar va mahsulot amaliyotlari',
+        '10K+ FOYDALANUVCHI',
+      ],
+      [
+        '2025',
+        '50 000+ foydalanuvchigacha o‘sdim',
+        'Telegram Web Apps ichidagi Cyber Donate, Stars Pay va Cyber Mate andozalari',
+        '30K+ BUYURTMA',
+      ],
+      [
+        '2026',
+        'SHX ekotizimini yaratyapman',
+        'Mahsulot ishlari uchun umumiy stek, identifikatsiya va infratuzilma',
+        'HOZIR',
+      ],
     ],
     timelineLabel: 'MAHSULOT DALILLARI / 2023—2026',
     profileName: 'Shahrizod',
     profileRole: 'Fullstack Product Engineer',
     availability: 'YANGI LOYIHALAR UCHUN OCHIQMAN',
     readyTitle: 'Yaratishga tayyorman.',
-    collaborationText: 'Agar siz mahsulot ishga tushirayotgan, Telegram servisni masshtablayotgan yoki texnik hamkor izlayotgan bo‘lsangiz — vazifani muhokama qilishdan mamnun bo‘laman.',
+    collaborationText:
+      'Agar siz mahsulot ishga tushirayotgan, Telegram servisni masshtablayotgan yoki texnik hamkor izlayotgan bo‘lsangiz — vazifani muhokama qilishdan mamnun bo‘laman.',
     projectResume: 'Resume.pdf',
     documentUpdatedLabel: 'YANGILANDI',
     documentUpdated: 'IYUL 2026',

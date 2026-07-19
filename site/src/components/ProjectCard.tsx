@@ -42,8 +42,8 @@ export const ProjectCard = ({
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="card-topline">
-        <div className={`card-icon${project.title === 'SHX-Dev' ? ' is-brand' : ''}`}>
-          {project.title === 'SHX-Dev' ? (
+        <div className={`card-icon${project.title === 'SHX DEV' ? ' is-brand' : ''}`}>
+          {project.title === 'SHX DEV' ? (
             <img src="/brand/shx-logo.webp" alt="" aria-hidden="true" />
           ) : (
             <ProjectIcon icon={project.icon} />
@@ -52,8 +52,11 @@ export const ProjectCard = ({
         <span className="project-classification">{project.meta}</span>
       </div>
 
-      {compact ? null : (
-        <div className="project-preview" aria-hidden="true">
+      {!compact || (project.screenshot && !coverFailed) ? (
+        <div
+          className={`project-preview${compact ? ' compact-project-preview' : ''}`}
+          aria-hidden="true"
+        >
           {project.screenshot && !coverFailed ? (
             <img
               src={project.screenshot}
@@ -62,7 +65,7 @@ export const ProjectCard = ({
               decoding="async"
               onError={() => setCoverFailed(true)}
             />
-          ) : (
+          ) : !compact ? (
             <>
               <div className="preview-topbar">
                 <span />
@@ -81,14 +84,12 @@ export const ProjectCard = ({
                 </div>
               </div>
             </>
-          )}
+          ) : null}
         </div>
-      )}
+      ) : null}
 
       <div className="card-content">
-        {project.headline && !compact ? (
-          <p className="project-kind">{project.headline}</p>
-        ) : null}
+        {project.headline && !compact ? <p className="project-kind">{project.headline}</p> : null}
         <h3 className="card-title">{project.title}</h3>
         {!compact && project.stats?.length ? (
           <div className="project-stats">

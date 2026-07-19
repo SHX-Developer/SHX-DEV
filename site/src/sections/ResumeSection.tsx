@@ -36,8 +36,8 @@ export const ResumeSection = () => {
 
   const channels = [
     { label: 'TELEGRAM', href: 'https://t.me/shxdev', Icon: TelegramIcon },
-    { label: 'GITHUB', href: 'https://github.com/shxdev', Icon: GitHubIcon },
-    { label: 'EMAIL', href: 'mailto:hello@shx.dev', Icon: MailIcon },
+    { label: 'GITHUB', href: 'https://github.com/SHX-Developer', Icon: GitHubIcon },
+    { label: 'EMAIL', href: 'mailto:geomangd2003@gmail.com', Icon: MailIcon },
   ];
 
   return (
@@ -63,9 +63,15 @@ export const ResumeSection = () => {
           transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="proof-window-bar">
-            <div aria-hidden="true"><i /><i /><i /></div>
+            <div aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </div>
             <span>{t.resume.timelineLabel}</span>
-            <small><i /> {labels.growth}</small>
+            <small>
+              <i /> {labels.growth}
+            </small>
           </div>
 
           <div className="proof-timeline-list">
@@ -111,7 +117,10 @@ export const ResumeSection = () => {
               <strong>{t.resume.profileName}</strong>
               <small>{t.resume.profileRole}</small>
             </div>
-            <span className="proof-availability"><i />{t.resume.availability}</span>
+            <span className="proof-availability">
+              <i />
+              {t.resume.availability}
+            </span>
           </div>
 
           <div className="proof-ready-copy">

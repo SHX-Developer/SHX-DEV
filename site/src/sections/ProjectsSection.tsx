@@ -9,14 +9,14 @@ import { useLanguage } from '../i18n';
 
 type ProjectGroup = 'main' | 'ecosystem' | 'experiments';
 
-const featuredTitles = ['CYBER DONATE', 'STARS PAY', 'CYBER MATE', 'SHX-Dev'];
+const featuredTitles = ['CYBER DONATE', 'STARS PAY', 'CYBER MATE', 'SHX DEV'];
 const ecosystemTitles = [
-  'SHX Flow',
-  'SHX Vault',
-  'SHX Connect',
-  'SHX Stream',
-  'SHX Canvas',
-  'SHX Loop',
+  'SHX-Flow',
+  'SHX-Vault',
+  'SHX-Connect',
+  'SHX-Stream',
+  'SHX-Canvas',
+  'SHX-Loop',
 ];
 
 export const ProjectsSection = () => {
@@ -46,7 +46,7 @@ export const ProjectsSection = () => {
   }, [activeGroup, projects]);
 
   const selectedProject = selectedTitle
-    ? projects.find((project) => project.title === selectedTitle) ?? null
+    ? (projects.find((project) => project.title === selectedTitle) ?? null)
     : null;
 
   const closeProject = useCallback(() => setSelectedTitle(null), []);

@@ -380,8 +380,8 @@ svg {
   width: 32px;
   height: 32px;
   flex: 0 0 32px;
-  border-radius: 10px;
-  background: #05030a;
+  border-radius: 0;
+  background: transparent;
   filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.62));
   transition:
     width 0.25s ease,
@@ -392,28 +392,7 @@ svg {
 }
 
 .brand-mark::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  z-index: 2;
-  padding: 1px;
-  border-radius: 13px;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0 32%,
-    rgba(196, 181, 253, 0.95) 43%,
-    rgba(124, 58, 237, 0.6) 53%,
-    transparent 66% 100%
-  );
-  opacity: 0.2;
-  pointer-events: none;
-  animation: logoOrbit 6s linear infinite;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  transition: opacity 0.22s ease;
+  display: none;
 }
 
 .brand-mark img {

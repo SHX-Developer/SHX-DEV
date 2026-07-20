@@ -72,7 +72,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
   }[language];
   const renderProjectMark = () =>
     project.title === 'SHX DEV' ? (
-      <img src="/brand/shx-logo.webp" alt="" />
+      <img className="site-brand-logo" src="/brand/Logo-ShxDev.png" alt="" />
     ) : (
       project.title.slice(0, 2)
     );
@@ -158,7 +158,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
       <div className="showcase-system" aria-hidden="true">
         <div className="system-core">
           <span className="system-core-logo">
-            <img src="/brand/shx-logo.webp" alt="" />
+            <img className="site-brand-logo" src="/brand/Logo-ShxDev.png" alt="" />
           </span>
           <strong>{project.title}</strong>
         </div>

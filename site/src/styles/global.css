@@ -376,6 +376,7 @@ svg {
 
 .brand-mark {
   position: relative;
+  overflow: hidden;
   width: 32px;
   height: 32px;
   flex: 0 0 32px;
@@ -441,6 +442,17 @@ svg {
 
 .brand:hover .brand-mark img {
   filter: brightness(1.14) saturate(1.18);
+}
+
+img.site-brand-logo {
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: translateY(-8%) scale(1.5) !important;
+  transform-origin: center;
+}
+
+.brand:hover img.site-brand-logo {
+  transform: translateY(-8%) scale(1.58) !important;
 }
 
 @keyframes logoOrbit {

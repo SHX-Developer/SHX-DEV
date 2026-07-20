@@ -351,7 +351,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Heroes',
-    ...projectAssets('shx-legends'),
+    ...projectAssets('shx-heroes'),
     category: 'Experimental & Entertainment',
     description:
       'Mobile Legends inspired Telegram Web Game. MOBA-inspired Telegram gaming platform.',

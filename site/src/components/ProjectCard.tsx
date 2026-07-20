@@ -44,7 +44,12 @@ export const ProjectCard = ({
       <div className="card-topline">
         <div className={`card-icon${project.title === 'SHX DEV' ? ' is-brand' : ''}`}>
           {project.title === 'SHX DEV' ? (
-            <img src="/brand/shx-logo.webp" alt="" aria-hidden="true" />
+            <img
+              className="site-brand-logo"
+              src="/brand/Logo-ShxDev.png"
+              alt=""
+              aria-hidden="true"
+            />
           ) : (
             <ProjectIcon icon={project.icon} />
           )}

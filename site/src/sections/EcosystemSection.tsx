@@ -177,7 +177,7 @@ export const EcosystemSection = () => {
           >
             <small>{productOsLabel}</small>
             <strong className="product-os-logo" aria-hidden="true">
-              <img src="/brand/shx-logo.webp" alt="" />
+              <img className="site-brand-logo" src="/brand/Logo-ShxDev.png" alt="" />
             </strong>
             <span>17 {modulesLabel}</span>
           </motion.div>
@@ -199,7 +199,12 @@ export const EcosystemSection = () => {
               >
                 <span>
                   {product.mark === 'SHX' ? (
-                    <img src="/brand/shx-logo.webp" alt="" aria-hidden="true" />
+                    <img
+                      className="site-brand-logo"
+                      src="/brand/Logo-ShxDev.png"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   ) : (
                     product.mark
                   )}

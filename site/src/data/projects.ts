@@ -16,7 +16,7 @@ export type Project = {
   stack?: string[];
   href?: string;
   screenshot?: string;
-  gallery?: readonly [string, string, string];
+  gallery?: readonly string[];
   products: string[];
   monetization?: string[];
   tags: string[];
@@ -293,7 +293,12 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Flow',
-    ...projectAssets('shx-flow'),
+    screenshot: '/projects/shx-flow/preview.webp',
+    gallery: [
+      '/projects/shx-flow/preview_1.webp',
+      '/projects/shx-flow/preview_2.webp',
+      '/projects/shx-flow/preview_3.webp',
+    ],
     category: 'SHX Ecosystem',
     description: 'Modern task management system for personal productivity and organization.',
     products: ['SHX-Flow Bot', 'SHX-Flow Web App'],
@@ -319,6 +324,7 @@ export const projects: Project[] = [
     ...projectAssets('shx-digits'),
     category: 'Experimental & Entertainment',
     description: 'Advanced Telegram version of the classic 2048 game for Telegram Web Apps.',
+    href: 'https://t.me/ShxDigitsBot',
     products: ['SHX-Digits Web App'],
     monetization: ['Themes', 'Effects', 'Premium subscriptions'],
     tags: ['GAME', '2048', 'TELEGRAM'],
@@ -331,6 +337,7 @@ export const projects: Project[] = [
     category: 'Experimental & Entertainment',
     description:
       'Telegram version of Block Blast. A modern puzzle experience adapted for Telegram.',
+    href: 'https://t.me/ShxBlocksBot',
     products: ['SHX-Blocks Web App'],
     monetization: ['Themes', 'Effects', 'Premium subscriptions'],
     tags: ['GAME', 'PUZZLE', 'TELEGRAM'],
@@ -343,6 +350,7 @@ export const projects: Project[] = [
     category: 'Experimental & Entertainment',
     description:
       'Clash Royale inspired Telegram Web Game. Experimental strategy game project inspired by arena mechanics.',
+    href: 'https://t.me/ShxArenaBot',
     products: ['SHX-Arena Web App'],
     monetization: ['Internal game currency', 'Cosmetics'],
     tags: ['GAME', 'STRATEGY', 'WEB APP'],
@@ -355,6 +363,7 @@ export const projects: Project[] = [
     category: 'Experimental & Entertainment',
     description:
       'Mobile Legends inspired Telegram Web Game. MOBA-inspired Telegram gaming platform.',
+    href: 'https://t.me/ShxHeroesBot',
     products: ['SHX-Heroes Web App'],
     monetization: ['Internal game economy', 'Premium content'],
     tags: ['GAME', 'MOBA', 'TELEGRAM'],
@@ -367,6 +376,7 @@ export const projects: Project[] = [
     category: 'Experimental & Entertainment',
     description:
       'Browser sandbox game. A web-based sandbox survival experience inspired by voxel gameplay.',
+    href: 'https://shxterra.duckdns.org',
     products: ['shxcraft.game'],
     monetization: ['Advertising', 'Cosmetic systems'],
     tags: ['GAME', 'SANDBOX', 'BROWSER'],

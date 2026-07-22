@@ -72,7 +72,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
   }[language];
   const renderProjectMark = () =>
     project.title === 'SHX DEV' ? (
-      <img className="site-brand-logo" src="/brand/Logo-ShxDev.png" alt="" />
+      <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
     ) : (
       project.title.slice(0, 2)
     );
@@ -158,7 +158,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
       <div className="showcase-system" aria-hidden="true">
         <div className="system-core">
           <span className="system-core-logo">
-            <img className="site-brand-logo" src="/brand/Logo-ShxDev.png" alt="" />
+            <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
           </span>
           <strong>{project.title}</strong>
         </div>
@@ -260,7 +260,8 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
   const [activePreview, setActivePreview] = useState(0);
   const reducedMotion = useReducedMotion();
   const titleId = useId();
-  const previewCount = labels.gallery.length;
+  const previewCount = project?.gallery?.length ?? labels.gallery.length;
+  const previewLabels = labels.gallery.slice(0, previewCount);
   const fallbackLabels = {
     ru: {
       surfaces: 'Интерфейсы продукта',
@@ -370,7 +371,7 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                     <span />
                     <small>
                       {String(activePreview + 1).padStart(2, '0')} /{' '}
-                      {String(previewCount).padStart(2, '0')} · {labels.gallery[activePreview]}
+                      {String(previewCount).padStart(2, '0')} · {previewLabels[activePreview]}
                     </small>
                   </div>
                   <AnimatePresence mode="wait" initial={false}>
@@ -397,7 +398,7 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                     className="showcase-carousel-arrow is-previous"
                     type="button"
                     onClick={showPrevious}
-                    aria-label={`${labels.gallery[(activePreview - 1 + previewCount) % previewCount]}`}
+                    aria-label={`${previewLabels[(activePreview - 1 + previewCount) % previewCount]}`}
                   >
                     <ArrowRightIcon />
                   </button>
@@ -405,13 +406,13 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                     className="showcase-carousel-arrow is-next"
                     type="button"
                     onClick={showNext}
-                    aria-label={`${labels.gallery[(activePreview + 1) % previewCount]}`}
+                    aria-label={`${previewLabels[(activePreview + 1) % previewCount]}`}
                   >
                     <ArrowRightIcon />
                   </button>
 
                   <div className="showcase-carousel-dots" aria-label={labels.overview}>
-                    {labels.gallery.map((label, index) => (
+                    {previewLabels.map((label, index) => (
                       <button
                         type="button"
                         aria-label={label}
@@ -424,7 +425,7 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                   </div>
                 </div>
                 <div className="showcase-tabs" role="tablist" aria-label={labels.overview}>
-                  {labels.gallery.map((label, index) => (
+                  {previewLabels.map((label, index) => (
                     <button
                       type="button"
                       role="tab"

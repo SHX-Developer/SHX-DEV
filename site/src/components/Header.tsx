@@ -171,7 +171,7 @@ export const Header = () => {
           onPointerLeave={resetMagnetic}
         >
           <span className="brand-mark" aria-hidden="true">
-            <img className="site-brand-logo" src="/brand/Logo-ShxDev.png" alt="" />
+            <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
           </span>
           <span className="brand-name">SHX DEV</span>
         </a>

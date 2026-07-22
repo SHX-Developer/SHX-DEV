@@ -426,12 +426,12 @@ svg {
 img.site-brand-logo {
   object-fit: contain !important;
   object-position: center !important;
-  transform: translateY(-8%) scale(1.5) !important;
+  transform: translate(-7%, 8%) scale(1.75) !important;
   transform-origin: center;
 }
 
 .brand:hover img.site-brand-logo {
-  transform: translateY(-8%) scale(1.58) !important;
+  transform: translate(-7%, 8%) scale(1.84) !important;
 }
 
 @keyframes logoOrbit {

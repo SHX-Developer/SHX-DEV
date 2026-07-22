@@ -46,7 +46,7 @@ export const ProjectCard = ({
           {project.title === 'SHX DEV' ? (
             <img
               className="site-brand-logo"
-              src="/brand/Logo-ShxDev.png"
+              src="/brand/Main%20Logo.png"
               alt=""
               aria-hidden="true"
             />

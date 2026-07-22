@@ -176,7 +176,7 @@ export const HeroSection = () => {
             <Button href="#about" onClick={(event) => handleAnchorClick(event, '#about')}>
               {t.hero.about}
             </Button>
-            <Button href="/resume/shx-dev-resume.pdf" download>
+            <Button href="/resume/shx-dev-resume.pdf" download="Shaxrizod_Ilxomov_Resume.pdf">
               {t.hero.resume}
               <DownloadIcon />
             </Button>
@@ -226,7 +226,7 @@ export const HeroSection = () => {
               <p className="hero-showcase-text">{t.hero.profileText}</p>
               <div className="hero-personal-note">
                 <span className="hero-personal-avatar" aria-hidden="true">
-                  <img className="site-brand-logo" src="/brand/Logo-ShxDev.png" alt="" />
+                  <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
                 </span>
                 <div>
                   <strong>Shahrizod</strong>

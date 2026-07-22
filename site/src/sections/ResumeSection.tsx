@@ -129,7 +129,11 @@ export const ResumeSection = () => {
             <p>{t.resume.collaborationText}</p>
           </div>
 
-          <a className="proof-document" href="/resume/shx-dev-resume.pdf" download>
+          <a
+            className="proof-document"
+            href="/resume/shx-dev-resume.pdf"
+            download="Shaxrizod_Ilxomov_Resume.pdf"
+          >
             <span className="proof-document-icon">
               <DownloadIcon />
             </span>

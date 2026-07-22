@@ -206,7 +206,7 @@ export const TechStackSection = () => {
 
             <div className="stack-architecture-result">
               <span className="stack-architecture-logo" aria-hidden="true">
-                <img className="site-brand-logo" src="/brand/Logo-ShxDev.png" alt="" />
+                <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
               </span>
               <div>
                 <small>{labels.output}</small>

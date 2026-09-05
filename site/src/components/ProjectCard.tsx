@@ -4,7 +4,6 @@ import type { MouseEvent } from 'react';
 import type { Project } from '../data/projects';
 import { useLanguage } from '../i18n';
 import { isPerformanceLite } from '../utils/performance';
-import { ProjectIcon } from './ProjectIcon';
 import { ArrowRightIcon } from './ui/Icons';
 
 type ProjectCardProps = {
@@ -40,20 +39,8 @@ export const ProjectCard = ({
       onClick={() => onExplore(project)}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-    >
+      >
       <div className="card-topline">
-        <div className={`card-icon${project.title === 'SHX DEV' ? ' is-brand' : ''}`}>
-          {project.title === 'SHX DEV' ? (
-            <img
-              className="site-brand-logo"
-              src="/brand/Main%20Logo.png"
-              alt=""
-              aria-hidden="true"
-            />
-          ) : (
-            <ProjectIcon icon={project.icon} />
-          )}
-        </div>
         <span className="project-classification">{project.meta}</span>
       </div>
 

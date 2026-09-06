@@ -130,6 +130,11 @@ export const ProjectsSection = () => {
           overview: t.projects.overview,
           gallery: t.projects.gallery,
           result: t.projects.result,
+          stack: t.projects.stack,
+          surface: t.projects.surface,
+          business: t.projects.business,
+          role: t.projects.role,
+          delivered: t.projects.delivered,
           openLive: t.projects.openLive,
           inDevelopment: t.projects.inDevelopment,
         }}

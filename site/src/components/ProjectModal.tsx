@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { useCallback, useEffect, useId, useState } from 'react';
+import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { Project } from '../data/projects';
 import { useLanguage } from '../i18n';
@@ -10,6 +10,11 @@ type ProjectModalLabels = {
   overview: string;
   gallery: readonly [string, string, string];
   result: string;
+  stack: string;
+  surface: string;
+  business: string;
+  role: string;
+  delivered: string;
   openLive: string;
   inDevelopment: string;
 };
@@ -20,7 +25,15 @@ type ProjectModalProps = {
   onClose: () => void;
 };
 
-const ProductPreview = ({ project, active }: { project: Project; active: number }) => {
+const ProductPreview = ({
+  project,
+  active,
+  imageSource,
+}: {
+  project: Project;
+  active: number;
+  imageSource?: string;
+}) => {
   const { language } = useLanguage();
   const [imageFailed, setImageFailed] = useState(false);
   const copy = {
@@ -77,9 +90,6 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
       project.title.slice(0, 2)
     );
 
-  const galleryImage = project.gallery?.[active];
-  const imageSource = galleryImage ?? (active === 0 ? project.screenshot : undefined);
-
   useEffect(() => {
     setImageFailed(false);
   }, [active, imageSource, project.title]);
@@ -87,7 +97,7 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
   if (imageSource && !imageFailed) {
     return (
       <img
-        className={`showcase-live-shot${galleryImage ? ' is-gallery' : ''}`}
+        className="showcase-live-shot is-gallery"
         src={imageSource}
         decoding="async"
         onError={() => setImageFailed(true)}
@@ -255,33 +265,102 @@ const ProductPreview = ({ project, active }: { project: Project; active: number 
   );
 };
 
+const PreviewThumbnail = ({
+  source,
+  label,
+  index,
+  active,
+  onSelect,
+}: {
+  source?: string;
+  label: string;
+  index: number;
+  active: boolean;
+  onSelect: () => void;
+}) => {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  useEffect(() => {
+    setImageFailed(false);
+  }, [source]);
+
+  return (
+    <button
+      type="button"
+      role="tab"
+      aria-selected={active}
+      aria-label={label}
+      className={active ? 'active' : ''}
+      onClick={onSelect}
+    >
+      {!imageFailed && source ? (
+        <img src={source} alt="" aria-hidden="true" onError={() => setImageFailed(true)} />
+      ) : (
+        <span className="showcase-thumbnail-fallback" aria-hidden="true">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+      )}
+      <span className="showcase-thumbnail-index" aria-hidden="true">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+    </button>
+  );
+};
+
 export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) => {
   const { language } = useLanguage();
   const [activePreview, setActivePreview] = useState(0);
   const reducedMotion = useReducedMotion();
   const titleId = useId();
-  const previewCount = project?.gallery?.length ?? labels.gallery.length;
-  const previewLabels = labels.gallery.slice(0, previewCount);
   const fallbackLabels = {
     ru: {
       surfaces: 'Интерфейсы продукта',
       areas: 'Ключевые области',
       inDevelopment: 'В РАЗРАБОТКЕ',
       status: 'Статус',
+      preview: 'Превью',
+      focus: 'Фокус проекта',
+      liveProduct: 'Доступен онлайн',
+      liveDescription: 'Откройте рабочий продукт в новой вкладке.',
+      conceptDescription: 'Проект находится на стадии разработки концепции.',
     },
     uz: {
       surfaces: 'Mahsulot interfeyslari',
       areas: 'Asosiy yo‘nalishlar',
       inDevelopment: 'ISHLAB CHIQILMOQDA',
       status: 'Holat',
+      preview: 'Ko‘rinish',
+      focus: 'Loyiha yo‘nalishi',
+      liveProduct: 'Onlayn mavjud',
+      liveDescription: 'Ishlayotgan mahsulotni yangi oynada oching.',
+      conceptDescription: 'Loyiha konsepsiya ishlab chiqish bosqichida.',
     },
     en: {
       surfaces: 'Product surfaces',
       areas: 'Core areas',
       inDevelopment: 'IN DEV',
       status: 'Status',
+      preview: 'Preview',
+      focus: 'Project focus',
+      liveProduct: 'Available online',
+      liveDescription: 'Open the live product in a new tab.',
+      conceptDescription: 'This project is currently in concept development.',
     },
   }[language];
+  const previewSources = useMemo(
+    () =>
+      project
+        ? [project.screenshot, ...(project.gallery ?? [])].filter((source): source is string =>
+            Boolean(source),
+          )
+        : [],
+    [project],
+  );
+  const previewCount = Math.max(previewSources.length, 1);
+  const previewLabels = Array.from(
+    { length: previewCount },
+    (_, index) => `${fallbackLabels.preview} ${index + 1}`,
+  );
   const modalStats =
     project?.stats ??
     (project
@@ -291,6 +370,33 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
           [fallbackLabels.inDevelopment, fallbackLabels.status],
         ]
       : []);
+  const detailBlocks = project
+    ? project.roles?.length
+      ? [
+          { label: labels.role, items: project.roles, variant: 'tags' },
+          {
+            label: labels.delivered,
+            items: project.delivered?.length ? project.delivered : project.products,
+            variant: 'list',
+          },
+          {
+            label: labels.stack,
+            items: project.stack?.length ? project.stack : project.tags,
+            variant: 'tags',
+          },
+        ]
+      : [
+          { label: labels.surface, items: project.products, variant: 'list' },
+          {
+            label: labels.business,
+            items: project.monetization?.length
+              ? project.monetization
+              : [fallbackLabels.inDevelopment],
+            variant: 'list',
+          },
+          { label: fallbackLabels.focus, items: project.tags, variant: 'tags' },
+        ]
+    : [];
 
   const showPrevious = useCallback(() => {
     setActivePreview((current) => (current - 1 + previewCount) % previewCount);
@@ -304,7 +410,7 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
     if (!project) return;
 
     setActivePreview(0);
-    project.gallery?.forEach((source) => {
+    previewSources.forEach((source) => {
       const image = new Image();
       image.src = source;
     });
@@ -322,7 +428,7 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [project, onClose, showNext, showPrevious]);
+  }, [project, onClose, previewSources, showNext, showPrevious]);
 
   return createPortal(
     <AnimatePresence>
@@ -350,7 +456,10 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="project-modal-header">
-              <h2 id={titleId}>{project.title}</h2>
+              <div>
+                <span className="project-modal-kicker">{project.category}</span>
+                <h2 id={titleId}>{project.title}</h2>
+              </div>
               <button
                 className="project-modal-close"
                 type="button"
@@ -390,7 +499,11 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                         if (info.offset.x > 55 || info.velocity.x > 450) showPrevious();
                       }}
                     >
-                      <ProductPreview project={project} active={activePreview} />
+                      <ProductPreview
+                        project={project}
+                        active={activePreview}
+                        imageSource={previewSources[activePreview]}
+                      />
                     </motion.div>
                   </AnimatePresence>
 
@@ -410,38 +523,27 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                   >
                     <ArrowRightIcon />
                   </button>
-
-                  <div className="showcase-carousel-dots" aria-label={labels.overview}>
-                    {previewLabels.map((label, index) => (
-                      <button
-                        type="button"
-                        aria-label={label}
-                        aria-current={activePreview === index ? 'true' : undefined}
-                        className={activePreview === index ? 'active' : ''}
-                        onClick={() => setActivePreview(index)}
-                        key={label}
-                      />
-                    ))}
-                  </div>
                 </div>
-                <div className="showcase-tabs" role="tablist" aria-label={labels.overview}>
+                <div className="showcase-thumbnails" role="tablist" aria-label={labels.overview}>
                   {previewLabels.map((label, index) => (
-                    <button
-                      type="button"
-                      role="tab"
-                      aria-selected={activePreview === index}
-                      className={activePreview === index ? 'active' : ''}
-                      onClick={() => setActivePreview(index)}
+                    <PreviewThumbnail
+                      source={previewSources[index]}
+                      label={label}
+                      index={index}
+                      active={activePreview === index}
+                      onSelect={() => setActivePreview(index)}
                       key={label}
-                    >
-                      {label}
-                    </button>
+                    />
                   ))}
                 </div>
               </div>
 
               <div className="project-modal-info">
-                <p>{project.description}</p>
+                <div className="project-modal-intro">
+                  <span className="project-modal-eyebrow">{project.meta}</span>
+                  <h3>{project.headline ?? project.title}</h3>
+                  <p>{project.description}</p>
+                </div>
 
                 {modalStats.length ? (
                   <div className="modal-result-grid" aria-label={labels.result}>
@@ -454,19 +556,53 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                   </div>
                 ) : null}
 
-                {project.href ? (
-                  <a
-                    className="project-live-link"
-                    href={project.href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {labels.openLive}
-                    <ExternalLinkIcon />
-                  </a>
-                ) : (
-                  <span className="project-live-link is-disabled">{labels.inDevelopment}</span>
-                )}
+                <div className="project-detail-grid">
+                  {detailBlocks.map((block, blockIndex) => (
+                    <section
+                      className={`project-detail-card${blockIndex === 0 ? ' is-accent' : ''}`}
+                      key={block.label}
+                    >
+                      <span>{block.label}</span>
+                      {block.variant === 'tags' ? (
+                        <div className="project-detail-tags">
+                          {block.items.map((item) => (
+                            <i key={item}>{item}</i>
+                          ))}
+                        </div>
+                      ) : (
+                        <ul>
+                          {block.items.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </section>
+                  ))}
+                </div>
+
+                <div className="project-modal-cta">
+                  <div>
+                    <span>{project.href ? fallbackLabels.liveProduct : fallbackLabels.status}</span>
+                    <p>
+                      {project.href
+                        ? fallbackLabels.liveDescription
+                        : fallbackLabels.conceptDescription}
+                    </p>
+                  </div>
+                  {project.href ? (
+                    <a
+                      className="project-live-link"
+                      href={project.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {labels.openLive}
+                      <ExternalLinkIcon />
+                    </a>
+                  ) : (
+                    <span className="project-live-link is-disabled">{labels.inDevelopment}</span>
+                  )}
+                </div>
               </div>
             </div>
           </motion.section>

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { useCallback, useEffect, useId, useMemo, useState } from 'react';
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { Project } from '../data/projects';
 import { useLanguage } from '../i18n';
@@ -17,6 +17,9 @@ type ProjectModalLabels = {
   delivered: string;
   openLive: string;
   inDevelopment: string;
+  timeline: string;
+  challenges: string;
+  outcomes: string;
 };
 
 type ProjectModalProps = {
@@ -29,10 +32,12 @@ const ProductPreview = ({
   project,
   active,
   imageSource,
+  previewLabel,
 }: {
   project: Project;
   active: number;
   imageSource?: string;
+  previewLabel: string;
 }) => {
   const { language } = useLanguage();
   const [imageFailed, setImageFailed] = useState(false);
@@ -51,6 +56,7 @@ const ProductPreview = ({
       status: 'СТАТУС',
       activity: 'АКТИВНОСТЬ',
       active: 'АКТИВЕН',
+      screenshotsSoon: 'Скриншоты скоро',
     },
     uz: {
       liveInterface: 'ishlaydigan interfeys',
@@ -66,6 +72,7 @@ const ProductPreview = ({
       status: 'HOLAT',
       activity: 'FAOLLIK',
       active: 'FAOL',
+      screenshotsSoon: 'Skrinshotlar tez orada',
     },
     en: {
       liveInterface: 'live interface',
@@ -81,11 +88,12 @@ const ProductPreview = ({
       status: 'STATUS',
       activity: 'ACTIVITY',
       active: 'ACTIVE',
+      screenshotsSoon: 'Screenshots coming soon',
     },
   }[language];
   const renderProjectMark = () =>
     project.title === 'SHX DEV' ? (
-      <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
+      <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
     ) : (
       project.title.slice(0, 2)
     );
@@ -101,8 +109,22 @@ const ProductPreview = ({
         src={imageSource}
         decoding="async"
         onError={() => setImageFailed(true)}
-        alt={`${project.title} — ${String(active + 1).padStart(2, '0')}`}
+        alt={`${project.title} — ${previewLabel}`}
       />
+    );
+  }
+
+  if (!imageSource && !project.screenshot) {
+    return (
+      <div
+        className="showcase-coming-soon"
+        role="img"
+        aria-label={`${project.title}: ${copy.screenshotsSoon}`}
+      >
+        <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
+        <strong>{project.title}</strong>
+        <span>{copy.screenshotsSoon}</span>
+      </div>
     );
   }
 
@@ -168,7 +190,7 @@ const ProductPreview = ({
       <div className="showcase-system" aria-hidden="true">
         <div className="system-core">
           <span className="system-core-logo">
-            <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
+            <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
           </span>
           <strong>{project.title}</strong>
         </div>
@@ -312,6 +334,8 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
   const [activePreview, setActivePreview] = useState(0);
   const reducedMotion = useReducedMotion();
   const titleId = useId();
+  const descriptionId = useId();
+  const modalRef = useRef<HTMLElement>(null);
   const fallbackLabels = {
     ru: {
       surfaces: 'Интерфейсы продукта',
@@ -323,6 +347,9 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
       liveProduct: 'Доступен онлайн',
       liveDescription: 'Откройте рабочий продукт в новой вкладке.',
       conceptDescription: 'Проект находится на стадии разработки концепции.',
+      previous: 'Предыдущее изображение',
+      next: 'Следующее изображение',
+      galleryNames: ['Обзор продукта', 'Основной сценарий', 'Интерфейсы', 'Оплата и архитектура'],
     },
     uz: {
       surfaces: 'Mahsulot interfeyslari',
@@ -334,6 +361,9 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
       liveProduct: 'Onlayn mavjud',
       liveDescription: 'Ishlayotgan mahsulotni yangi oynada oching.',
       conceptDescription: 'Loyiha konsepsiya ishlab chiqish bosqichida.',
+      previous: 'Oldingi tasvir',
+      next: 'Keyingi tasvir',
+      galleryNames: ['Mahsulot sharhi', 'Asosiy ssenariy', 'Interfeyslar', 'To‘lov va arxitektura'],
     },
     en: {
       surfaces: 'Product surfaces',
@@ -345,6 +375,14 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
       liveProduct: 'Available online',
       liveDescription: 'Open the live product in a new tab.',
       conceptDescription: 'This project is currently in concept development.',
+      previous: 'Previous image',
+      next: 'Next image',
+      galleryNames: [
+        'Product overview',
+        'Core experience',
+        'Product surfaces',
+        'Payments and architecture',
+      ],
     },
   }[language];
   const previewSources = useMemo(
@@ -359,8 +397,9 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
   const previewCount = Math.max(previewSources.length, 1);
   const previewLabels = Array.from(
     { length: previewCount },
-    (_, index) => `${fallbackLabels.preview} ${index + 1}`,
+    (_, index) => fallbackLabels.galleryNames[index] ?? `${fallbackLabels.preview} ${index + 1}`,
   );
+  const hasPreviewMedia = previewSources.length > 0;
   const modalStats =
     project?.stats ??
     (project
@@ -417,18 +456,56 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
+    const backgroundElements = Array.from(document.body.children)
+      .filter((element) => !element.classList.contains('project-modal-backdrop'))
+      .map((element) => {
+        const htmlElement = element as HTMLElement;
+        const state = {
+          element: htmlElement,
+          inert: htmlElement.inert,
+          ariaHidden: htmlElement.getAttribute('aria-hidden'),
+        };
+        htmlElement.inert = true;
+        htmlElement.setAttribute('aria-hidden', 'true');
+        return state;
+      });
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
-      if (event.key === 'ArrowLeft') showPrevious();
-      if (event.key === 'ArrowRight') showNext();
+      if (previewCount > 1 && event.key === 'ArrowLeft') showPrevious();
+      if (previewCount > 1 && event.key === 'ArrowRight') showNext();
+
+      if (event.key === 'Tab' && modalRef.current) {
+        const focusable = Array.from(
+          modalRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ),
+        ).filter((element) => !element.hidden && element.offsetParent !== null);
+        const first = focusable[0];
+        const last = focusable.at(-1);
+        if (!first || !last) return;
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
+      backgroundElements.forEach(({ element, inert, ariaHidden }) => {
+        element.inert = inert;
+        if (ariaHidden === null) element.removeAttribute('aria-hidden');
+        else element.setAttribute('aria-hidden', ariaHidden);
+      });
     };
-  }, [project, onClose, previewSources, showNext, showPrevious]);
+  }, [project, onClose, previewCount, previewSources, showNext, showPrevious]);
 
   return createPortal(
     <AnimatePresence>
@@ -444,12 +521,14 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
           }}
         >
           <motion.section
+            ref={modalRef}
             className="project-modal"
             data-theme={project.theme ?? 'violet'}
             layoutId={`project-${project.title}`}
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
+            aria-describedby={descriptionId}
             initial={reducedMotion ? false : { opacity: 0, y: 36, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.94 }}
@@ -492,6 +571,7 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                       exit={{ opacity: 0, x: -28, scale: 0.985 }}
                       transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                       drag={reducedMotion ? false : 'x'}
+                      dragListener={previewCount > 1}
                       dragConstraints={{ left: 0, right: 0 }}
                       dragElastic={0.12}
                       onDragEnd={(_, info) => {
@@ -503,46 +583,53 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                         project={project}
                         active={activePreview}
                         imageSource={previewSources[activePreview]}
+                        previewLabel={previewLabels[activePreview]}
                       />
                     </motion.div>
                   </AnimatePresence>
 
-                  <button
-                    className="showcase-carousel-arrow is-previous"
-                    type="button"
-                    onClick={showPrevious}
-                    aria-label={`${previewLabels[(activePreview - 1 + previewCount) % previewCount]}`}
-                  >
-                    <ArrowRightIcon />
-                  </button>
-                  <button
-                    className="showcase-carousel-arrow is-next"
-                    type="button"
-                    onClick={showNext}
-                    aria-label={`${previewLabels[(activePreview + 1) % previewCount]}`}
-                  >
-                    <ArrowRightIcon />
-                  </button>
+                  {previewCount > 1 ? (
+                    <>
+                      <button
+                        className="showcase-carousel-arrow is-previous"
+                        type="button"
+                        onClick={showPrevious}
+                        aria-label={`${fallbackLabels.previous}: ${previewLabels[(activePreview - 1 + previewCount) % previewCount]}`}
+                      >
+                        <ArrowRightIcon />
+                      </button>
+                      <button
+                        className="showcase-carousel-arrow is-next"
+                        type="button"
+                        onClick={showNext}
+                        aria-label={`${fallbackLabels.next}: ${previewLabels[(activePreview + 1) % previewCount]}`}
+                      >
+                        <ArrowRightIcon />
+                      </button>
+                    </>
+                  ) : null}
                 </div>
-                <div className="showcase-thumbnails" role="tablist" aria-label={labels.overview}>
-                  {previewLabels.map((label, index) => (
-                    <PreviewThumbnail
-                      source={previewSources[index]}
-                      label={label}
-                      index={index}
-                      active={activePreview === index}
-                      onSelect={() => setActivePreview(index)}
-                      key={label}
-                    />
-                  ))}
-                </div>
+                {hasPreviewMedia ? (
+                  <div className="showcase-thumbnails" role="tablist" aria-label={labels.overview}>
+                    {previewLabels.map((label, index) => (
+                      <PreviewThumbnail
+                        source={previewSources[index]}
+                        label={label}
+                        index={index}
+                        active={activePreview === index}
+                        onSelect={() => setActivePreview(index)}
+                        key={label}
+                      />
+                    ))}
+                  </div>
+                ) : null}
               </div>
 
               <div className="project-modal-info">
                 <div className="project-modal-intro">
                   <span className="project-modal-eyebrow">{project.meta}</span>
                   <h3>{project.headline ?? project.title}</h3>
-                  <p>{project.description}</p>
+                  <p id={descriptionId}>{project.description}</p>
                 </div>
 
                 {modalStats.length ? (
@@ -579,6 +666,46 @@ export const ProjectModal = ({ project, labels, onClose }: ProjectModalProps) =>
                     </section>
                   ))}
                 </div>
+
+                {project.timeline?.length ||
+                project.challenges?.length ||
+                project.outcomes?.length ? (
+                  <div className="project-case-study">
+                    {project.timeline?.length ? (
+                      <section className="project-case-card is-timeline">
+                        <span>{labels.timeline}</span>
+                        <ol>
+                          {project.timeline.map(([stage, item]) => (
+                            <li key={`${stage}-${item}`}>
+                              <strong>{stage}</strong>
+                              <p>{item}</p>
+                            </li>
+                          ))}
+                        </ol>
+                      </section>
+                    ) : null}
+                    {project.challenges?.length ? (
+                      <section className="project-case-card">
+                        <span>{labels.challenges}</span>
+                        <ul>
+                          {project.challenges.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </section>
+                    ) : null}
+                    {project.outcomes?.length ? (
+                      <section className="project-case-card is-outcomes">
+                        <span>{labels.outcomes}</span>
+                        <ul>
+                          {project.outcomes.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </section>
+                    ) : null}
+                  </div>
+                ) : null}
 
                 <div className="project-modal-cta">
                   <div>

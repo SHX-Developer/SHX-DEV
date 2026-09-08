@@ -1,9 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import type {
-  MouseEvent,
-  PointerEvent as ReactPointerEvent,
-} from 'react';
+import type { MouseEvent, PointerEvent as ReactPointerEvent } from 'react';
 import type { Language } from '../i18n';
 import { useLanguage } from '../i18n';
 import { scrollToSection } from '../utils/scroll';
@@ -106,9 +103,7 @@ export const Header = () => {
 
     if (isOpen) {
       setIsOpen(false);
-      window.requestAnimationFrame(() =>
-        window.requestAnimationFrame(() => scrollToSection(href)),
-      );
+      window.requestAnimationFrame(() => window.requestAnimationFrame(() => scrollToSection(href)));
       return;
     }
 
@@ -133,14 +128,8 @@ export const Header = () => {
     if (performanceLite) return;
     const rect = event.currentTarget.getBoundingClientRect();
     event.currentTarget.style.setProperty('--header-light-opacity', '0.82');
-    event.currentTarget.style.setProperty(
-      '--header-light-x',
-      `${event.clientX - rect.left}px`,
-    );
-    event.currentTarget.style.setProperty(
-      '--header-light-y',
-      `${event.clientY - rect.top}px`,
-    );
+    event.currentTarget.style.setProperty('--header-light-x', `${event.clientX - rect.left}px`);
+    event.currentTarget.style.setProperty('--header-light-y', `${event.clientY - rect.top}px`);
   };
 
   const resetHeaderLight = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -171,7 +160,7 @@ export const Header = () => {
           onPointerLeave={resetMagnetic}
         >
           <span className="brand-mark" aria-hidden="true">
-            <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
+            <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
           </span>
           <span className="brand-name">SHX DEV</span>
         </a>
@@ -193,23 +182,17 @@ export const Header = () => {
         </nav>
 
         <div className="nav-actions">
-          <div
-            className="language-picker"
-            ref={languageRef}
-            onPointerEnter={(event) => {
-              if (event.pointerType === 'mouse') setIsLanguageOpen(true);
-            }}
-            onPointerLeave={(event) => {
-              if (event.pointerType === 'mouse') setIsLanguageOpen(false);
-            }}
-          >
+          <div className="language-picker" ref={languageRef}>
             <button
               className="language-toggle is-magnetic"
               type="button"
               aria-label={t.header.languageLabel}
               aria-expanded={isLanguageOpen}
               aria-haspopup="menu"
-              onClick={() => setIsLanguageOpen((value) => !value)}
+              onClick={() => {
+                setIsOpen(false);
+                setIsLanguageOpen((value) => !value);
+              }}
               onPointerMove={handleMagneticMove}
               onPointerLeave={resetMagnetic}
             >
@@ -228,9 +211,7 @@ export const Header = () => {
                   exit={{ opacity: 0, scale: 0.94, y: -6, filter: 'blur(4px)' }}
                   transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <span className="language-menu-label">
-                    {languageMenuLabel}
-                  </span>
+                  <span className="language-menu-label">{languageMenuLabel}</span>
                   {languages.map((item) => {
                     const isSelected = item.value === language;
                     return (
@@ -269,9 +250,13 @@ export const Header = () => {
             onPointerMove={handleMagneticMove}
             onPointerLeave={resetMagnetic}
           >
-            <span className="nav-cta-spark" aria-hidden="true">✦</span>
+            <span className="nav-cta-spark" aria-hidden="true">
+              ✦
+            </span>
             {t.header.cta}
-            <span className="nav-cta-arrow" aria-hidden="true">→</span>
+            <span className="nav-cta-arrow" aria-hidden="true">
+              →
+            </span>
           </a>
 
           <button

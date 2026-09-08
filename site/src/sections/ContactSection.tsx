@@ -25,8 +25,8 @@ export const ContactSection = () => {
     },
     {
       label: t.contact.email,
-      value: 'geomangd2003@gmail.com',
-      href: 'mailto:geomangd2003@gmail.com',
+      value: 'hello@shx.dev',
+      href: 'mailto:hello@shx.dev',
       Icon: MailIcon,
     },
   ];
@@ -56,6 +56,26 @@ export const ContactSection = () => {
     uz: 'XABARDAN KEYIN NIMA BO‘LADI',
     en: 'WHAT HAPPENS AFTER YOUR MESSAGE',
   }[language];
+  const conversionCopy = {
+    ru: {
+      cta: 'Написать в Telegram',
+      availability: 'Отвечаю обычно в течение 24 часов',
+      taskLabel: 'С чем можно обратиться',
+      tasks: ['Telegram Mini Apps', 'Платежи и автоматизация', 'MVP и архитектура'],
+    },
+    uz: {
+      cta: 'Telegram orqali yozish',
+      availability: 'Odatda 24 soat ichida javob beraman',
+      taskLabel: 'Qanday vazifa bilan murojaat qilish mumkin',
+      tasks: ['Telegram Mini Apps', 'To‘lov va avtomatlashtirish', 'MVP va arxitektura'],
+    },
+    en: {
+      cta: 'Message me on Telegram',
+      availability: 'I usually reply within 24 hours',
+      taskLabel: 'What I can help with',
+      tasks: ['Telegram Mini Apps', 'Payments and automation', 'MVP and architecture'],
+    },
+  }[language];
 
   return (
     <AnimatedSection id="contact" className="contact-v2">
@@ -77,6 +97,27 @@ export const ContactSection = () => {
           <em>{t.contact.accent}.</em>
         </h2>
         <p>{t.contact.lead}</p>
+      </div>
+
+      <div className="contact-v2-conversion">
+        <a className="btn primary" href="https://t.me/shxdev" target="_blank" rel="noreferrer">
+          <TelegramIcon />
+          {conversionCopy.cta}
+          <ArrowRightIcon />
+        </a>
+        <span>
+          <i aria-hidden="true" />
+          {conversionCopy.availability}
+        </span>
+      </div>
+
+      <div className="contact-v2-tasks">
+        <small>{conversionCopy.taskLabel}</small>
+        <div>
+          {conversionCopy.tasks.map((task) => (
+            <span key={task}>{task}</span>
+          ))}
+        </div>
       </div>
 
       <div className="contact-v2-path">

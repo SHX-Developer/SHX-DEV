@@ -7,7 +7,7 @@
   --bg-2: #0e0a1a;
   --ink: #f4f2fa;
   --ink-2: #b8b3cc;
-  --ink-3: #6e6886;
+  --ink-3: #918aa8;
   --line: rgba(255, 255, 255, 0.06);
   --line-2: rgba(255, 255, 255, 0.1);
   --glass: rgba(255, 255, 255, 0.025);
@@ -24,7 +24,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html,
@@ -40,7 +40,7 @@ body {
 
 body {
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   background:
     radial-gradient(1200px 700px at 80% -10%, rgba(139, 92, 246, 0.18), transparent 60%),
     radial-gradient(900px 600px at -10% 30%, rgba(79, 70, 229, 0.1), transparent 65%),
@@ -8297,32 +8297,30 @@ footer::after {
 .process-v2-route {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 0;
-  margin-top: 72px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 56px;
   padding-top: 2px;
 }
 
 .process-v2-line {
-  position: absolute;
-  top: 16px;
-  right: 0;
-  left: 0;
-  height: 1px;
-  transform-origin: 0 50%;
-  background: linear-gradient(90deg, rgba(167, 139, 250, 0.85), rgba(167, 139, 250, 0.12));
+  display: none;
 }
 
 .process-v2-route article {
   position: relative;
   min-width: 0;
-  padding-right: 28px;
+  min-height: 220px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.014);
 }
 
 .process-v2-index {
   position: relative;
   display: flex;
-  height: 46px;
+  height: 40px;
   align-items: flex-start;
 }
 
@@ -8330,7 +8328,7 @@ footer::after {
   position: relative;
   z-index: 1;
   padding-right: 10px;
-  background: var(--bg);
+  background: transparent;
   color: var(--ink-3);
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
@@ -8340,7 +8338,7 @@ footer::after {
 .process-v2-index i {
   position: absolute;
   top: 9px;
-  left: 32px;
+  right: 0;
   width: 7px;
   height: 7px;
   border: 1px solid rgba(196, 181, 253, 0.7);
@@ -8350,9 +8348,9 @@ footer::after {
 }
 
 .process-v2-route h3 {
-  min-height: 46px;
+  min-height: 0;
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 570;
   line-height: 1.35;
 }
@@ -8360,7 +8358,7 @@ footer::after {
 .process-v2-route p {
   margin: 13px 0 0;
   color: var(--ink-3);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.65;
 }
 
@@ -8369,7 +8367,7 @@ footer::after {
   margin-top: 18px;
   color: #b9ffd9;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -11564,5 +11562,420 @@ html.performance-lite .project-modal-backdrop {
   .project-detail-card,
   .project-modal-cta {
     padding: 19px;
+  }
+}
+
+/* UX and accessibility refinements */
+
+.card:focus-visible,
+.project-tabs button:focus-visible,
+.showcase-thumbnails button:focus-visible,
+.project-modal button:focus-visible,
+.project-modal a:focus-visible {
+  outline: 2px solid #c4b5fd;
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  font-size: 12px;
+}
+
+.project-classification {
+  font-size: 11px;
+}
+
+.card-tags span,
+.project-stats span,
+.modal-result-grid span,
+.showcase-window-bar small,
+.showcase-thumbnail-index,
+.project-modal-kicker {
+  font-size: 10px;
+}
+
+.product-os-bar,
+.product-os-node small,
+.product-os-active-copy small,
+.product-os-modules small,
+.product-os-flow small,
+.product-os-principles span,
+.product-os-core small {
+  font-size: 10px;
+}
+
+.project-preview-placeholder {
+  display: grid;
+  min-height: 150px;
+  place-items: center;
+  align-content: center;
+  gap: 14px;
+  margin-top: 18px;
+  border: 1px dashed rgba(var(--project-rgb), 0.34);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(var(--project-rgb), 0.16), transparent 52%),
+    rgba(255, 255, 255, 0.012);
+  color: var(--ink-2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-preview-placeholder img {
+  width: 54px;
+  height: 54px;
+  opacity: 0.82;
+}
+
+.showcase-coming-soon {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  place-items: center;
+  align-content: center;
+  gap: 13px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(var(--modal-rgb), 0.2), transparent 30%),
+    linear-gradient(145deg, #0d0918, #05040a);
+}
+
+.showcase-coming-soon img {
+  width: 82px;
+  height: 82px;
+}
+
+.showcase-coming-soon strong {
+  font-size: clamp(24px, 4vw, 46px);
+  font-weight: 560;
+  letter-spacing: -0.04em;
+}
+
+.showcase-coming-soon span {
+  color: var(--modal-accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.project-case-study {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.project-case-card {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.014);
+}
+
+.project-case-card.is-outcomes {
+  border-color: rgba(var(--modal-rgb), 0.24);
+  background:
+    radial-gradient(circle at 100% 0, rgba(var(--modal-rgb), 0.12), transparent 50%),
+    rgba(255, 255, 255, 0.014);
+}
+
+.project-case-card > span {
+  color: var(--modal-accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-case-card ul,
+.project-case-card ol {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 22px 0 0;
+  list-style: none;
+}
+
+.project-case-card li {
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.project-case-card:not(.is-timeline) li {
+  position: relative;
+  padding-left: 17px;
+}
+
+.project-case-card:not(.is-timeline) li::before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--modal-accent);
+}
+
+.project-case-card.is-timeline li {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 12px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-case-card.is-timeline strong {
+  color: var(--modal-accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.project-case-card.is-timeline p {
+  margin: 0;
+}
+
+.contact-v2-conversion {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.contact-v2-conversion .btn {
+  min-height: 58px;
+  padding-inline: 28px;
+}
+
+.contact-v2-conversion > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-v2-conversion > span i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7cf8b4;
+  box-shadow: 0 0 12px rgba(124, 248, 180, 0.7);
+}
+
+.contact-v2-tasks {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.contact-v2-tasks > small {
+  color: var(--ink-3);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-v2-tasks > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+}
+
+.contact-v2-tasks span {
+  padding: 9px 13px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.018);
+  color: var(--ink-2);
+  font-size: 13px;
+}
+
+.about-v2-person small,
+.about-v2-capabilities > div > span,
+.about-v2-profile > code,
+.about-v2-live,
+.about-v2-metrics span {
+  font-size: 11px;
+}
+
+.about-v2-person p,
+.about-v2-capabilities p,
+.product-os-benefits span,
+.timeline-v2-meta span,
+.timeline-v2-roadmap > div > div > p {
+  font-size: 13px;
+}
+
+.timeline-v2-heading > small,
+.timeline-v2-event-copy > small,
+.timeline-v2-tags span,
+.timeline-v2-roadmap-status,
+.timeline-v2-progress > small,
+.timeline-v2-progress > strong,
+.contact-v2-path > small,
+.contact-v2-path article > span,
+.contact-v2-channels > a > span {
+  font-size: 10px;
+}
+
+.timeline-v2-event-copy > p,
+.contact-v2-path p {
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .process-v2-route {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .process-v2-route article {
+    padding: 22px;
+  }
+
+  .process-v2-index {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .process-v2-index i {
+    top: 9px;
+  }
+
+  .project-case-study {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .project-case-card.is-timeline {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 38px;
+    padding-bottom: 58px;
+  }
+
+  .hero-inner {
+    gap: 30px;
+  }
+
+  .hero h1 {
+    font-size: clamp(43px, 12.5vw, 62px);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .hero-story {
+    display: none;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 14px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  .hero-actions .btn:last-child {
+    display: none;
+  }
+
+  .hero-tags {
+    margin-top: 18px;
+  }
+
+  .hero-tags .tag:nth-child(n + 4) {
+    display: none;
+  }
+
+  .hero-showcase {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .hero-showcase-main {
+    padding: 24px 2px 20px;
+  }
+
+  .hero-showcase-main h2 {
+    font-size: 26px;
+  }
+
+  .hero-showcase-text {
+    display: none;
+  }
+
+  .proof-grid div:nth-child(n + 3) {
+    display: none;
+  }
+
+  .process-v2-route {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 40px;
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .process-v2-route article {
+    min-height: 0;
+    padding: 20px;
+  }
+
+  .process-v2-route article:last-child {
+    padding-bottom: 20px;
+  }
+
+  .process-v2-index i {
+    top: 9px;
+    right: 0;
+    left: auto;
+  }
+
+  .project-case-study {
+    grid-template-columns: 1fr;
+  }
+
+  .project-case-card.is-timeline {
+    grid-column: auto;
+  }
+
+  .contact-v2-path {
+    margin-top: 52px;
+  }
+}
+
+@media (max-width: 440px) {
+  .hero-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .showcase-coming-soon {
+    min-height: 250px;
   }
 }

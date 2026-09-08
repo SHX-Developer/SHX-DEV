@@ -103,9 +103,15 @@ export const TechStackSection = () => {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="stack-workbench-bar">
-          <div aria-hidden="true"><i /><i /><i /></div>
+          <div aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </div>
           <span>shx.product-stack.ts</span>
-          <small><i /> {labels.ready}</small>
+          <small>
+            <i /> {labels.ready}
+          </small>
         </div>
 
         <div className="stack-proof">
@@ -148,7 +154,9 @@ export const TechStackSection = () => {
                     key={title}
                   >
                     <div className="stack-capability-head">
-                      <span><Icon /></span>
+                      <span>
+                        <Icon />
+                      </span>
                       <i>{String(index + 1).padStart(2, '0')}</i>
                     </div>
                     <h3>{title}</h3>
@@ -206,7 +214,7 @@ export const TechStackSection = () => {
 
             <div className="stack-architecture-result">
               <span className="stack-architecture-logo" aria-hidden="true">
-                <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
+                <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
               </span>
               <div>
                 <small>{labels.output}</small>

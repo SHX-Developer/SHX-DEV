@@ -80,7 +80,6 @@ export const HeroSection = () => {
       event.currentTarget.style.setProperty('--parallax-x', `${(x - 0.5) * 20}px`);
       event.currentTarget.style.setProperty('--parallax-y', `${(y - 0.5) * 16}px`);
     }
-
   };
 
   const handleCardPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
@@ -104,10 +103,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section
-      className="hero"
-      onPointerMove={handleHeroPointerMove}
-    >
+    <section className="hero" onPointerMove={handleHeroPointerMove}>
       <SectionFX variant="hero" />
       <div className="hero-aura hero-aura-one" aria-hidden="true" />
       <div className="hero-aura hero-aura-two" aria-hidden="true" />
@@ -176,7 +172,7 @@ export const HeroSection = () => {
             <Button href="#about" onClick={(event) => handleAnchorClick(event, '#about')}>
               {t.hero.about}
             </Button>
-            <Button href="/resume/shx-dev-resume.pdf" download="Shaxrizod_Ilxomov_Resume.pdf">
+            <Button href="/resume/shx-dev-resume.pdf" download="Shahrizod_Ilxomov_Resume.pdf">
               {t.hero.resume}
               <DownloadIcon />
             </Button>
@@ -210,9 +206,7 @@ export const HeroSection = () => {
         >
           <div className="hero-showcase-light" aria-hidden="true" />
           <div className="hero-showcase-head">
-            <span>
-              SHX / {{ ru: 'ПРОФИЛЬ', uz: 'PROFIL', en: 'PROFILE' }[language]}
-            </span>
+            <span>SHX / {{ ru: 'ПРОФИЛЬ', uz: 'PROFIL', en: 'PROFILE' }[language]}</span>
             <span className="hero-showcase-status">
               <i />
               2026
@@ -226,16 +220,18 @@ export const HeroSection = () => {
               <p className="hero-showcase-text">{t.hero.profileText}</p>
               <div className="hero-personal-note">
                 <span className="hero-personal-avatar" aria-hidden="true">
-                  <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
+                  <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
                 </span>
                 <div>
                   <strong>Shahrizod</strong>
                   <small>
-                    {{
-                      ru: 'Создаю продукты из Ташкента',
-                      uz: 'Toshkentdan turib mahsulotlar yarataman',
-                      en: 'Building products from Tashkent',
-                    }[language]}
+                    {
+                      {
+                        ru: 'Создаю продукты из Ташкента',
+                        uz: 'Toshkentdan turib mahsulotlar yarataman',
+                        en: 'Building products from Tashkent',
+                      }[language]
+                    }
                   </small>
                 </div>
                 <i aria-hidden="true" />

@@ -37,7 +37,7 @@ export const ResumeSection = () => {
   const channels = [
     { label: 'TELEGRAM', href: 'https://t.me/shxdev', Icon: TelegramIcon },
     { label: 'GITHUB', href: 'https://github.com/SHX-Developer', Icon: GitHubIcon },
-    { label: 'EMAIL', href: 'mailto:geomangd2003@gmail.com', Icon: MailIcon },
+    { label: 'EMAIL', href: 'mailto:hello@shx.dev', Icon: MailIcon },
   ];
 
   return (
@@ -132,7 +132,7 @@ export const ResumeSection = () => {
           <a
             className="proof-document"
             href="/resume/shx-dev-resume.pdf"
-            download="Shaxrizod_Ilxomov_Resume.pdf"
+            download="Shahrizod_Ilxomov_Resume.pdf"
           >
             <span className="proof-document-icon">
               <DownloadIcon />

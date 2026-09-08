@@ -49,7 +49,7 @@ export const AboutSection = () => {
         >
           <div className="about-v2-person">
             <span className="about-v2-avatar" aria-hidden="true">
-              <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
+              <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
             </span>
             <div>
               <small>{personalLabel}</small>
@@ -87,9 +87,7 @@ export const AboutSection = () => {
             ))}
           </div>
 
-          <code>
-            mission: {mission}
-          </code>
+          <code>mission: {mission}</code>
         </motion.div>
       </div>
     </AnimatedSection>

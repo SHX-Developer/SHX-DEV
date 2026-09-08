@@ -10,7 +10,7 @@ type ProjectCardProps = {
   project: Project;
   compact?: boolean;
   exploreLabel: string;
-  onExplore: (project: Project) => void;
+  onExplore: (project: Project, trigger: HTMLElement) => void;
 };
 
 export const ProjectCard = ({
@@ -19,9 +19,14 @@ export const ProjectCard = ({
   exploreLabel,
   onExplore,
 }: ProjectCardProps) => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const [coverFailed, setCoverFailed] = useState(false);
   const performanceLite = isPerformanceLite();
+  const previewPending = {
+    ru: 'Скриншоты скоро',
+    uz: 'Skrinshotlar tez orada',
+    en: 'Screenshots coming soon',
+  }[language];
 
   const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
     if (performanceLite) return;
@@ -36,10 +41,11 @@ export const ProjectCard = ({
       data-theme={project.theme ?? 'violet'}
       layoutId={`project-${project.title}`}
       onMouseMove={handleMouseMove}
-      onClick={() => onExplore(project)}
+      onClick={(event) => onExplore(project, event.currentTarget)}
+      tabIndex={-1}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      >
+    >
       <div className="card-topline">
         <span className="project-classification">{project.meta}</span>
       </div>
@@ -78,7 +84,12 @@ export const ProjectCard = ({
             </>
           ) : null}
         </div>
-      ) : null}
+      ) : (
+        <div className="project-preview-placeholder" aria-label={previewPending}>
+          <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
+          <span>{previewPending}</span>
+        </div>
+      )}
 
       <div className="card-content">
         {project.headline && !compact ? <p className="project-kind">{project.headline}</p> : null}
@@ -109,7 +120,7 @@ export const ProjectCard = ({
             type="button"
             onClick={(event) => {
               event.stopPropagation();
-              onExplore(project);
+              onExplore(project, event.currentTarget);
             }}
           >
             {exploreLabel}

@@ -281,7 +281,6 @@ export const projects: Project[] = [
   },
   {
     title: 'SHX-Loop',
-    ...projectAssets('shx-loop'),
     category: 'SHX Ecosystem',
     description:
       'Short-video platform concept for vertical clips, creators, recommendations and viral content discovery.',

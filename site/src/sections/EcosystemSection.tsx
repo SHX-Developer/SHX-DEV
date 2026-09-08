@@ -177,7 +177,7 @@ export const EcosystemSection = () => {
           >
             <small>{productOsLabel}</small>
             <strong className="product-os-logo" aria-hidden="true">
-              <img className="site-brand-logo" src="/brand/Main%20Logo.png" alt="" />
+              <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
             </strong>
             <span>17 {modulesLabel}</span>
           </motion.div>
@@ -201,7 +201,7 @@ export const EcosystemSection = () => {
                   {product.mark === 'SHX' ? (
                     <img
                       className="site-brand-logo"
-                      src="/brand/Main%20Logo.png"
+                      src="/brand/shx-logo.webp"
                       alt=""
                       aria-hidden="true"
                     />
@@ -222,8 +222,7 @@ export const EcosystemSection = () => {
         <div className="product-os-inspector" aria-live="polite">
           <div className="product-os-active-copy">
             <small>
-              {activeProductLabel} /{' '}
-              {String(activeIndex + 1).padStart(2, '0')}
+              {activeProductLabel} / {String(activeIndex + 1).padStart(2, '0')}
             </small>
             <h3>{activeCopy[0]}</h3>
             <p>{activeCopy[2]}</p>

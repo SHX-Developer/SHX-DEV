@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { KeyboardEvent } from 'react';
 import { ProjectCard } from '../components/ProjectCard';
 import { ProjectModal } from '../components/ProjectModal';
 import { AnimatedSection } from '../components/ui/AnimatedSection';
@@ -19,11 +20,24 @@ const ecosystemTitles = [
   'SHX-Loop',
 ];
 
+const getProjectSlug = (title: string) =>
+  title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
+const getProjectGroup = (category: string, title: string): ProjectGroup => {
+  if (featuredTitles.includes(title)) return 'main';
+  if (category === 'SHX Ecosystem') return 'ecosystem';
+  return 'experiments';
+};
+
 export const ProjectsSection = () => {
   const { projects, t } = useLanguage();
   const reducedMotion = useReducedMotion();
   const [activeGroup, setActiveGroup] = useState<ProjectGroup>('main');
   const [selectedTitle, setSelectedTitle] = useState<string | null>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
 
   const visibleProjects = useMemo(() => {
     if (activeGroup === 'main') {
@@ -49,7 +63,70 @@ export const ProjectsSection = () => {
     ? (projects.find((project) => project.title === selectedTitle) ?? null)
     : null;
 
-  const closeProject = useCallback(() => setSelectedTitle(null), []);
+  const restoreProjectFocus = useCallback(() => {
+    window.requestAnimationFrame(() => returnFocusRef.current?.focus());
+  }, []);
+
+  const syncProjectFromUrl = useCallback(() => {
+    const slug = new URL(window.location.href).searchParams.get('project');
+    const nextProject = slug
+      ? projects.find((candidate) => getProjectSlug(candidate.title) === slug)
+      : null;
+
+    setSelectedTitle(nextProject?.title ?? null);
+    if (nextProject) {
+      setActiveGroup(getProjectGroup(nextProject.category, nextProject.title));
+    } else {
+      restoreProjectFocus();
+    }
+  }, [projects, restoreProjectFocus]);
+
+  useEffect(() => {
+    syncProjectFromUrl();
+    window.addEventListener('popstate', syncProjectFromUrl);
+    return () => window.removeEventListener('popstate', syncProjectFromUrl);
+  }, [syncProjectFromUrl]);
+
+  const openProject = useCallback((project: (typeof projects)[number], trigger: HTMLElement) => {
+    returnFocusRef.current = trigger;
+    setSelectedTitle(project.title);
+    setActiveGroup(getProjectGroup(project.category, project.title));
+
+    const url = new URL(window.location.href);
+    const slug = getProjectSlug(project.title);
+    url.searchParams.set('project', slug);
+    if (!url.hash) url.hash = 'projects';
+    window.history.pushState({ ...window.history.state, shxProject: slug }, '', url);
+  }, []);
+
+  const closeProject = useCallback(() => {
+    const url = new URL(window.location.href);
+    const slug = url.searchParams.get('project');
+
+    if (slug && window.history.state?.shxProject === slug) {
+      window.history.back();
+      return;
+    }
+
+    url.searchParams.delete('project');
+    window.history.replaceState(window.history.state, '', url);
+    setSelectedTitle(null);
+    restoreProjectFocus();
+  }, [restoreProjectFocus]);
+
+  const handleTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    const currentIndex = tabs.findIndex((tab) => tab.id === activeGroup);
+    let nextIndex = currentIndex;
+    if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabs.length;
+    if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+    if (event.key === 'Home') nextIndex = 0;
+    if (event.key === 'End') nextIndex = tabs.length - 1;
+    if (nextIndex === currentIndex) return;
+
+    event.preventDefault();
+    setActiveGroup(tabs[nextIndex].id);
+    document.getElementById(`project-tab-${tabs[nextIndex].id}`)?.focus();
+  };
 
   const tabs: Array<{ id: ProjectGroup; label: string }> = [
     { id: 'main', label: t.projects.main },
@@ -75,11 +152,15 @@ export const ProjectsSection = () => {
       <div className="project-tabs" role="tablist" aria-label={t.projects.categories}>
         {tabs.map((tab) => (
           <button
+            id={`project-tab-${tab.id}`}
             type="button"
             role="tab"
             aria-selected={activeGroup === tab.id}
+            aria-controls={`project-panel-${tab.id}`}
+            tabIndex={activeGroup === tab.id ? 0 : -1}
             className={activeGroup === tab.id ? 'active' : ''}
             onClick={() => setActiveGroup(tab.id)}
+            onKeyDown={handleTabKeyDown}
             key={tab.id}
           >
             {activeGroup === tab.id ? (
@@ -100,8 +181,10 @@ export const ProjectsSection = () => {
 
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
+          id={`project-panel-${activeGroup}`}
           className={`projects-browser-grid ${activeGroup === 'main' ? 'is-featured' : ''}`}
           role="tabpanel"
+          aria-labelledby={`project-tab-${activeGroup}`}
           key={activeGroup}
           initial={reducedMotion ? false : { opacity: 0, y: 12, filter: 'blur(6px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -114,7 +197,7 @@ export const ProjectsSection = () => {
               project={project}
               compact={activeGroup !== 'main'}
               exploreLabel={t.projects.explore}
-              onExplore={(selected) => setSelectedTitle(selected.title)}
+              onExplore={openProject}
             />
           ))}
         </motion.div>
@@ -137,6 +220,9 @@ export const ProjectsSection = () => {
           delivered: t.projects.delivered,
           openLive: t.projects.openLive,
           inDevelopment: t.projects.inDevelopment,
+          timeline: t.projects.timeline,
+          challenges: t.projects.challenges,
+          outcomes: t.projects.outcomes,
         }}
       />
     </AnimatedSection>

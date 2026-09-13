@@ -426,12 +426,7 @@ svg {
 img.site-brand-logo {
   object-fit: contain !important;
   object-position: center !important;
-  transform: translate(-7%, 8%) scale(1.75) !important;
-  transform-origin: center;
-}
-
-.brand:hover img.site-brand-logo {
-  transform: translate(-7%, 8%) scale(1.84) !important;
+  transform: none !important;
 }
 
 @keyframes logoOrbit {
@@ -9314,11 +9309,9 @@ footer::after {
 }
 
 .contact-v2-channels strong {
-  overflow: hidden;
   font-size: clamp(15px, 1.6vw, 21px);
   font-weight: 520;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .contact-v2-channels > a > svg {

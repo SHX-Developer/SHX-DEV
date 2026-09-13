@@ -49,7 +49,7 @@ export const AboutSection = () => {
         >
           <div className="about-v2-person">
             <span className="about-v2-avatar" aria-hidden="true">
-              <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
+              <img className="site-brand-logo" src="/brand/Logo.png" alt="" />
             </span>
             <div>
               <small>{personalLabel}</small>

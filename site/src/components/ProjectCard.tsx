@@ -86,7 +86,7 @@ export const ProjectCard = ({
         </div>
       ) : (
         <div className="project-preview-placeholder" aria-label={previewPending}>
-          <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
+          <img className="site-brand-logo" src="/brand/Logo.png" alt="" />
           <span>{previewPending}</span>
         </div>
       )}

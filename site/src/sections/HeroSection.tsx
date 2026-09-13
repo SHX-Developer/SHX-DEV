@@ -220,7 +220,7 @@ export const HeroSection = () => {
               <p className="hero-showcase-text">{t.hero.profileText}</p>
               <div className="hero-personal-note">
                 <span className="hero-personal-avatar" aria-hidden="true">
-                  <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
+                  <img className="site-brand-logo" src="/brand/Logo.png" alt="" />
                 </span>
                 <div>
                   <strong>Shahrizod</strong>

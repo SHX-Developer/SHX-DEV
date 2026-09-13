@@ -93,7 +93,7 @@ const ProductPreview = ({
   }[language];
   const renderProjectMark = () =>
     project.title === 'SHX DEV' ? (
-      <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
+      <img className="site-brand-logo" src="/brand/Logo.png" alt="" />
     ) : (
       project.title.slice(0, 2)
     );
@@ -121,7 +121,7 @@ const ProductPreview = ({
         role="img"
         aria-label={`${project.title}: ${copy.screenshotsSoon}`}
       >
-        <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
+        <img className="site-brand-logo" src="/brand/Logo.png" alt="" />
         <strong>{project.title}</strong>
         <span>{copy.screenshotsSoon}</span>
       </div>
@@ -190,7 +190,7 @@ const ProductPreview = ({
       <div className="showcase-system" aria-hidden="true">
         <div className="system-core">
           <span className="system-core-logo">
-            <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
+            <img className="site-brand-logo" src="/brand/Logo.png" alt="" />
           </span>
           <strong>{project.title}</strong>
         </div>

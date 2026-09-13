@@ -214,7 +214,7 @@ export const TechStackSection = () => {
 
             <div className="stack-architecture-result">
               <span className="stack-architecture-logo" aria-hidden="true">
-                <img className="site-brand-logo" src="/brand/shx-logo.webp" alt="" />
+                <img className="site-brand-logo" src="/brand/Logo.png" alt="" />
               </span>
               <div>
                 <small>{labels.output}</small>

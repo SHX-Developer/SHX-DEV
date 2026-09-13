@@ -37,7 +37,7 @@ export const ResumeSection = () => {
   const channels = [
     { label: 'TELEGRAM', href: 'https://t.me/shxdev', Icon: TelegramIcon },
     { label: 'GITHUB', href: 'https://github.com/SHX-Developer', Icon: GitHubIcon },
-    { label: 'EMAIL', href: 'mailto:hello@shx.dev', Icon: MailIcon },
+    { label: 'EMAIL', href: 'mailto:geomangd2003@gmail.com', Icon: MailIcon },
   ];
 
   return (

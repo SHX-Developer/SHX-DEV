@@ -25,8 +25,8 @@ export const ContactSection = () => {
     },
     {
       label: t.contact.email,
-      value: 'hello@shx.dev',
-      href: 'mailto:hello@shx.dev',
+      value: 'geomangd2003@gmail.com',
+      href: 'mailto:geomangd2003@gmail.com',
       Icon: MailIcon,
     },
   ];

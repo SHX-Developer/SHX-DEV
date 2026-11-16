@@ -8042,7 +8042,7 @@ footer::after {
   overflow: hidden;
   border: 0;
   border-radius: 50%;
-  background: #05030a;
+  background: transparent;
   box-shadow: 0 0 24px rgba(139, 92, 246, 0.35);
 }
 
@@ -11970,5 +11970,229 @@ html.performance-lite .project-modal-backdrop {
 
   .showcase-coming-soon {
     min-height: 250px;
+  }
+}
+
+/* Stable liquid-glass navigation and surfaces. */
+.nav {
+  padding: 10px 0 0;
+  transition: none;
+}
+
+.nav-inner,
+.nav.is-scrolled .nav-inner {
+  width: min(calc(100% - 32px), 1280px);
+  padding: 11px 14px 11px 18px;
+  border-color: rgba(211, 198, 255, 0.2);
+  background:
+    linear-gradient(135deg, rgba(28, 22, 43, 0.72), rgba(10, 9, 16, 0.58)),
+    rgba(10, 8, 17, 0.66);
+  box-shadow:
+    0 18px 55px -30px rgba(0, 0, 0, 0.9),
+    0 0 38px -24px rgba(139, 92, 246, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.11);
+  backdrop-filter: blur(30px) saturate(155%);
+  -webkit-backdrop-filter: blur(30px) saturate(155%);
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav.is-scrolled {
+  padding-top: 10px;
+}
+
+.brand,
+.nav-link,
+.language-toggle,
+.nav-cta {
+  transform: none !important;
+}
+
+.brand::after,
+.brand:hover::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
+.brand-mark,
+.nav.is-scrolled .brand-mark,
+.brand:hover .brand-mark {
+  width: 32px;
+  height: 32px;
+  flex-basis: 32px;
+  filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.48));
+}
+
+.brand-mark img,
+.brand:hover .brand-mark img {
+  filter: none;
+  transform: none;
+}
+
+.nav.is-scrolled .brand-name {
+  font-size: 15px;
+}
+
+.nav-link::after,
+.nav-link:hover::after {
+  transform: none;
+}
+
+.nav-link:hover {
+  border-color: transparent;
+  background: transparent;
+}
+
+.language-toggle {
+  min-width: 72px;
+  justify-content: center;
+  border-color: rgba(211, 198, 255, 0.2);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.language-toggle:hover,
+.language-toggle[aria-expanded='true'] {
+  border-color: rgba(196, 181, 253, 0.38);
+  background: rgba(167, 139, 250, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.language-menu {
+  top: calc(100% + 10px);
+  border-color: rgba(211, 198, 255, 0.24);
+  background:
+    radial-gradient(280px 180px at 100% 0, rgba(167, 139, 250, 0.18), transparent 72%),
+    linear-gradient(145deg, rgba(23, 18, 35, 0.84), rgba(9, 8, 15, 0.88));
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(32px) saturate(165%);
+  -webkit-backdrop-filter: blur(32px) saturate(165%);
+}
+
+.language-menu button {
+  transition: color 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+
+.language-menu button:hover:not(:disabled),
+.language-menu button.is-selected {
+  transform: none;
+  border-color: rgba(196, 181, 253, 0.2);
+  background: rgba(167, 139, 250, 0.14);
+}
+
+.nav-cta {
+  border-color: rgba(211, 198, 255, 0.24);
+  background:
+    linear-gradient(145deg, rgba(167, 139, 250, 0.16), rgba(255, 255, 255, 0.035)),
+    rgba(12, 9, 20, 0.48);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.nav-cta:hover {
+  border-color: rgba(211, 198, 255, 0.38);
+  background:
+    linear-gradient(145deg, rgba(167, 139, 250, 0.24), rgba(255, 255, 255, 0.055)),
+    rgba(12, 9, 20, 0.52);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: none !important;
+}
+
+.nav-cta-arrow,
+.nav-cta:hover .nav-cta-arrow {
+  transform: none;
+  transition: none;
+}
+
+.hero h1 {
+  background-image: linear-gradient(135deg, #fff 8%, #eee9fa 56%, #c6b8e9 100%);
+  animation: none;
+}
+
+.hero h1::before {
+  inset: -24% 0 -22% -8%;
+  background: radial-gradient(ellipse at 38% 52%, rgba(139, 92, 246, 0.11), transparent 72%);
+  filter: blur(64px);
+  opacity: 0.7;
+}
+
+.hero h1:hover {
+  filter: none;
+}
+
+.hero-personal-avatar {
+  border: 1px solid rgba(196, 181, 253, 0.16);
+  background: rgba(167, 139, 250, 0.06);
+}
+
+.hero-personal-avatar img {
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+
+.project-tabs {
+  border-color: rgba(211, 198, 255, 0.18);
+  background:
+    linear-gradient(145deg, rgba(28, 22, 43, 0.62), rgba(10, 9, 16, 0.56)),
+    rgba(10, 8, 17, 0.52);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+}
+
+.project-tabs button,
+.project-tabs button:hover {
+  transform: none;
+}
+
+.project-tab-indicator {
+  border-color: rgba(211, 198, 255, 0.28);
+  background:
+    linear-gradient(145deg, rgba(196, 181, 253, 0.2), rgba(139, 92, 246, 0.085)),
+    rgba(255, 255, 255, 0.035);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 8px 26px rgba(76, 29, 149, 0.12);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.card {
+  border-color: rgba(211, 198, 255, 0.14);
+  background:
+    radial-gradient(circle at 12% 0, rgba(var(--project-rgb), 0.1), transparent 38%),
+    linear-gradient(145deg, rgba(28, 22, 43, 0.64), rgba(10, 9, 16, 0.66)),
+    rgba(10, 8, 17, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.075);
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(var(--project-rgb), 0.28);
+  box-shadow:
+    0 24px 64px -46px rgba(var(--project-rgb), 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+.card .project-preview img,
+.card:hover .project-preview img {
+  transform: none;
+  filter: none;
+}
+
+@media (max-width: 760px) {
+  .nav,
+  .nav.is-scrolled {
+    padding: 8px 0 0;
+  }
+
+  .nav-inner,
+  .nav.is-scrolled .nav-inner {
+    width: calc(100% - 20px);
+    padding: 8px 10px 8px 12px;
   }
 }

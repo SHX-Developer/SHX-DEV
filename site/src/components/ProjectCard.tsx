@@ -43,8 +43,6 @@ export const ProjectCard = ({
       onMouseMove={handleMouseMove}
       onClick={(event) => onExplore(project, event.currentTarget)}
       tabIndex={-1}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="card-topline">
         <span className="project-classification">{project.meta}</span>

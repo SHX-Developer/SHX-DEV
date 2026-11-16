@@ -20,7 +20,6 @@ const languages: Array<{
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [activeHref, setActiveHref] = useState<string | null>(null);
   const languageRef = useRef<HTMLDivElement>(null);
   const { language, setLanguage, t } = useLanguage();
@@ -37,14 +36,12 @@ export const Header = () => {
   }[language];
 
   useEffect(() => {
-    const updateScrollState = () => {
-      setIsScrolled(window.scrollY > 32);
+    const clearActiveAtTop = () => {
       if (window.scrollY < 180) setActiveHref(null);
     };
 
-    updateScrollState();
-    window.addEventListener('scroll', updateScrollState, { passive: true });
-    return () => window.removeEventListener('scroll', updateScrollState);
+    window.addEventListener('scroll', clearActiveAtTop, { passive: true });
+    return () => window.removeEventListener('scroll', clearActiveAtTop);
   }, []);
 
   useEffect(() => {
@@ -110,20 +107,6 @@ export const Header = () => {
     scrollToSection(href);
   };
 
-  const handleMagneticMove = (event: ReactPointerEvent<HTMLElement>) => {
-    if (performanceLite) return;
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 8;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 8;
-    event.currentTarget.style.setProperty('--magnetic-x', `${x}px`);
-    event.currentTarget.style.setProperty('--magnetic-y', `${y}px`);
-  };
-
-  const resetMagnetic = (event: ReactPointerEvent<HTMLElement>) => {
-    event.currentTarget.style.setProperty('--magnetic-x', '0px');
-    event.currentTarget.style.setProperty('--magnetic-y', '0px');
-  };
-
   const handleHeaderLight = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (performanceLite) return;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -144,7 +127,7 @@ export const Header = () => {
   };
 
   return (
-    <header className={`nav${isScrolled ? ' is-scrolled' : ''}`}>
+    <header className="nav">
       <div
         className="nav-inner"
         onPointerMove={handleHeaderLight}
@@ -153,11 +136,9 @@ export const Header = () => {
         <span className="nav-reflection" aria-hidden="true" />
 
         <a
-          className="brand is-magnetic"
+          className="brand"
           href="#top"
           onClick={(event) => closeAndScroll(event, '#top')}
-          onPointerMove={handleMagneticMove}
-          onPointerLeave={resetMagnetic}
         >
           <span className="brand-mark" aria-hidden="true">
             <img className="site-brand-logo" src="/brand/Logo.png" alt="" />
@@ -168,13 +149,11 @@ export const Header = () => {
         <nav className="nav-links" aria-label={t.header.primaryNav}>
           {t.header.nav.map((link) => (
             <a
-              className={`nav-link is-magnetic${activeHref === link.href ? ' is-active' : ''}`}
+              className={`nav-link${activeHref === link.href ? ' is-active' : ''}`}
               key={link.href}
               href={link.href}
               aria-current={activeHref === link.href ? 'page' : undefined}
               onClick={(event) => closeAndScroll(event, link.href)}
-              onPointerMove={handleMagneticMove}
-              onPointerLeave={resetMagnetic}
             >
               {link.label}
             </a>
@@ -184,7 +163,7 @@ export const Header = () => {
         <div className="nav-actions">
           <div className="language-picker" ref={languageRef}>
             <button
-              className="language-toggle is-magnetic"
+              className="language-toggle"
               type="button"
               aria-label={t.header.languageLabel}
               aria-expanded={isLanguageOpen}
@@ -193,8 +172,6 @@ export const Header = () => {
                 setIsOpen(false);
                 setIsLanguageOpen((value) => !value);
               }}
-              onPointerMove={handleMagneticMove}
-              onPointerLeave={resetMagnetic}
             >
               <span aria-hidden="true">◎</span>
               <strong>{language.toUpperCase()}</strong>
@@ -206,10 +183,10 @@ export const Header = () => {
                 <motion.div
                   className="language-menu"
                   role="menu"
-                  initial={{ opacity: 0, scale: 0.92, y: -8, filter: 'blur(6px)' }}
-                  animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, scale: 0.94, y: -6, filter: 'blur(4px)' }}
-                  transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.14, ease: 'easeOut' }}
                 >
                   <span className="language-menu-label">{languageMenuLabel}</span>
                   {languages.map((item) => {
@@ -244,11 +221,9 @@ export const Header = () => {
           </div>
 
           <a
-            className="nav-cta is-magnetic"
+            className="nav-cta"
             href="#contact"
             onClick={(event) => closeAndScroll(event, '#contact')}
-            onPointerMove={handleMagneticMove}
-            onPointerLeave={resetMagnetic}
           >
             <span className="nav-cta-spark" aria-hidden="true">
               ✦

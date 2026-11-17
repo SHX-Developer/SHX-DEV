@@ -268,9 +268,9 @@ export const Header = () => {
         </div>
       </div>
 
-      <AnimatePresence>
-        {isOpen ? (
-          createPortal(
+      {createPortal(
+        <AnimatePresence>
+          {isOpen ? (
             <motion.nav
               className="mobile-menu"
               id="mobile-navigation"
@@ -291,11 +291,11 @@ export const Header = () => {
                   {link.label}
                 </a>
               ))}
-            </motion.nav>,
-            document.body,
-          )
-        ) : null}
-      </AnimatePresence>
+            </motion.nav>
+          ) : null}
+        </AnimatePresence>,
+        document.body,
+      )}
     </header>
   );
 };

@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { MouseEvent, PointerEvent as ReactPointerEvent } from 'react';
 import type { Language } from '../i18n';
 import { useLanguage } from '../i18n';
@@ -19,8 +20,10 @@ const languages: Array<{
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [mobileMenuTop, setMobileMenuTop] = useState(80);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [activeHref, setActiveHref] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const languageRef = useRef<HTMLDivElement>(null);
   const { language, setLanguage, t } = useLanguage();
   const performanceLite = isPerformanceLite();
@@ -66,6 +69,23 @@ export const Header = () => {
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, [t.header.nav]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const updateMobileMenuPosition = () => {
+      const headerBottom = headerRef.current?.getBoundingClientRect().bottom;
+      if (headerBottom !== undefined) setMobileMenuTop(Math.round(headerBottom + 10));
+    };
+
+    updateMobileMenuPosition();
+    window.addEventListener('resize', updateMobileMenuPosition);
+    window.addEventListener('scroll', updateMobileMenuPosition, { passive: true });
+    return () => {
+      window.removeEventListener('resize', updateMobileMenuPosition);
+      window.removeEventListener('scroll', updateMobileMenuPosition);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -127,7 +147,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="nav">
+    <header className="nav" ref={headerRef}>
       <div
         className="nav-inner"
         onPointerMove={handleHeaderLight}
@@ -250,26 +270,30 @@ export const Header = () => {
 
       <AnimatePresence>
         {isOpen ? (
-          <motion.nav
-            className="mobile-menu"
-            id="mobile-navigation"
-            initial={{ opacity: 0, scale: 0.97, y: -8 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.97, y: -8 }}
-            transition={{ duration: 0.18 }}
-            aria-label={t.header.mobileNav}
-          >
-            {t.header.nav.map((link) => (
-              <a
-                className={activeHref === link.href ? 'is-active' : ''}
-                key={link.href}
-                href={link.href}
-                onClick={(event) => closeAndScroll(event, link.href)}
-              >
-                {link.label}
-              </a>
-            ))}
-          </motion.nav>
+          createPortal(
+            <motion.nav
+              className="mobile-menu"
+              id="mobile-navigation"
+              style={{ top: mobileMenuTop }}
+              initial={{ opacity: 0, scale: 0.97, y: -8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.97, y: -8 }}
+              transition={{ duration: 0.18 }}
+              aria-label={t.header.mobileNav}
+            >
+              {t.header.nav.map((link) => (
+                <a
+                  className={activeHref === link.href ? 'is-active' : ''}
+                  key={link.href}
+                  href={link.href}
+                  onClick={(event) => closeAndScroll(event, link.href)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </motion.nav>,
+            document.body,
+          )
         ) : null}
       </AnimatePresence>
     </header>

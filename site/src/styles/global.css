@@ -12207,11 +12207,10 @@ html.performance-lite .project-modal-backdrop {
   }
 
   .mobile-menu {
-    position: absolute;
-    top: calc(100% + 10px);
+    position: fixed;
     right: 0;
     left: 0;
-    z-index: 5;
+    z-index: 200;
     width: min(calc(100% - 28px), 460px);
     max-height: min(70vh, 520px);
     grid-template-columns: repeat(2, minmax(0, 1fr));

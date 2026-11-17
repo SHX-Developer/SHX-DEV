@@ -238,6 +238,7 @@ export const Header = () => {
             className="menu-toggle"
             type="button"
             aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
             aria-label={isOpen ? t.header.menuClose : t.header.menu}
             onClick={() => setIsOpen((value) => !value)}
           >
@@ -251,6 +252,7 @@ export const Header = () => {
         {isOpen ? (
           <motion.nav
             className="mobile-menu"
+            id="mobile-navigation"
             initial={{ opacity: 0, scale: 0.97, y: -8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: -8 }}
